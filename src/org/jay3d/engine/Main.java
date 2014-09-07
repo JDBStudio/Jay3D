@@ -1,5 +1,6 @@
 package org.jay3d.engine;
 
+import org.jay3d.engine.render.RenderUtil;
 import org.jay3d.game.Game;
 import org.jay3d.util.Time;
 
@@ -17,6 +18,7 @@ public class Main {
     private Game game;
 
     public Main(){
+        RenderUtil.initGraphics();
         game = new Game();
         isRunning = false;
     }
@@ -60,10 +62,8 @@ public class Main {
                 render = true;
                 unprocessedTime -= frameTime;
 
-                Time.setDelta(frameTime);
-                Input.update();
-
                 game.input();
+                Input.update();
                 game.update();
 
                 if(frameCounter >= Time.SECOND){
@@ -90,6 +90,7 @@ public class Main {
     }
 
     private void render(){
+        RenderUtil.clearScreen();
         game.render();
         Window.render();
     }
