@@ -3,6 +3,8 @@ package org.jay3d.game;
 import org.jay3d.engine.Input;
 import org.jay3d.engine.math.Vector3f;
 import org.jay3d.engine.render.Mesh;
+import org.jay3d.engine.render.ResourceLoader;
+import org.jay3d.engine.render.Shader;
 import org.jay3d.engine.render.Vertex;
 import org.lwjgl.input.Keyboard;
 
@@ -12,7 +14,9 @@ import org.lwjgl.input.Keyboard;
  */
 public class Game {
     private Mesh mesh;
+    private Shader shader;
     public Game(){
+        shader = new Shader();
         mesh = new Mesh();
 
         Vertex[] data = new Vertex[]{ new Vertex(new Vector3f(-1, -1, 0)),
@@ -21,6 +25,10 @@ public class Game {
                                       };
 
         mesh.addVertices(data);
+
+        shader.addVertexShader(ResourceLoader.loadShader("basicVertex.vs"));
+        shader.addFragmentShader(ResourceLoader.loadShader("basicFragment.fs"));
+        shader.compileShader();
     }
 
     public void input(){
@@ -40,6 +48,7 @@ public class Game {
     }
 
     public void render(){
+        shader.bind();
         mesh.draw();
     }
 }
