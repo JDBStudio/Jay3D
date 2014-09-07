@@ -6,6 +6,7 @@ import org.jay3d.engine.render.Mesh;
 import org.jay3d.engine.render.ResourceLoader;
 import org.jay3d.engine.render.Shader;
 import org.jay3d.engine.render.Vertex;
+import org.jay3d.util.Time;
 import org.lwjgl.input.Keyboard;
 
 /**
@@ -29,6 +30,8 @@ public class Game {
         shader.addVertexShader(ResourceLoader.loadShader("basicVertex.vs"));
         shader.addFragmentShader(ResourceLoader.loadShader("basicFragment.fs"));
         shader.compileShader();
+
+        shader.addUniform("uniformFloat");
     }
 
     public void input(){
@@ -43,8 +46,12 @@ public class Game {
             System.out.println("RIGHT_CLICK: UP"  + " POS: " + Input.getMousePosition().toString());
     }
 
-    public void update(){
+    float temp = 0.0f;
 
+    public void update(){
+        temp += 0.00001;
+
+        shader.setUniformf("uniformFloat", temp);
     }
 
     public void render(){
