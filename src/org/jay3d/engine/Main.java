@@ -18,6 +18,7 @@ public class Main {
     private Game game;
 
     public Main(){
+        System.out.println(RenderUtil.getOpenGLVersion());
         RenderUtil.initGraphics();
         game = new Game();
         isRunning = false;
