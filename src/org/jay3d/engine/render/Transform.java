@@ -22,8 +22,6 @@ public class Transform {
         Matrix4f rotationMatrix = new Matrix4f().initRotation(rotation.getX(),
                 rotation.getY(), rotation.getZ());
 
-
-
         return translationMatrix.mul(rotationMatrix);
     }
 

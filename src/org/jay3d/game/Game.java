@@ -49,10 +49,10 @@ public class Game {
     float temp = 0.0f;
 
     public void update(){
-        temp += Time.getTime();
+        temp += 0.0005;
 
         transform.setTranslation((float)Math.sin(temp), 0, 0);
-
+        transform.setRotation(0, 0,(float)Math.sin(temp) * 180);
     }
 
     public void render(){
