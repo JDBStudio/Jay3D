@@ -42,41 +42,43 @@ public class Main {
         isRunning = true;
 
         int frames = 0;
-        long frameCounter = 0;
+        double frameCounter = 0;
 
         final double frameTime = 1.0 / FRAME_CAP;
 
-        long lastTime = Time.getTime();
+        double lastTime = Time.getTime();
         double unprocessedTime = 0;
 
         while(isRunning){
             boolean render = false;
 
-            long startTime = Time.getTime();
-            long passedTime = startTime - lastTime;
+            double startTime = Time.getTime();
+            double passedTime = startTime - lastTime;
             lastTime = startTime;
 
-            unprocessedTime += passedTime / (double)Time.SECOND;
+            unprocessedTime += passedTime;
             frameCounter += passedTime;
 
             while(unprocessedTime > frameTime){
                 render = true;
                 unprocessedTime -= frameTime;
 
+                if(Window.isCloseRequested())
+                    stop();
+
                 game.input();
                 Input.update();
                 game.update();
-
-                if(frameCounter >= Time.SECOND){
-                    frames = 0;
-                    frameCounter = 0;
-                }
             }
 
-            if(Window.isCloseRequested())
-                stop();
 
-            if(render) {
+            if(frameCounter >= 1.0){
+                System.out.println("FPS: " + frames);
+                frames = 0;
+                frameCounter = 0;
+            }
+
+            if(render){
                 render();
                 frames++;
             }else {

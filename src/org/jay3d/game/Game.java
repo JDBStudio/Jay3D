@@ -2,10 +2,7 @@ package org.jay3d.game;
 
 import org.jay3d.engine.Input;
 import org.jay3d.engine.math.Vector3f;
-import org.jay3d.engine.render.Mesh;
-import org.jay3d.engine.render.ResourceLoader;
-import org.jay3d.engine.render.Shader;
-import org.jay3d.engine.render.Vertex;
+import org.jay3d.engine.render.*;
 import org.jay3d.util.Time;
 import org.lwjgl.input.Keyboard;
 
@@ -16,6 +13,7 @@ import org.lwjgl.input.Keyboard;
 public class Game {
     private Mesh mesh;
     private Shader shader;
+    private Transform transform;
     public Game(){
         shader = new Shader();
         mesh = new Mesh();
@@ -27,11 +25,13 @@ public class Game {
 
         mesh.addVertices(data);
 
+        transform = new Transform();
+
         shader.addVertexShader(ResourceLoader.loadShader("basicVertex.vs"));
         shader.addFragmentShader(ResourceLoader.loadShader("basicFragment.fs"));
         shader.compileShader();
 
-        shader.addUniform("uniformFloat");
+        shader.addUniform("transform");
     }
 
     public void input(){
@@ -49,13 +49,15 @@ public class Game {
     float temp = 0.0f;
 
     public void update(){
-        temp += 0.00001;
+        temp += Time.getTime();
 
-        shader.setUniformf("uniformFloat", temp);
+        transform.setTranslation((float)Math.sin(temp), 0, 0);
+
     }
 
     public void render(){
         shader.bind();
+        shader.setUniform("transform", transform.getTransformation());
         mesh.draw();
     }
 }
