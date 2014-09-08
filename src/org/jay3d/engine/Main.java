@@ -10,7 +10,7 @@ import org.jay3d.util.Time;
  */
 public class Main {
     public static final int WIDTH = 800;
-    public static final int HEIGHT = 600;
+    public static final int HEIGHT = 800;
     public static final String TITLE = "Jay3D";
     public static final double FRAME_CAP = 5000.0;
 
@@ -42,37 +42,39 @@ public class Main {
         isRunning = true;
 
         int frames = 0;
-        double frameCounter = 0;
+        long frameCounter = 0;
 
         final double frameTime = 1.0 / FRAME_CAP;
 
-        double lastTime = Time.getTime();
+        long lastTime = Time.getTime();
         double unprocessedTime = 0;
 
         while(isRunning){
             boolean render = false;
 
-            double startTime = Time.getTime();
-            double passedTime = startTime - lastTime;
+            long startTime = Time.getTime();
+            long passedTime = startTime - lastTime;
             lastTime = startTime;
 
-            unprocessedTime += passedTime;
+            unprocessedTime += passedTime / (double)Time.SECOND;
             frameCounter += passedTime;
 
             while(unprocessedTime > frameTime){
                 render = true;
+
                 unprocessedTime -= frameTime;
 
                 if(Window.isCloseRequested())
                     stop();
 
-                game.input();
+                Time.setDelta(frameTime);
                 Input.update();
+
+                game.input();
                 game.update();
             }
 
-
-            if(frameCounter >= 1.0){
+            if(frameCounter >= Time.SECOND){
                 System.out.println("FPS: " + frames);
                 frames = 0;
                 frameCounter = 0;

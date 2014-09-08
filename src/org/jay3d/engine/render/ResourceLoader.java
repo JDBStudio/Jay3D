@@ -44,7 +44,6 @@ public class ResourceLoader {
         ArrayList<Vertex> vertices = new ArrayList<>();
         ArrayList<Integer> indices = new ArrayList<>();
 
-        StringBuilder meshBuilder = new StringBuilder();
         BufferedReader meshReader;
 
         try{
