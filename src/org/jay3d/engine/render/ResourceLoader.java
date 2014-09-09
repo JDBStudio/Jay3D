@@ -2,8 +2,11 @@ package org.jay3d.engine.render;
 
 import org.jay3d.engine.math.Vector3f;
 import org.jay3d.util.Util;
+import org.newdawn.slick.opengl.TextureLoader;
 
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileReader;
 import java.util.ArrayList;
 
@@ -12,6 +15,23 @@ import java.util.ArrayList;
  * Do not distribute code without permission!
  */
 public class ResourceLoader {
+
+    public static Texture loadTexture(String fileName){
+        String[] splitArray = fileName.split("\\.");
+        String ext = splitArray[splitArray.length - 1];
+
+        try{
+            int id = TextureLoader.getTexture(ext, new FileInputStream(new File("./res/textures/" + fileName))).getTextureID();
+
+            return new Texture(id);
+        }catch(Exception e){
+            e.printStackTrace();
+            System.exit(1);
+        }
+
+        return null;
+    }
+
     public static String loadShader(String fileName){
         StringBuilder shaderSource = new StringBuilder();
         BufferedReader reader;

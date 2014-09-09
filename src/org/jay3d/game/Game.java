@@ -3,6 +3,7 @@ package org.jay3d.game;
 import org.jay3d.engine.Camera;
 import org.jay3d.engine.Input;
 import org.jay3d.engine.Window;
+import org.jay3d.engine.math.Vector2f;
 import org.jay3d.engine.math.Vector3f;
 import org.jay3d.engine.render.*;
 import org.jay3d.util.Time;
@@ -17,18 +18,28 @@ public class Game {
     private Shader shader;
     private Transform transform;
     private Camera camera;
+    private Texture texture;
     public Game(){
+        mesh = new Mesh();//ResourceLoader.loadMesh("box.obj");
+        texture = ResourceLoader.loadTexture("test.png");
         shader = new Shader();
-        mesh = ResourceLoader.loadMesh("box.obj");//new Mesh();
         camera = new Camera();
-
+        Vertex[] vertices = new Vertex[] {new Vertex(new Vector3f(-1,-1,0), new Vector2f(0,0)),
+                new Vertex(new Vector3f(0,1,0), new Vector2f(0.5f,0)),
+                new Vertex(new Vector3f(1,-1,0), new Vector2f(1.0f,0)),
+                new Vertex(new Vector3f(0,-1,1), new Vector2f(0.5f,1.0f))};
+        int[] indices = new int[] {3,1,0,
+                3,1,0,
+                2,1,3,
+                0,1,2,
+                0,2,3};
+        mesh.addVertices(vertices, indices);
+        Transform.setProjection(70f, Window.getWidth(), Window.getHeight(), 0.1f, 1000);
+        Transform.setCamera(camera);
         transform = new Transform();
-        transform.setProjection(70f, Window.getWidth(), Window.getHeight(), 0.1f, 1000);
-        transform.setCamera(camera);
         shader.addVertexShader(ResourceLoader.loadShader("basicVertex.vs"));
         shader.addFragmentShader(ResourceLoader.loadShader("basicFragment.fs"));
         shader.compileShader();
-
         shader.addUniform("transform");
     }
 
@@ -62,6 +73,7 @@ public class Game {
     public void render(){
         shader.bind();
         shader.setUniform("transform", transform.getProjectedTransformation());
+        texture.bind();
         mesh.draw();
     }
 }
