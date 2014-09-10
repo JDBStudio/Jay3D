@@ -7,6 +7,7 @@ import org.jay3d.engine.math.Vector3f;
 import org.jay3d.engine.render.*;
 import org.jay3d.engine.render.material.Material;
 import org.jay3d.engine.render.shaders.BasicShader;
+import org.jay3d.engine.render.shaders.PhongShader;
 import org.jay3d.engine.render.shaders.Shader;
 import org.jay3d.util.Time;
 
@@ -20,11 +21,14 @@ public class Game {
     private Transform transform;
     private Material material;
     private Camera camera;
-    public Game(){
+    public Game() {
+
         mesh = new Mesh();//ResourceLoader.loadMesh("box.obj");
         material = new Material(ResourceLoader.loadTexture("test.png"), new Vector3f(0,1,1));
         camera = new Camera();
-        shader = new BasicShader();
+        shader = PhongShader.getInstance();
+        transform = new Transform();
+
         Vertex[] vertices = new Vertex[] {new Vertex(new Vector3f(-1,-1,0), new Vector2f(0,0)),
                 new Vertex(new Vector3f(0,1,0), new Vector2f(0.5f,0)),
                 new Vertex(new Vector3f(1,-1,0), new Vector2f(1.0f,0)),
@@ -37,8 +41,8 @@ public class Game {
         mesh.addVertices(vertices, indices);
         Transform.setProjection(70f, Window.getWidth(), Window.getHeight(), 0.1f, 1000);
         Transform.setCamera(camera);
-        transform = new Transform();
 
+        PhongShader.setAmbientLight(new Vector3f(0.1f, 0.1f, 0.1f));
     }
 
     public void input(){
@@ -53,7 +57,7 @@ public class Game {
             System.out.println("RIGHT_CLICK: DOWN" + " POS: " + Input.getMousePosition().toString());
         if(Input.getMouseUp(1))
             System.out.println("RIGHT_CLICK: UP"  + " POS: " + Input.getMousePosition().toString());
-            */
+        */
     }
 
     float temp = 0.0f;

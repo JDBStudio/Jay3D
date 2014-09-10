@@ -10,6 +10,11 @@ import org.jay3d.engine.render.material.Material;
  * Do not distribute code without permission!
  */
 public class BasicShader extends Shader{
+    private static final BasicShader INSTANCE = new BasicShader();
+
+    public static BasicShader getInstance(){
+        return INSTANCE;
+    }
     public BasicShader(){
         super();
 
