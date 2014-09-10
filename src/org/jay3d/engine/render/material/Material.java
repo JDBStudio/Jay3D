@@ -10,6 +10,8 @@ import org.jay3d.engine.render.Texture;
 public class Material {
     private Texture texture;
     private Vector3f colour;
+    private float specularIntensity;
+    private float specularExponent;
 
     public Material(Texture texture, Vector3f colour) {
         this.texture = texture;
