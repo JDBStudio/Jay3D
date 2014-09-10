@@ -28,7 +28,7 @@ public class Vector3f {
         y /= length;
         z /= length;
 
-        return this;
+        return new Vector3f(x, y, z);
     }
 
     public Vector3f rotate(float angle, Vector3f axis){
@@ -49,6 +49,10 @@ public class Vector3f {
         z = w.getZ();
 
         return this;
+    }
+
+    public Vector3f abs(){
+        return new Vector3f(Math.abs(x), Math.abs(y), Math.abs(z));
     }
 
     public Vector3f add(Vector3f v){

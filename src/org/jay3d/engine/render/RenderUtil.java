@@ -1,5 +1,7 @@
 package org.jay3d.engine.render;
 
+import org.jay3d.engine.math.Vector3f;
+
 import static org.lwjgl.opengl.GL11.*;
 import static org.lwjgl.opengl.GL30.*;
 /**
@@ -20,6 +22,10 @@ public class RenderUtil {
             glDisable(GL_TEXTURE_2D);
     }
 
+    public static void setClearColor(Vector3f color){
+        glClearColor(color.getX(), color.getY(), color.getZ(), 1.0f);
+    }
+
     public static void initGraphics(){
         glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
 
@@ -32,6 +38,10 @@ public class RenderUtil {
 
         glEnable(GL_TEXTURE_2D);
         glEnable(GL_FRAMEBUFFER_SRGB);
+    }
+
+    public static void unbindTextures(){
+        glBindTexture(GL_TEXTURE_2D, 0);
     }
 
     public static String getOpenGLVersion() {

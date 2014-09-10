@@ -23,10 +23,7 @@ public class Vector2f {
     public Vector2f normalise(){
         float length = length();
 
-        x /= length;
-        y /= length;
-
-        return this;
+        return new Vector2f(x / length, y / length);
     }
 
     public Vector2f rotate(float angle){
@@ -36,6 +33,12 @@ public class Vector2f {
 
         return new Vector2f((float)(x * cos - y * sin), (float)(x * sin + y * cos));
     }
+
+    public Vector2f abs()
+    {
+        return new Vector2f(Math.abs(x), Math.abs(y));
+    }
+
 
     public Vector2f add(Vector2f v){
         return new Vector2f(x + v.getX(), y + v.getY());

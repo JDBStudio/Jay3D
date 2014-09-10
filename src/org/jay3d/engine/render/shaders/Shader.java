@@ -1,7 +1,8 @@
-package org.jay3d.engine.render;
+package org.jay3d.engine.render.shaders;
 
 import org.jay3d.engine.math.Matrix4f;
 import org.jay3d.engine.math.Vector3f;
+import org.jay3d.engine.render.material.Material;
 import org.jay3d.util.Util;
 
 import java.util.HashMap;
@@ -40,6 +41,8 @@ public class Shader {
 
         uniforms.put(uniformName, uniformLocation);
     }
+
+    public void updateUniforms(Matrix4f worldMatrix, Matrix4f projectedMatrix, Material material){}
 
     public void addVertexShader(String text){
         addProgram(text, GL_VERTEX_SHADER);
