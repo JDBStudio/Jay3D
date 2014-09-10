@@ -4,11 +4,10 @@ import org.jay3d.engine.math.Matrix4f;
 import org.jay3d.engine.math.Vector3f;
 import org.jay3d.engine.render.RenderUtil;
 import org.jay3d.engine.render.ResourceLoader;
+import org.jay3d.engine.render.Transform;
 import org.jay3d.engine.render.light.BaseLight;
 import org.jay3d.engine.render.light.DirectionalLight;
 import org.jay3d.engine.render.material.Material;
-
-import static org.lwjgl.opengl.GL20.glUniform1i;
 
 /**
  * Created by Juxhin
@@ -35,6 +34,10 @@ public class PhongShader extends Shader{
         addUniform("baseColour");
         addUniform("ambientLight");
 
+        addUniform("specularIntensity");
+        addUniform("specularPower");
+        addUniform("eyePos");
+
         addUniform("directionalLight.base.colour");
         addUniform("directionalLight.base.intensity");
         addUniform("directionalLight.direction");
@@ -48,8 +51,15 @@ public class PhongShader extends Shader{
         setUniform("transformProjected", projectedMatrix);
         setUniform("transform", worldMatrix);
         setUniform("baseColour", material.getColour());
+
+
         setUniform("ambientLight", ambientLight);
         setUniform("directionalLight", directionalLight);
+
+        setUniformf("specularIntensity", material.getSpecularIntensity());
+        setUniformf("specularPower", material.getSpecularPower());
+
+        setUniform("eyePos", Transform.getCamera().getPos());
     }
     public static Vector3f getAmbientLight()
     {
