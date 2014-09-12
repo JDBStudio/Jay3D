@@ -5,6 +5,9 @@ import org.jay3d.engine.math.Vector3f;
 /**
  * Created by Juxhin
  * Do not distribute code without permission!
+ *
+ * This is mainly a wrapper class for my phongFragment
+ * shader class.
  */
 public class DirectionalLight {
     private BaseLight base;

@@ -8,7 +8,6 @@ import org.jay3d.engine.render.*;
 import org.jay3d.engine.render.light.BaseLight;
 import org.jay3d.engine.render.light.DirectionalLight;
 import org.jay3d.engine.render.material.Material;
-import org.jay3d.engine.render.shaders.BasicShader;
 import org.jay3d.engine.render.shaders.PhongShader;
 import org.jay3d.engine.render.shaders.Shader;
 import org.jay3d.util.Time;
@@ -26,7 +25,7 @@ public class Game {
     public Game() {
 
         mesh = new Mesh();//ResourceLoader.loadMesh("box.obj");
-        material = new Material(ResourceLoader.loadTexture("test.png"), new Vector3f(0,1,1));
+        material = new Material(ResourceLoader.loadTexture("test.png"), new Vector3f(1,1,1));
         camera = new Camera();
         shader = PhongShader.getInstance();
         transform = new Transform();
