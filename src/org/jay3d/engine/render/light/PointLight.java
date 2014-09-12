@@ -9,38 +9,56 @@ import org.jay3d.engine.math.Vector3f;
  * This is mainly a wrapper class for my phongFragment
  * shader class.
  */
-public class PointLight {
+
+public class PointLight
+{
     private BaseLight baseLight;
-    private Vector3f position;
     private Attenuation atten;
+    private Vector3f position;
+    private float range;
 
-    public PointLight(BaseLight baseLight, Vector3f position, Attenuation atten) {
+    public PointLight(BaseLight baseLight, Attenuation atten, Vector3f position, float range)
+    {
         this.baseLight = baseLight;
-        this.position = position;
         this.atten = atten;
+        this.position = position;
+        this.range = range;
     }
-
-    public BaseLight getBaseLight() {
+    public BaseLight getBaseLight()
+    {
         return baseLight;
     }
 
-    public void setBaseLight(BaseLight baseLight) {
+    public void setBaseLight(BaseLight baseLight)
+    {
         this.baseLight = baseLight;
     }
 
-    public Vector3f getPosition() {
-        return position;
-    }
-
-    public void setPosition(Vector3f position) {
-        this.position = position;
-    }
-
-    public Attenuation getAtten() {
+    public Attenuation getAtten()
+    {
         return atten;
     }
 
-    public void setAtten(Attenuation atten) {
+    public void setAtten(Attenuation atten)
+    {
         this.atten = atten;
+    }
+
+    public Vector3f getPosition()
+    {
+        return position;
+    }
+
+    public void setPosition(Vector3f position)
+    {
+        this.position = position;
+    }
+    public float getRange()
+    {
+        return range;
+    }
+    public void setRange(float range)
+    {
+        this.range = range;
     }
 }
