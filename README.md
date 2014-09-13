@@ -3,7 +3,7 @@ Jay3D
 
 ><p>Just a personal project to start working on a functional 3D engine using OpenGL/LWJGL.</p>
 
-><p>README will be updated after I actually start implementing demos to test lighting, shaders etc. to pick out bugs and >features.</p>
+><p>README will be updated after I actually start implementing demos to test lighting, shaders etc. to pick out bugs and features.</p>
 
 ADDED:
 -----
