@@ -13,4 +13,5 @@ ADDED:
  - Bunch of other crap that I forgot to document, feel free to check the commits
  - Added free camera movement
  - Added textures and texture loader
- - Added basic lighting
+ - Added lighting(Exclude mapping, haven't done that yet)
+  - Pointlights, Spotlights, Ambient lights etc.
