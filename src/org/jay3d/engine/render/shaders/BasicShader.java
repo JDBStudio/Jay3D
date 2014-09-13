@@ -2,7 +2,6 @@ package org.jay3d.engine.render.shaders;
 
 import org.jay3d.engine.math.Matrix4f;
 import org.jay3d.engine.render.RenderUtil;
-import org.jay3d.engine.render.ResourceLoader;
 import org.jay3d.engine.render.material.Material;
 
 /**
@@ -18,8 +17,8 @@ public class BasicShader extends Shader{
     public BasicShader(){
         super();
 
-        addVertexShader(ResourceLoader.loadShader("basicVertex.vs"));
-        addFragmentShader(ResourceLoader.loadShader("basicFragment.fs"));
+        addVertexShaderFromFile("basicVertex.vs");
+        addFragmentShaderFromFile("basicFragment.fs");
         compileShader();
 
         addUniform("transform");

@@ -5,6 +5,8 @@ import org.jay3d.engine.math.Vector3f;
 import org.jay3d.engine.render.material.Material;
 import org.jay3d.util.Util;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.util.HashMap;
 
 import static org.lwjgl.opengl.GL20.*;
@@ -56,6 +58,18 @@ public class Shader {
         addProgram(text, GL_FRAGMENT_SHADER);
     }
 
+    public void addVertexShaderFromFile(String text){
+        addProgram(loadShader(text), GL_VERTEX_SHADER);
+    }
+
+    public void addGeometryShaderFromFile(String text){
+        addProgram(loadShader(text), GL_GEOMETRY_SHADER);
+    }
+
+    public void addFragmentShaderFromFile(String text){
+        addProgram(loadShader(text), GL_FRAGMENT_SHADER);
+    }
+
     public void compileShader(){
         glLinkProgram(program);
         if(glGetProgram(program, GL_LINK_STATUS) == 0){
@@ -103,5 +117,25 @@ public class Shader {
 
     public void setUniform(String uniformName, Matrix4f value){
         glUniformMatrix4(uniforms.get(uniformName), true, Util.createFlippedBuffer(value));
+    }
+
+
+    private static String loadShader(String fileName){
+        StringBuilder shaderSource = new StringBuilder();
+        BufferedReader reader;
+
+        try{
+            reader = new BufferedReader(new FileReader("./res/shaders/" + fileName));
+            String line;
+            while((line = reader.readLine()) != null){
+                shaderSource.append(line).append("\n");
+            }
+            reader.close();
+        }catch(Exception e){
+            e.printStackTrace();
+            System.exit(-1);
+        }
+
+        return shaderSource.toString();
     }
 }
