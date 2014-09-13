@@ -1,12 +1,12 @@
 Jay3D
 =====
 
-Just a personal project to start working on a functional 3D engine using OpenGL/LWJGL.
+><p>Just a personal project to start working on a functional 3D engine using OpenGL/LWJGL.</p>
 
-README will be updated after I actually start implementing demos to test lighting, shaders etc. to pick out bugs and features.
+><p>README will be updated after I actually start implementing demos to test lighting, shaders etc. to pick out bugs and >features.</p>
 
 ADDED:
-=====
+-----
  - Mesh Model loader(only supports .obj right now)
  - Basic temporary shaders(will implement proper ones later)
  - Full VBO/IBO Mesh rendering implemented
