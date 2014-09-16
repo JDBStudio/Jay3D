@@ -1,7 +1,7 @@
 package org.jay3d.engine.rendering.shaders;
 
 import org.jay3d.engine.core.math.Matrix4f;
-import org.jay3d.engine.rendering.RenderUtil;
+import org.jay3d.engine.core.math.Transform;
 import org.jay3d.engine.rendering.material.Material;
 
 /**
@@ -26,11 +26,10 @@ public class BasicShader extends Shader{
     }
 
     @Override
-    public void updateUniforms(Matrix4f worldMatrix, Matrix4f projectedMatrix, Material material){
-        if(material.getTexture() != null)
-            material.getTexture().bind();
-        else
-            RenderUtil.unbindTextures();
+    public void updateUniforms(Transform transform, Material material){
+        Matrix4f worldMatrix = transform.getTransformation();
+        Matrix4f projectedMatrix = getRenderingEngine().getMainCamera().getViewProjection().mul(worldMatrix);
+        material.getTexture().bind();
 
         setUniform("transform", projectedMatrix);
         setUniform("colour", material.getColour());

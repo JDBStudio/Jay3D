@@ -1,6 +1,7 @@
 package org.jay3d.engine.rendering;
 
 import org.jay3d.engine.core.Input;
+import org.jay3d.engine.core.math.Matrix4f;
 import org.jay3d.engine.core.math.Vector2f;
 import org.jay3d.engine.core.math.Vector3f;
 import org.jay3d.util.Time;
@@ -9,29 +10,35 @@ import org.jay3d.util.Time;
  * Created by Juxhin
  * Do not distribute code without permission!
  */
-public class Camera
-{
+public class Camera{
     public static final Vector3f yAxis = new Vector3f(0,1,0);
+
     private Vector3f pos;
     private Vector3f forward;
     private Vector3f up;
-    public Camera()
-    {
-        this(new Vector3f(0,0,0), new Vector3f(0,0,1), new Vector3f(0,1,0));
+    private Matrix4f projection;
+
+    public Camera(float fov, float aspect, float zNear, float zFar){
+        this.pos = new Vector3f(0, 0, 0);
+        this.forward = new Vector3f(0, 0, 1).normalise();
+        this.up = new Vector3f(0, 1, 0).normalise();
+        this.projection = new Matrix4f().initPerspective(fov, aspect, zNear, zFar);
     }
-    public Camera(Vector3f pos, Vector3f forward, Vector3f up)
-    {
-        this.pos = pos;
-        this.forward = forward.normalise();
-        this.up = up.normalise();
+
+    public Matrix4f getViewProjection(){
+        Matrix4f cameraRotation = new Matrix4f().initRotation(forward, up);
+        Matrix4f cameraTranslation = new Matrix4f().initTranslation(-pos.getX(), -pos.getY(), -pos.getZ());
+
+        return projection.mul(cameraRotation.mul(cameraTranslation));
     }
+
     boolean mouseLocked = false;
     Vector2f centerPosition = new Vector2f(Window.getWidth()/2, Window.getHeight()/2);
-    public void input()
-    {
+
+    public void input(){
         float sensitivity = 0.125f;
         float movAmt = (float)(10 * Time.getDelta());
-        // float rotAmt = (float)(100 * Time.getDelta());
+
         if(Input.getKey(Input.KEY_ESCAPE))
         {
             Input.setCursor(true);
@@ -63,61 +70,52 @@ public class Camera
             if(rotY || rotX)
                 Input.setMousePosition(new Vector2f(Window.getWidth()/2, Window.getHeight()/2));
         }
-    // if(Input.getKey(Input.KEY_UP))
-    // rotateX(-rotAmt);
-    // if(Input.getKey(Input.KEY_DOWN))
-    // rotateX(rotAmt);
-    // if(Input.getKey(Input.KEY_LEFT))
-    // rotateY(-rotAmt);
-    // if(Input.getKey(Input.KEY_RIGHT))
-    // rotateY(rotAmt);
     }
-    public void move(Vector3f dir, float amt)
-    {
+    public void move(Vector3f dir, float amt){
         pos = pos.add(dir.mul(amt));
     }
-    public void rotateY(float angle)
-    {
+
+    public void rotateY(float angle){
         Vector3f Haxis = yAxis.cross(forward).normalise();
         forward = forward.rotate(angle, yAxis).normalise();
         up = forward.cross(Haxis).normalise();
     }
-    public void rotateX(float angle)
-    {
+
+    public void rotateX(float angle){
         Vector3f Haxis = yAxis.cross(forward).normalise();
         forward = forward.rotate(angle, Haxis).normalise();
         up = forward.cross(Haxis).normalise();
     }
-    public Vector3f getLeft()
-    {
+
+    public Vector3f getLeft(){
         return forward.cross(up).normalise();
     }
-    public Vector3f getRight()
-    {
+
+    public Vector3f getRight(){
         return up.cross(forward).normalise();
     }
-    public Vector3f getPos()
-    {
+
+    public Vector3f getPos(){
         return pos;
     }
-    public void setPos(Vector3f pos)
-    {
+
+    public void setPos(Vector3f pos){
         this.pos = pos;
     }
-    public Vector3f getForward()
-    {
+
+    public Vector3f getForward(){
         return forward;
     }
-    public void setForward(Vector3f forward)
-    {
+
+    public void setForward(Vector3f forward){
         this.forward = forward;
     }
-    public Vector3f getUp()
-    {
+
+    public Vector3f getUp(){
         return up;
     }
-    public void setUp(Vector3f up)
-    {
+
+    public void setUp(Vector3f up){
         this.up = up;
     }
 }

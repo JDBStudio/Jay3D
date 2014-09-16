@@ -12,14 +12,12 @@ import org.jay3d.engine.rendering.material.Material;
  * Created by Juxhin
  * Do not distribute code without permission!
  */
-public class TestGame implements Game {
+public class TestGame extends Game {
 
-    private Camera camera;
-    private GameObject root;
+//    private Camera camera;
 
     public void init() {
-        root = new GameObject();
-        camera = new Camera();
+//        camera = new Camera();
 
         float fieldDepth = 10.0f;
         float fieldWidth = 10.0f;
@@ -36,25 +34,14 @@ public class TestGame implements Game {
         Material material = new Material(new Texture("test.png"), new Vector3f(1, 1, 1), 1, 8);
 
         MeshRenderer meshRenderer = new MeshRenderer(mesh, material);
-        root.addComponent(meshRenderer);
 
-        Transform.setProjection(70f, Window.getWidth(), Window.getHeight(), 0.1f, 1000);
-        Transform.setCamera(camera);
-    }
+        GameObject planeObject = new GameObject();
+        planeObject.addComponent(meshRenderer);
+        planeObject.getTransform().setTranslation(0, -1, 5);
 
-    public void input(){
-        camera.input();
-        root.input();
-    }
+        getRootObject().addChild(planeObject);
 
-    float temp = 0.0f;
-
-    public void update(){
-        root.getTransform().setTranslation(0, -1, 5);
-        root.update();
-    }
-
-    public void render(){
-        root.render();
+//        Transform.setProjection(70f, Window.getWidth(), Window.getHeight(), 0.1f, 1000);
+//        Transform.setCamera(camera);
     }
 }

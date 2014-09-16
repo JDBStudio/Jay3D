@@ -4,7 +4,6 @@ import org.jay3d.engine.core.GameComponent;
 import org.jay3d.engine.core.math.Transform;
 import org.jay3d.engine.rendering.Mesh;
 import org.jay3d.engine.rendering.material.Material;
-import org.jay3d.engine.rendering.shaders.BasicShader;
 import org.jay3d.engine.rendering.shaders.Shader;
 
 /**
@@ -31,11 +30,9 @@ public class MeshRenderer implements GameComponent{
     }
 
     @Override
-    public void render(Transform transform){
-        Shader shader = BasicShader.getInstance();
-
+    public void render(Transform transform, Shader shader){
         shader.bind();
-        shader.updateUniforms(transform.getTransformation(), transform.getProjectedTransformation(), material);
+        shader.updateUniforms(transform, material);
         mesh.draw();
     }
 }

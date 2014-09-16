@@ -1,7 +1,10 @@
 package org.jay3d.engine.rendering.shaders;
 
+import org.jay3d.engine.core.RenderingEngine;
 import org.jay3d.engine.core.math.Matrix4f;
+import org.jay3d.engine.core.math.Transform;
 import org.jay3d.engine.core.math.Vector3f;
+import org.jay3d.engine.rendering.Camera;
 import org.jay3d.engine.rendering.material.Material;
 import org.jay3d.util.Util;
 
@@ -18,6 +21,7 @@ import static org.lwjgl.opengl.GL32.*;
 public class Shader {
     private int program;
     private HashMap<String, Integer> uniforms;
+    private RenderingEngine engine;
 
     public Shader(){
         program = glCreateProgram();
@@ -44,7 +48,9 @@ public class Shader {
         uniforms.put(uniformName, uniformLocation);
     }
 
-    public void updateUniforms(Matrix4f worldMatrix, Matrix4f projectedMatrix, Material material){}
+    public void updateUniforms(Transform transform, Material material){
+
+    }
 
     public void addVertexShader(String text){
         addProgram(text, GL_VERTEX_SHADER);
@@ -137,5 +143,14 @@ public class Shader {
         }
 
         return shaderSource.toString();
+    }
+
+
+    public void setRenderingEngine(RenderingEngine engine){
+        this.engine = engine;
+    }
+
+    public RenderingEngine getRenderingEngine(){
+        return engine;
     }
 }

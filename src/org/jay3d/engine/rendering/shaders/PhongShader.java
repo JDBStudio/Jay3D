@@ -2,8 +2,8 @@ package org.jay3d.engine.rendering.shaders;
 
 import org.jay3d.engine.core.math.Matrix4f;
 import org.jay3d.engine.core.math.Vector3f;
-import org.jay3d.engine.rendering.RenderUtil;
 import org.jay3d.engine.core.math.Transform;
+import org.jay3d.engine.rendering.Camera;
 import org.jay3d.engine.rendering.light.BaseLight;
 import org.jay3d.engine.rendering.light.DirectionalLight;
 import org.jay3d.engine.rendering.light.PointLight;
@@ -72,12 +72,12 @@ public class PhongShader extends Shader{
             addUniform("spotLights[" + i + "].cutoff");
         }
     }
-    public void updateUniforms(Matrix4f worldMatrix, Matrix4f projectedMatrix, Material material)
+    public void updateUniforms(Transform transform, Material material)
     {
-        if(material.getTexture() != null)
-            material.getTexture().bind();
-        else
-            RenderUtil.unbindTextures();
+        Matrix4f worldMatrix = transform.getTransformation();
+        Matrix4f projectedMatrix = getRenderingEngine().getMainCamera().getViewProjection().mul(worldMatrix);
+        material.getTexture().bind();
+
         setUniform("transformProjected", projectedMatrix);
         setUniform("transform", worldMatrix);
         setUniform("baseColour", material.getColour());
@@ -98,7 +98,7 @@ public class PhongShader extends Shader{
         setUniformf("specularIntensity", material.getSpecularIntensity());
         setUniformf("specularPower", material.getSpecularPower());
 
-        setUniform("eyePos", Transform.getCamera().getPos());
+        setUniform("eyePos", getRenderingEngine().getMainCamera().getPos());
     }
     public static Vector3f getAmbientLight()
     {

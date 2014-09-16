@@ -1,6 +1,5 @@
 package org.jay3d.engine.core;
 
-import org.jay3d.engine.rendering.RenderUtil;
 import org.jay3d.engine.rendering.Window;
 import org.jay3d.util.Time;
 
@@ -12,6 +11,7 @@ public class CoreEngine {
 
     private boolean isRunning;
     private Game game;
+    private RenderingEngine engine;
     private int width, height;
     private double frameTime;
 
@@ -23,14 +23,9 @@ public class CoreEngine {
         this.frameTime = 1.0/framerate;
     }
 
-    private void initialiseRenderingSystem(){
-        System.out.println(RenderUtil.getOpenGLVersion());
-        RenderUtil.initGraphics();
-    }
-
     public void createWindow(String title){
         Window.createWindow(width, height, title);
-        initialiseRenderingSystem();
+        this.engine = new RenderingEngine();
     }
 
     public void start(){
@@ -77,9 +72,11 @@ public class CoreEngine {
                     stop();
 
                 Time.setDelta(frameTime);
+                game.input();
+                engine.input();
+
                 Input.update();
 
-                game.input();
                 game.update();
             }
 
@@ -90,7 +87,8 @@ public class CoreEngine {
             }
 
             if(render){
-                render();
+                engine.render(game.getRootObject());
+                Window.render();
                 frames++;
             }else {
                 try {
@@ -101,12 +99,6 @@ public class CoreEngine {
             }
         }
         cleanup();
-    }
-
-    private void render(){
-        RenderUtil.clearScreen();
-        game.render();
-        Window.render();
     }
 
     private void cleanup(){
