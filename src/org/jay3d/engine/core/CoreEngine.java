@@ -2,7 +2,6 @@ package org.jay3d.engine.core;
 
 import org.jay3d.engine.rendering.RenderUtil;
 import org.jay3d.engine.rendering.Window;
-import org.jay3d.game.Game;
 import org.jay3d.util.Time;
 
 /**

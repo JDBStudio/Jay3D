@@ -1,4 +1,4 @@
-package org.jay3d.game;
+package org.jay3d.engine.core;
 
 /**
  * Created by Juxhin
