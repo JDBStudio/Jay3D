@@ -1,4 +1,4 @@
-package org.jay3d.engine.math;
+package org.jay3d.engine.core.math;
 
 /**
  * Created by Juxhin

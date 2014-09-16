@@ -1,7 +1,7 @@
 package org.jay3d.util;
 
-import org.jay3d.engine.math.Matrix4f;
-import org.jay3d.engine.render.Vertex;
+import org.jay3d.engine.core.math.Matrix4f;
+import org.jay3d.engine.rendering.Vertex;
 import org.lwjgl.BufferUtils;
 
 import java.nio.FloatBuffer;

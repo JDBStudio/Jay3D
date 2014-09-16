@@ -1,4 +1,4 @@
-package org.jay3d.engine.render;
+package org.jay3d.engine.rendering;
 
 import org.newdawn.slick.opengl.TextureLoader;
 

@@ -1,6 +1,6 @@
-package org.jay3d.engine;
+package org.jay3d.engine.core;
 
-import org.jay3d.engine.math.Vector2f;
+import org.jay3d.engine.core.math.Vector2f;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
 

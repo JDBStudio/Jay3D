@@ -1,6 +1,7 @@
-package org.jay3d.engine;
+package org.jay3d.engine.core;
 
-import org.jay3d.engine.render.RenderUtil;
+import org.jay3d.engine.rendering.RenderUtil;
+import org.jay3d.engine.rendering.Window;
 import org.jay3d.game.Game;
 import org.jay3d.util.Time;
 
@@ -8,20 +9,29 @@ import org.jay3d.util.Time;
  * Created by Juxhin
  * Do not distribute code without permission!
  */
-public class Main {
-    public static final int WIDTH = 800;
-    public static final int HEIGHT = 800;
-    public static final String TITLE = "Jay3D";
-    public static final double FRAME_CAP = 5000.0;
+public class CoreEngine {
 
     private boolean isRunning;
     private Game game;
+    private int width, height;
+    private double frameTime;
 
-    public Main(){
+    public CoreEngine(int width, int height, double framerate, Game game){
+        this.isRunning = false;
+        this.game = game;
+        this.width = width;
+        this.height = height;
+        this.frameTime = 1.0/framerate;
+    }
+
+    private void initialiseRenderingSystem(){
         System.out.println(RenderUtil.getOpenGLVersion());
         RenderUtil.initGraphics();
-        game = new Game();
-        isRunning = false;
+    }
+
+    public void createWindow(String title){
+        Window.createWindow(width, height, title);
+        initialiseRenderingSystem();
     }
 
     public void start(){
@@ -44,7 +54,7 @@ public class Main {
         int frames = 0;
         long frameCounter = 0;
 
-        final double frameTime = 1.0 / FRAME_CAP;
+        game.init();
 
         long lastTime = Time.getTime();
         double unprocessedTime = 0;
@@ -102,11 +112,5 @@ public class Main {
 
     private void cleanup(){
         Window.dispose();
-    }
-
-    public static void main(String[] args) {
-        Window.createWindow(WIDTH, HEIGHT, TITLE);
-        Main game = new Main();
-        game.start();
     }
 }

@@ -1,8 +1,8 @@
-package org.jay3d.engine.render.shaders;
+package org.jay3d.engine.rendering.shaders;
 
-import org.jay3d.engine.math.Matrix4f;
-import org.jay3d.engine.render.RenderUtil;
-import org.jay3d.engine.render.material.Material;
+import org.jay3d.engine.core.math.Matrix4f;
+import org.jay3d.engine.rendering.RenderUtil;
+import org.jay3d.engine.rendering.material.Material;
 
 /**
  * Created by Juxhin

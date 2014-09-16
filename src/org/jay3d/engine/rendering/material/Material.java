@@ -1,7 +1,7 @@
-package org.jay3d.engine.render.material;
+package org.jay3d.engine.rendering.material;
 
-import org.jay3d.engine.math.Vector3f;
-import org.jay3d.engine.render.Texture;
+import org.jay3d.engine.core.math.Vector3f;
+import org.jay3d.engine.rendering.Texture;
 
 /**
  * Created by Juxhin

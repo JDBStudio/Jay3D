@@ -1,4 +1,4 @@
-package org.jay3d.engine.render.light;
+package org.jay3d.engine.rendering.light;
 
 /**
  * Created by Juxhin

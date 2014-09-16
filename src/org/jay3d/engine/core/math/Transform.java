@@ -1,8 +1,6 @@
-package org.jay3d.engine.render;
+package org.jay3d.engine.core.math;
 
-import org.jay3d.engine.Camera;
-import org.jay3d.engine.math.Matrix4f;
-import org.jay3d.engine.math.Vector3f;
+import org.jay3d.engine.rendering.Camera;
 
 /**
  * Created by Juxhin

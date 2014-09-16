@@ -1,6 +1,6 @@
-package org.jay3d.engine.render.light;
+package org.jay3d.engine.rendering.light;
 
-import org.jay3d.engine.math.Vector3f;
+import org.jay3d.engine.core.math.Vector3f;
 
 /**
  * Created by Juxhin

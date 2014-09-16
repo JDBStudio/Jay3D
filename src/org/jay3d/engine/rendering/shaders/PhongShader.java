@@ -1,14 +1,14 @@
-package org.jay3d.engine.render.shaders;
+package org.jay3d.engine.rendering.shaders;
 
-import org.jay3d.engine.math.Matrix4f;
-import org.jay3d.engine.math.Vector3f;
-import org.jay3d.engine.render.RenderUtil;
-import org.jay3d.engine.render.Transform;
-import org.jay3d.engine.render.light.BaseLight;
-import org.jay3d.engine.render.light.DirectionalLight;
-import org.jay3d.engine.render.light.PointLight;
-import org.jay3d.engine.render.light.SpotLight;
-import org.jay3d.engine.render.material.Material;
+import org.jay3d.engine.core.math.Matrix4f;
+import org.jay3d.engine.core.math.Vector3f;
+import org.jay3d.engine.rendering.RenderUtil;
+import org.jay3d.engine.core.math.Transform;
+import org.jay3d.engine.rendering.light.BaseLight;
+import org.jay3d.engine.rendering.light.DirectionalLight;
+import org.jay3d.engine.rendering.light.PointLight;
+import org.jay3d.engine.rendering.light.SpotLight;
+import org.jay3d.engine.rendering.material.Material;
 
 /**
  * Created by Juxhin
