@@ -51,6 +51,14 @@ public class Vector3f {
         return this;
     }
 
+    public Vector3f lerp(Vector3f dest, float lerpFactor){
+        return dest.sub(this).mul(lerpFactor).add(this);
+    }
+
+    public boolean equals(Vector3f r){
+        return x == r.getX() && y == r.getY() && z == r.getZ();
+    }
+
     public Vector3f abs(){
         return new Vector3f(Math.abs(x), Math.abs(y), Math.abs(z));
     }
@@ -94,6 +102,14 @@ public class Vector3f {
 
         return new Vector3f(x_, y_, z_);
     }
+
+    public Vector2f getXY(){ return new Vector2f(x, y); }
+    public Vector2f getYZ(){ return new Vector2f(y, z); }
+    public Vector2f getZX(){ return new Vector2f(z, x); }
+
+    public Vector2f getYX(){ return new Vector2f(y, x); }
+    public Vector2f GETZY(){ return new Vector2f(z, y); }
+    public Vector2f getXZ(){ return new Vector2f(x, z); }
 
     public float getX() {
         return x;
