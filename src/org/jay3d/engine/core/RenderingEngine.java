@@ -1,9 +1,9 @@
 package org.jay3d.engine.core;
 
 import org.jay3d.engine.core.math.Vector3f;
-import org.jay3d.engine.rendering.Camera;
+import org.jay3d.engine.rendering.*;
 import org.jay3d.engine.rendering.Window;
-import org.jay3d.engine.rendering.shaders.BasicShader;
+import org.jay3d.engine.rendering.light.ForwardAmbient;
 import org.jay3d.engine.rendering.shaders.Shader;
 
 import static org.lwjgl.opengl.GL11.*;
@@ -15,6 +15,7 @@ import static org.lwjgl.opengl.GL32.GL_DEPTH_CLAMP;
  */
 public class RenderingEngine {
     private Camera mainCamera;
+    private Vector3f ambientLight;
 
     public RenderingEngine() {
         glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
@@ -29,6 +30,8 @@ public class RenderingEngine {
         glEnable(GL_TEXTURE_2D);
 
         mainCamera = new Camera((float)Math.toRadians(70.0f), (float)Window.getWidth()/(float)Window.getHeight(), 0.01f, 1000f);
+
+        ambientLight = new Vector3f(0.2f, 0.2f, 0.2f);
     }
 
     public void input(float delta){
@@ -38,10 +41,17 @@ public class RenderingEngine {
     public void render(GameObject object){
         clearScreen();
 
-        Shader shader = BasicShader.getInstance();
-        shader.setRenderingEngine(this);
+        Shader forwardAmbient = ForwardAmbient.getInstance();
+        forwardAmbient.setRenderingEngine(this);
 
-        object.render(BasicShader.getInstance());
+        object.render(forwardAmbient);
+
+        
+
+//        Shader shader = BasicShader.getInstance();
+//        shader.setRenderingEngine(this);
+//
+//        object.render(BasicShader.getInstance());
     }
 
     private static void clearScreen(){
@@ -55,6 +65,10 @@ public class RenderingEngine {
             glEnable(GL_TEXTURE_2D);
         else
             glDisable(GL_TEXTURE_2D);
+    }
+
+    public Vector3f getAmbientLight() {
+        return ambientLight;
     }
 
     private static void setClearColor(Vector3f color){
