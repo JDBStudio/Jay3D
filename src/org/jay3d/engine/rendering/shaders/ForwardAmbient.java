@@ -1,9 +1,9 @@
-package org.jay3d.engine.rendering.light;
+package org.jay3d.engine.rendering.shaders;
 
 import org.jay3d.engine.core.math.Matrix4f;
 import org.jay3d.engine.core.math.Transform;
 import org.jay3d.engine.rendering.material.Material;
-import org.jay3d.engine.rendering.shaders.Shader;
+
 /**
  * Created by Juxhin
  * Do not distribute code without permission!

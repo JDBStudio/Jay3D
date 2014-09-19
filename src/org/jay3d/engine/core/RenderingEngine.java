@@ -3,7 +3,10 @@ package org.jay3d.engine.core;
 import org.jay3d.engine.core.math.Vector3f;
 import org.jay3d.engine.rendering.*;
 import org.jay3d.engine.rendering.Window;
-import org.jay3d.engine.rendering.light.ForwardAmbient;
+import org.jay3d.engine.rendering.light.BaseLight;
+import org.jay3d.engine.rendering.light.DirectionalLight;
+import org.jay3d.engine.rendering.shaders.ForwardAmbient;
+import org.jay3d.engine.rendering.shaders.ForwardDirectional;
 import org.jay3d.engine.rendering.shaders.Shader;
 
 import static org.lwjgl.opengl.GL11.*;
@@ -16,6 +19,8 @@ import static org.lwjgl.opengl.GL32.GL_DEPTH_CLAMP;
 public class RenderingEngine {
     private Camera mainCamera;
     private Vector3f ambientLight;
+    private DirectionalLight directionalLight;
+    private DirectionalLight directionalLight2;
 
     public RenderingEngine() {
         glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
@@ -32,6 +37,8 @@ public class RenderingEngine {
         mainCamera = new Camera((float)Math.toRadians(70.0f), (float)Window.getWidth()/(float)Window.getHeight(), 0.01f, 1000f);
 
         ambientLight = new Vector3f(0.2f, 0.2f, 0.2f);
+        directionalLight = new DirectionalLight(new BaseLight(new Vector3f(0, 0, 1), 0.4f), new Vector3f(1, 1, 1));
+        directionalLight2 = new DirectionalLight(new BaseLight(new Vector3f(1, 0, 0), 0.4f), new Vector3f(-1, 1, -1));
     }
 
     public void input(float delta){
@@ -42,16 +49,32 @@ public class RenderingEngine {
         clearScreen();
 
         Shader forwardAmbient = ForwardAmbient.getInstance();
+        Shader forwardDirectional = ForwardDirectional.getInstance();
         forwardAmbient.setRenderingEngine(this);
+        forwardDirectional.setRenderingEngine(this);
 
         object.render(forwardAmbient);
 
-        
+        glEnable(GL_BLEND);
+        glBlendFunc(GL_ONE, GL_ONE);
+        glDepthMask(false);
+        glDepthFunc(GL_EQUAL);
 
-//        Shader shader = BasicShader.getInstance();
-//        shader.setRenderingEngine(this);
-//
-//        object.render(BasicShader.getInstance());
+        object.render(forwardDirectional);
+
+        DirectionalLight temp = directionalLight;
+        directionalLight = directionalLight2;
+        directionalLight2 = temp;
+
+        object.render(forwardDirectional);
+
+        temp = directionalLight;
+        directionalLight = directionalLight2;
+        directionalLight2 = temp;
+
+        glDepthFunc(GL_LESS);
+        glDepthMask(true);
+        glDisable(GL_BLEND);
     }
 
     private static void clearScreen(){
@@ -69,6 +92,10 @@ public class RenderingEngine {
 
     public Vector3f getAmbientLight() {
         return ambientLight;
+    }
+
+    public DirectionalLight getDirectionalLight(){
+        return directionalLight;
     }
 
     private static void setClearColor(Vector3f color){
