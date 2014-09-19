@@ -3,11 +3,8 @@ package org.jay3d.engine.core;
 import org.jay3d.engine.core.math.Vector3f;
 import org.jay3d.engine.rendering.*;
 import org.jay3d.engine.rendering.Window;
-import org.jay3d.engine.rendering.light.BaseLight;
-import org.jay3d.engine.rendering.light.DirectionalLight;
-import org.jay3d.engine.rendering.shaders.ForwardAmbient;
-import org.jay3d.engine.rendering.shaders.ForwardDirectional;
-import org.jay3d.engine.rendering.shaders.Shader;
+import org.jay3d.engine.rendering.light.*;
+import org.jay3d.engine.rendering.shaders.*;
 
 import static org.lwjgl.opengl.GL11.*;
 import static org.lwjgl.opengl.GL32.GL_DEPTH_CLAMP;
@@ -21,6 +18,8 @@ public class RenderingEngine {
     private Vector3f ambientLight;
     private DirectionalLight directionalLight;
     private DirectionalLight directionalLight2;
+    private PointLight pointLight;
+    private SpotLight spotLight;
 
     public RenderingEngine() {
         glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
@@ -39,6 +38,11 @@ public class RenderingEngine {
         ambientLight = new Vector3f(0.2f, 0.2f, 0.2f);
         directionalLight = new DirectionalLight(new BaseLight(new Vector3f(0, 0, 1), 0.4f), new Vector3f(1, 1, 1));
         directionalLight2 = new DirectionalLight(new BaseLight(new Vector3f(1, 0, 0), 0.4f), new Vector3f(-1, 1, -1));
+        pointLight = new PointLight(new BaseLight(new Vector3f(0, 1, 0), 0.5f), new Attenuation(0, 0, 1), new Vector3f(5, 0, 5), 100);
+        spotLight = new SpotLight(new PointLight(new BaseLight(new Vector3f(0, 4, 1), 0.8f),
+                new Attenuation(0, 0, 1f),
+                new Vector3f(1, 0, 1), 100),
+                new Vector3f(1, 0, 0), 0.7f);
     }
 
     public void input(float delta){
@@ -50,8 +54,13 @@ public class RenderingEngine {
 
         Shader forwardAmbient = ForwardAmbient.getInstance();
         Shader forwardDirectional = ForwardDirectional.getInstance();
+        Shader forwardPoint = ForwardPoint.getInstance();
+        Shader forwardSpot = ForwardSpotlight.getInstance();
+
         forwardAmbient.setRenderingEngine(this);
         forwardDirectional.setRenderingEngine(this);
+        forwardPoint.setRenderingEngine(this);
+        forwardSpot.setRenderingEngine(this);
 
         object.render(forwardAmbient);
 
@@ -71,6 +80,9 @@ public class RenderingEngine {
         temp = directionalLight;
         directionalLight = directionalLight2;
         directionalLight2 = temp;
+
+        object.render(forwardPoint);
+        object.render(forwardSpot);
 
         glDepthFunc(GL_LESS);
         glDepthMask(true);
@@ -96,6 +108,14 @@ public class RenderingEngine {
 
     public DirectionalLight getDirectionalLight(){
         return directionalLight;
+    }
+
+    public SpotLight getSpotLight() {
+        return spotLight;
+    }
+
+    public PointLight getPointLight() {
+        return pointLight;
     }
 
     private static void setClearColor(Vector3f color){
