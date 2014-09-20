@@ -1,10 +1,14 @@
 package org.jay3d.engine.core;
 
+import org.jay3d.engine.core.components.DirectionalLight;
+import org.jay3d.engine.core.components.PointLight;
 import org.jay3d.engine.core.math.Vector3f;
 import org.jay3d.engine.rendering.*;
 import org.jay3d.engine.rendering.Window;
 import org.jay3d.engine.rendering.light.*;
 import org.jay3d.engine.rendering.shaders.*;
+
+import java.util.ArrayList;
 
 import static org.lwjgl.opengl.GL11.*;
 import static org.lwjgl.opengl.GL32.GL_DEPTH_CLAMP;
@@ -16,12 +20,17 @@ import static org.lwjgl.opengl.GL32.GL_DEPTH_CLAMP;
 public class RenderingEngine {
     private Camera mainCamera;
     private Vector3f ambientLight;
-    private DirectionalLight directionalLight;
-    private DirectionalLight directionalLight2;
-    private PointLight pointLight;
+    private DirectionalLight activeDirectionalLight;
+    private PointLight activePointLight;
     private SpotLight spotLight;
 
+    //Structures(Permanent)
+    private ArrayList<DirectionalLight> directionalLights;
+    private ArrayList<PointLight> pointLights;
+
     public RenderingEngine() {
+        directionalLights = new ArrayList<>();
+        pointLights = new ArrayList<>();
         glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
 
         glFrontFace(GL_CW);
@@ -35,10 +44,9 @@ public class RenderingEngine {
 
         mainCamera = new Camera((float)Math.toRadians(70.0f), (float)Window.getWidth()/(float)Window.getHeight(), 0.01f, 1000f);
 
-        ambientLight = new Vector3f(0.2f, 0.2f, 0.2f);
-        directionalLight = new DirectionalLight(new BaseLight(new Vector3f(0, 0, 1), 0.4f), new Vector3f(1, 1, 1));
-        directionalLight2 = new DirectionalLight(new BaseLight(new Vector3f(1, 0, 0), 0.4f), new Vector3f(-1, 1, -1));
-        pointLight = new PointLight(new BaseLight(new Vector3f(0, 1, 0), 0.5f), new Attenuation(0, 0, 1), new Vector3f(5, 0, 5), 100);
+        ambientLight = new Vector3f(0.1f, 0.1f, 0.1f);
+        activeDirectionalLight = new DirectionalLight(new BaseLight(new Vector3f(0, 0, 1), 0.4f), new Vector3f(1, 1, 1));
+        activePointLight = new PointLight(new BaseLight(new Vector3f(0, 1, 0), 0.5f), new Attenuation(0, 0, 1), new Vector3f(5, 0, 5), 100);
         spotLight = new SpotLight(new PointLight(new BaseLight(new Vector3f(0, 4, 1), 0.8f),
                 new Attenuation(0, 0, 1f),
                 new Vector3f(1, 0, 1), 100),
@@ -51,6 +59,9 @@ public class RenderingEngine {
 
     public void render(GameObject object){
         clearScreen();
+
+        clearLights();
+        object.addToRenderingEngine(this);
 
         Shader forwardAmbient = ForwardAmbient.getInstance();
         Shader forwardDirectional = ForwardDirectional.getInstance();
@@ -69,24 +80,55 @@ public class RenderingEngine {
         glDepthMask(false);
         glDepthFunc(GL_EQUAL);
 
-        object.render(forwardDirectional);
+        for(DirectionalLight d : directionalLights){
+            activeDirectionalLight = d;
+            object.render(forwardDirectional);
+        }
 
-        DirectionalLight temp = directionalLight;
-        directionalLight = directionalLight2;
-        directionalLight2 = temp;
-
-        object.render(forwardDirectional);
-
-        temp = directionalLight;
-        directionalLight = directionalLight2;
-        directionalLight2 = temp;
-
-        object.render(forwardPoint);
-        object.render(forwardSpot);
+        for(PointLight p : pointLights){
+            activePointLight = p;
+            object.render(forwardPoint);
+        }
 
         glDepthFunc(GL_LESS);
         glDepthMask(true);
         glDisable(GL_BLEND);
+    }
+
+    public Vector3f getAmbientLight() {
+        return ambientLight;
+    }
+
+    public DirectionalLight getActiveDirectionalLight(){
+        return activeDirectionalLight;
+    }
+
+    public SpotLight getSpotLight() {
+        return spotLight;
+    }
+
+    public PointLight getActivePointLight() {
+        return activePointLight;
+    }
+
+    public void addDirectionalLight(DirectionalLight directionalLight){
+        directionalLights.add(directionalLight);
+    }
+    public void addPointLight(PointLight pointLight){
+        pointLights.add(pointLight);
+    }
+
+
+    public static String getOpenGLVersion() {
+        return glGetString(GL_VERSION);
+    }
+
+    public Camera getMainCamera() {
+        return mainCamera;
+    }
+
+    public void setMainCamera(Camera mainCamera) {
+        this.mainCamera = mainCamera;
     }
 
     private static void clearScreen(){
@@ -100,22 +142,7 @@ public class RenderingEngine {
             glEnable(GL_TEXTURE_2D);
         else
             glDisable(GL_TEXTURE_2D);
-    }
 
-    public Vector3f getAmbientLight() {
-        return ambientLight;
-    }
-
-    public DirectionalLight getDirectionalLight(){
-        return directionalLight;
-    }
-
-    public SpotLight getSpotLight() {
-        return spotLight;
-    }
-
-    public PointLight getPointLight() {
-        return pointLight;
     }
 
     private static void setClearColor(Vector3f color){
@@ -126,15 +153,8 @@ public class RenderingEngine {
         glBindTexture(GL_TEXTURE_2D, 0);
     }
 
-    public static String getOpenGLVersion() {
-        return glGetString(GL_VERSION);
-    }
-
-    public Camera getMainCamera() {
-        return mainCamera;
-    }
-
-    public void setMainCamera(Camera mainCamera) {
-        this.mainCamera = mainCamera;
+    private void clearLights(){
+        directionalLights.clear();
+        pointLights.clear();
     }
 }

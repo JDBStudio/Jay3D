@@ -1,5 +1,6 @@
 package org.jay3d.engine.core;
 
+import org.jay3d.engine.core.components.GameComponent;
 import org.jay3d.engine.core.math.Transform;
 import org.jay3d.engine.rendering.shaders.Shader;
 
@@ -50,6 +51,14 @@ public class GameObject {
 
         for(GameObject child : children)
             child.render(shader);
+    }
+
+    public void addToRenderingEngine(RenderingEngine renderingEngine){
+        for(GameComponent component : components)
+            component.addToRenderingEngine(renderingEngine);
+
+        for(GameObject child : children)
+            child.addToRenderingEngine(renderingEngine);
     }
 
     public Transform getTransform(){

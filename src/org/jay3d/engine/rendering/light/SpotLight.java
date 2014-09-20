@@ -1,5 +1,6 @@
 package org.jay3d.engine.rendering.light;
 
+import org.jay3d.engine.core.components.PointLight;
 import org.jay3d.engine.core.math.Vector3f;
 
 /**

@@ -3,7 +3,7 @@ package org.jay3d.engine.rendering.shaders;
 import org.jay3d.engine.core.math.Matrix4f;
 import org.jay3d.engine.core.math.Transform;
 import org.jay3d.engine.rendering.light.BaseLight;
-import org.jay3d.engine.rendering.light.DirectionalLight;
+import org.jay3d.engine.core.components.DirectionalLight;
 import org.jay3d.engine.rendering.material.Material;
 
 /**
@@ -54,7 +54,7 @@ public class ForwardDirectional extends Shader{
 
         setUniform("eyePos", getRenderingEngine().getMainCamera().getPos());
 
-        setUniform("directionalLight", getRenderingEngine().getDirectionalLight());
+        setUniform("directionalLight", getRenderingEngine().getActiveDirectionalLight());
     }
 
     public void setUniform(String uniformName, BaseLight baseLight){

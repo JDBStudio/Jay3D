@@ -1,6 +1,7 @@
 package org.jay3d.game;
 
 import org.jay3d.engine.core.CoreEngine;
+import org.jay3d.engine.core.components.TestGame;
 
 /**
  * Created by Juxhin

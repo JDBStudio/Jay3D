@@ -1,11 +1,12 @@
-package org.jay3d.game;
+package org.jay3d.engine.core.components;
 
 import org.jay3d.engine.core.Game;
 import org.jay3d.engine.core.GameObject;
-import org.jay3d.engine.core.math.Transform;
 import org.jay3d.engine.core.math.Vector2f;
 import org.jay3d.engine.core.math.Vector3f;
 import org.jay3d.engine.rendering.*;
+import org.jay3d.engine.rendering.light.Attenuation;
+import org.jay3d.engine.rendering.light.BaseLight;
 import org.jay3d.engine.rendering.material.Material;
 
 /**
@@ -35,6 +36,16 @@ public class TestGame extends Game {
         planeObject.addComponent(meshRenderer);
         planeObject.getTransform().setTranslation(0, -1, 5);
 
+        GameObject directionalLightObject = new GameObject();
+        DirectionalLight directionalLight = new DirectionalLight(new BaseLight(new Vector3f(0, 0, 1), 0.4f), new Vector3f(1, 1, 1));
+        directionalLightObject.addComponent(directionalLight);
+
+        GameObject pointLightObject = new GameObject();
+        PointLight pointLight = new PointLight(new BaseLight(new Vector3f(0, 1, 0), 0.5f), new Attenuation(0, 0, 1), new Vector3f(5, 0, 5), 100);
+        pointLightObject.addComponent(pointLight);
+
         getRootObject().addChild(planeObject);
+        getRootObject().addChild(directionalLightObject);
+        getRootObject().addChild(pointLightObject);
     }
 }

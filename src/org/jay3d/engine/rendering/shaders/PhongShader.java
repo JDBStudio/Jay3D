@@ -3,10 +3,9 @@ package org.jay3d.engine.rendering.shaders;
 import org.jay3d.engine.core.math.Matrix4f;
 import org.jay3d.engine.core.math.Vector3f;
 import org.jay3d.engine.core.math.Transform;
-import org.jay3d.engine.rendering.Camera;
 import org.jay3d.engine.rendering.light.BaseLight;
-import org.jay3d.engine.rendering.light.DirectionalLight;
-import org.jay3d.engine.rendering.light.PointLight;
+import org.jay3d.engine.core.components.DirectionalLight;
+import org.jay3d.engine.core.components.PointLight;
 import org.jay3d.engine.rendering.light.SpotLight;
 import org.jay3d.engine.rendering.material.Material;
 
