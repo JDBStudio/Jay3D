@@ -1,21 +1,32 @@
-package org.jay3d.engine.rendering.light;
+package org.jay3d.engine.core.components;
 
 import org.jay3d.engine.core.components.PointLight;
 import org.jay3d.engine.core.math.Vector3f;
+import org.jay3d.engine.rendering.shaders.ForwardSpotlight;
 
 /**
  * Created by Juxhin
  * Do not distribute code without permission!
  */
-public class SpotLight {
+public class SpotLight extends PointLight{
     private PointLight pointLight;
     private Vector3f direction;
     private float cutoff;
 
-    public SpotLight(PointLight pointLight, Vector3f direction, float cutoff) {
-        this.pointLight = pointLight;
-        this.direction = direction.normalise();
+    public SpotLight(Vector3f colour,
+                     float intensity,
+                     float constant,
+                     float linear,
+                     float exponent,
+                     Vector3f position,
+                     float range,
+                     Vector3f direction,
+                     float cutoff) {
+        super(colour, intensity, constant, exponent, linear, position, range);
+        this.direction = direction;
         this.cutoff = cutoff;
+
+        setShader(ForwardSpotlight.getInstance());
     }
 
     public PointLight getPointLight() {

@@ -1,10 +1,9 @@
 package org.jay3d.engine.rendering.shaders;
 
-import org.jay3d.engine.core.RenderingEngine;
+import org.jay3d.engine.rendering.RenderingEngine;
 import org.jay3d.engine.core.math.Matrix4f;
 import org.jay3d.engine.core.math.Transform;
 import org.jay3d.engine.core.math.Vector3f;
-import org.jay3d.engine.rendering.Camera;
 import org.jay3d.engine.rendering.material.Material;
 import org.jay3d.util.Util;
 

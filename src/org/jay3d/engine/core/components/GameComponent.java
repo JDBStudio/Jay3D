@@ -1,6 +1,6 @@
 package org.jay3d.engine.core.components;
 
-import org.jay3d.engine.core.RenderingEngine;
+import org.jay3d.engine.rendering.RenderingEngine;
 import org.jay3d.engine.core.math.Transform;
 import org.jay3d.engine.rendering.shaders.Shader;
 

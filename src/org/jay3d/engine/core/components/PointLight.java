@@ -1,9 +1,7 @@
 package org.jay3d.engine.core.components;
 
-import org.jay3d.engine.core.RenderingEngine;
 import org.jay3d.engine.core.math.Vector3f;
-import org.jay3d.engine.rendering.light.Attenuation;
-import org.jay3d.engine.rendering.light.BaseLight;
+import org.jay3d.engine.rendering.shaders.ForwardPoint;
 
 /**
  * Created by Juxhin
@@ -13,22 +11,23 @@ import org.jay3d.engine.rendering.light.BaseLight;
  * shader class.
  */
 
-public class PointLight extends GameComponent {
+public class PointLight extends BaseLight {
     private BaseLight baseLight;
-    private Attenuation atten;
     private Vector3f position;
+    private float constant;
+    private float linear;
+    private float exponent;
     private float range;
 
-    public PointLight(BaseLight baseLight, Attenuation atten, Vector3f position, float range) {
-        this.baseLight = baseLight;
-        this.atten = atten;
+    public PointLight(Vector3f colour, float intensity, float constant, float linear, float exponent,Vector3f position, float range) {
+        super(colour, intensity);
         this.position = position;
         this.range = range;
-    }
+        this.constant = constant;
+        this.linear = linear;
+        this.exponent = exponent;
 
-    @Override
-    public void addToRenderingEngine(RenderingEngine engine){
-        engine.addPointLight(this);
+        setShader(ForwardPoint.getInstance());
     }
 
     public BaseLight getBaseLight() {
@@ -37,14 +36,6 @@ public class PointLight extends GameComponent {
 
     public void setBaseLight(BaseLight baseLight) {
         this.baseLight = baseLight;
-    }
-
-    public Attenuation getAtten() {
-        return atten;
-    }
-
-    public void setAtten(Attenuation atten) {
-        this.atten = atten;
     }
 
     public Vector3f getPosition() {
@@ -61,5 +52,29 @@ public class PointLight extends GameComponent {
 
     public void setRange(float range) {
         this.range = range;
+    }
+
+    public float getConstant() {
+        return constant;
+    }
+
+    public void setConstant(float constant) {
+        this.constant = constant;
+    }
+
+    public float getLinear() {
+        return linear;
+    }
+
+    public void setLinear(float linear) {
+        this.linear = linear;
+    }
+
+    public float getExponent() {
+        return exponent;
+    }
+
+    public void setExponent(float exponent) {
+        this.exponent = exponent;
     }
 }

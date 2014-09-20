@@ -1,6 +1,8 @@
-package org.jay3d.engine.rendering.light;
+package org.jay3d.engine.core.components;
 
+import org.jay3d.engine.rendering.RenderingEngine;
 import org.jay3d.engine.core.math.Vector3f;
+import org.jay3d.engine.rendering.shaders.Shader;
 
 /**
  * Created by Juxhin
@@ -9,13 +11,19 @@ import org.jay3d.engine.core.math.Vector3f;
  * This is mainly a wrapper class for my phongFragment
  * shader class.
  */
-public class BaseLight {
+public class BaseLight extends GameComponent {
     private Vector3f colour;
     private float intensity;
+    private Shader shader;
 
     public BaseLight(Vector3f colour, float intensity){
         this.colour = colour;
         this.intensity = intensity;
+    }
+
+    @Override
+    public void addToRenderingEngine(RenderingEngine engine){
+        engine.addLight(this);
     }
 
     public float getIntensity() {
@@ -32,5 +40,13 @@ public class BaseLight {
 
     public void setColour(Vector3f colour) {
         this.colour = colour;
+    }
+
+    public void setShader(Shader shader){
+        this.shader = shader;
+    }
+
+    public Shader getShader() {
+        return shader;
     }
 }
