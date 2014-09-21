@@ -1,6 +1,5 @@
 package org.jay3d.engine.core.components;
 
-import org.jay3d.engine.core.components.PointLight;
 import org.jay3d.engine.core.math.Vector3f;
 import org.jay3d.engine.rendering.shaders.ForwardSpotlight;
 
@@ -15,14 +14,11 @@ public class SpotLight extends PointLight{
 
     public SpotLight(Vector3f colour,
                      float intensity,
-                     float constant,
-                     float linear,
-                     float exponent,
-                     Vector3f position,
+                     Vector3f attenuation,
                      float range,
                      Vector3f direction,
                      float cutoff) {
-        super(colour, intensity, constant, exponent, linear, position, range);
+        super(colour, intensity, attenuation);
         this.direction = direction;
         this.cutoff = cutoff;
 

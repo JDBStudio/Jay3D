@@ -17,6 +17,10 @@ public class Vector3f {
         return (float)Math.sqrt(x * x + y * y + z * z);
     }
 
+    public float max(){
+        return Math.max(x, Math.max(y, z));
+    }
+
     public float dot(Vector3f v){
         return x * v.getX() + y * v.getY() + z * v.getZ();
     }

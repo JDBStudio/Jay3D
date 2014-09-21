@@ -1,5 +1,6 @@
 package org.jay3d.engine.core.components;
 
+import org.jay3d.engine.core.GameObject;
 import org.jay3d.engine.rendering.RenderingEngine;
 import org.jay3d.engine.core.math.Transform;
 import org.jay3d.engine.rendering.shaders.Shader;
@@ -9,11 +10,21 @@ import org.jay3d.engine.rendering.shaders.Shader;
  * Do not distribute code without permission!
  */
 public abstract class GameComponent {
-    public void input(Transform transform, float delta) {}
+    private GameObject parent;
 
-    public void update(Transform transform, float delta) {}
+    public void input(float delta) {}
 
-    public void render(Transform transform, Shader shader) {}
+    public void update(float delta) {}
+
+    public void render(Shader shader) {}
 
     public void addToRenderingEngine(RenderingEngine renderingEngine) {}
+
+    public void setParent(GameObject parent) {
+        this.parent = parent;
+    }
+
+    public Transform getTransform() {
+        return parent.getTransform();
+    }
 }

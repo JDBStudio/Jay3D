@@ -34,6 +34,10 @@ public class Transform {
         this.pos = pos;
     }
 
+    public void setPos(float x, float y, float z){
+        this.pos = new Vector3f(x, y, z);
+    }
+
     public void setTranslation(float x, float y, float z) {
         this.pos = new Vector3f(x, y, z);
     }
