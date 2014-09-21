@@ -6,20 +6,19 @@ package org.jay3d.engine.core.math;
  */
 public class Transform {
     private Vector3f pos;
-    private Vector3f rot;
+    private Quaternion rot;
     private Vector3f scale;
 
     public Transform() {
         pos = new Vector3f(0, 0, 0);
-        rot = new Vector3f(0, 0, 0);
+        rot = new Quaternion(0, 0, 0, 0);
         scale = new Vector3f(1, 1, 1);
     }
 
     public Matrix4f getTransformation(){
         Matrix4f translationMatrix = new Matrix4f().initTranslation(
                 pos.getX(), pos.getY(), pos.getZ());
-        Matrix4f rotationMatrix = new Matrix4f().initRotation(rot.getX(),
-                rot.getY(), rot.getZ());
+        Matrix4f rotationMatrix = rot.toRotationMatrix();
         Matrix4f scaleMatrix = new Matrix4f().initScale(scale.getX(), scale.getY(),
                 scale.getZ());
 
@@ -42,16 +41,12 @@ public class Transform {
         this.pos = new Vector3f(x, y, z);
     }
 
-    public Vector3f getRot() {
+    public Quaternion getRot() {
         return rot;
     }
 
-    public void setRot(Vector3f rot) {
+    public void setRot(Quaternion rot) {
         this.rot = rot;
-    }
-
-    public void setRotation(float x, float y, float z){
-        this.rot = new Vector3f(x, y, z);
     }
 
     public Vector3f getScale() {

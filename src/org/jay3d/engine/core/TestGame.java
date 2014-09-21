@@ -1,7 +1,12 @@
-package org.jay3d.engine.core.components;
+package org.jay3d.engine.core;
 
 import org.jay3d.engine.core.Game;
 import org.jay3d.engine.core.GameObject;
+import org.jay3d.engine.core.components.DirectionalLight;
+import org.jay3d.engine.core.components.MeshRenderer;
+import org.jay3d.engine.core.components.PointLight;
+import org.jay3d.engine.core.components.SpotLight;
+import org.jay3d.engine.core.math.Quaternion;
 import org.jay3d.engine.core.math.Vector2f;
 import org.jay3d.engine.core.math.Vector3f;
 import org.jay3d.engine.rendering.*;
@@ -32,7 +37,7 @@ public class TestGame extends Game {
 
         GameObject planeObject = new GameObject();
         planeObject.addComponent(meshRenderer);
-        planeObject.getTransform().setTranslation(0, -1, 5);
+        planeObject.getTransform().getPos().set(0, -1, 5);
 
         GameObject directionalLightObject = new GameObject();
         DirectionalLight directionalLight = new DirectionalLight(new Vector3f(0, 0, 1), 0.4f, new Vector3f(1, 1, 1));
@@ -43,15 +48,14 @@ public class TestGame extends Game {
         pointLightObject.addComponent(pointLight);
 
         SpotLight spotLight = new SpotLight(new Vector3f(0,1,1), 0.4f,
-                new Vector3f(0,0,0.1f),
-                100,
-                new Vector3f(1,0,0), 0.7f);
+                new Vector3f(0,0,0.1f), 0.7f);
 
 
         GameObject spotLightObject = new GameObject();
         spotLightObject.addComponent(spotLight);
 
-        spotLightObject.getTransform().setPos(5, 0, 5);
+        spotLightObject.getTransform().getPos().set(5, 0, 5);
+        spotLightObject.getTransform().setRot(new Quaternion().initRotation(new Vector3f(0, 1, 0), (float)Math.toRadians(-90.0f)));
 
         getRootObject().addChild(planeObject);
         getRootObject().addChild(directionalLightObject);

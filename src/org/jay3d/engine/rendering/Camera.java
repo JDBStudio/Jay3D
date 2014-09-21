@@ -37,7 +37,7 @@ public class Camera{
 
     public void input(float delta){
         float sensitivity = 0.125f;
-        float movAmt = (float)(10 * delta);
+        float movAmt = (10 * delta);
 
         if(Input.getKey(Input.KEY_ESCAPE))
         {
@@ -64,9 +64,9 @@ public class Camera{
             boolean rotY = deltaPos.getX() != 0;
             boolean rotX = deltaPos.getY() != 0;
             if(rotY)
-                rotateY(deltaPos.getX() * sensitivity);
+                rotateY((float)Math.toRadians(deltaPos.getX() * sensitivity));
             if(rotX)
-                rotateX(-deltaPos.getY() * sensitivity);
+                rotateX((float)Math.toRadians(-deltaPos.getY() * sensitivity));
             if(rotY || rotX)
                 Input.setMousePosition(new Vector2f(Window.getWidth()/2, Window.getHeight()/2));
         }

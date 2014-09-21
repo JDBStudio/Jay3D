@@ -9,17 +9,13 @@ import org.jay3d.engine.rendering.shaders.ForwardSpotlight;
  */
 public class SpotLight extends PointLight{
     private PointLight pointLight;
-    private Vector3f direction;
     private float cutoff;
 
     public SpotLight(Vector3f colour,
                      float intensity,
                      Vector3f attenuation,
-                     float range,
-                     Vector3f direction,
                      float cutoff) {
         super(colour, intensity, attenuation);
-        this.direction = direction;
         this.cutoff = cutoff;
 
         setShader(ForwardSpotlight.getInstance());
@@ -34,11 +30,7 @@ public class SpotLight extends PointLight{
     }
 
     public Vector3f getDirection() {
-        return direction;
-    }
-
-    public void setDirection(Vector3f direction) {
-        this.direction = direction.normalise();
+        return getTransform().getRot().getForward();
     }
 
     public float getCutoff() {
