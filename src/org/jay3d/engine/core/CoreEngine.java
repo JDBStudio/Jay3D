@@ -46,7 +46,7 @@ public class CoreEngine {
     private void run(){
         isRunning = true;
 
-        int frames = 0;
+                int frames = 0;
         long frameCounter = 0;
 
         game.init();
@@ -73,8 +73,6 @@ public class CoreEngine {
                     stop();
 
                 game.input((float)frameTime);
-                engine.input((float)frameTime);
-
                 Input.update();
 
                 game.update((float)frameTime);

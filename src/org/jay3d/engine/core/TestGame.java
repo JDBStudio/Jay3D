@@ -1,11 +1,6 @@
 package org.jay3d.engine.core;
 
-import org.jay3d.engine.core.Game;
-import org.jay3d.engine.core.GameObject;
-import org.jay3d.engine.core.components.DirectionalLight;
-import org.jay3d.engine.core.components.MeshRenderer;
-import org.jay3d.engine.core.components.PointLight;
-import org.jay3d.engine.core.components.SpotLight;
+import org.jay3d.engine.core.components.*;
 import org.jay3d.engine.core.math.Quaternion;
 import org.jay3d.engine.core.math.Vector2f;
 import org.jay3d.engine.core.math.Vector3f;
@@ -61,5 +56,7 @@ public class TestGame extends Game {
         getRootObject().addChild(directionalLightObject);
         getRootObject().addChild(pointLightObject);
         getRootObject().addChild(spotLightObject);
+
+        getRootObject().addChild(new GameObject().addComponent(new Camera((float)Math.toRadians(70.0f), (float)Window.getWidth()/(float)Window.getHeight(), 0.01f, 1000.0f)));
     }
 }

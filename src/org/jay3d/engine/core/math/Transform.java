@@ -11,7 +11,7 @@ public class Transform {
 
     public Transform() {
         pos = new Vector3f(0, 0, 0);
-        rot = new Quaternion(0, 0, 0, 0);
+        rot = new Quaternion(0, 0, 0, 1);
         scale = new Vector3f(1, 1, 1);
     }
 

@@ -34,15 +34,10 @@ public class Quaternion {
         return (float)Math.sqrt(x * x + y * y + z* z + w * w);
     }
 
-    public Quaternion normalize(){
+    public Quaternion normalise(){
         float length = length();
 
-        x /= length;
-        y /= length;
-        z /= length;
-        w /= length;
-
-        return this;
+        return new Quaternion(x / length, y / length, z / length, w / length);
     }
 
     public Quaternion conjugate(){
@@ -67,67 +62,33 @@ public class Quaternion {
         return new Quaternion(x_, y_, z_, w_);
     }
 
-    public Matrix4f toRotationMatrix()
-    {
+    public Matrix4f toRotationMatrix() {
         return new Matrix4f().initRotation(getForward(), getUp(), getRight());
     }
-    public Vector3f getForward()
-    {
+
+    public Vector3f getForward() {
         return new Vector3f(2.0f * (x*z - w*y), 2.0f * (y*z + w*x), 1.0f - 2.0f * (x*x + y*y));
     }
-    public Vector3f getBack()
-    {
+
+    public Vector3f getBack() {
         return new Vector3f(-2.0f * (x*z - w*y), -2.0f * (y*z + w*x), -(1.0f - 2.0f * (x*x + y*y)));
     }
-    public Vector3f getUp()
-    {
+
+    public Vector3f getUp() {
         return new Vector3f(2.0f * (x*y + w*z), 1.0f - 2.0f * (x*x + z*z), 2.0f * (y*z - w*x));
     }
-    public Vector3f getDown()
-    {
+
+    public Vector3f getDown() {
         return new Vector3f(-2.0f * (x*y + w*z), -(1.0f - 2.0f * (x*x + z*z)), -2.0f * (y*z - w*x));
     }
-    public Vector3f getRight()
-    {
+
+    public Vector3f getRight() {
         return new Vector3f(1.0f - 2.0f * (y*y + z*z), 2.0f * (x*y - w*z), 2.0f * (x*z + w*y));
     }
-    public Vector3f getLeft()
-    {
+
+    public Vector3f getLeft() {
         return new Vector3f(-(1.0f - 2.0f * (y*y + z*z)), -2.0f * (x*y - w*z), -2.0f * (x*z + w*y));
     }
-
-//    public Matrix4f toRotationMatrix(){
-//        Vector3f forward = new Vector3f(2.0f * (x*z - w*y), 2.0f * (y*z + w*x), 1.0f - 2.0f * (x*x + x*x));
-//        Vector3f up = new Vector3f(2.0f * (x*y + w*z), 1.0f - 2.0f * (x*x + z*z), 2.0f + (y*z - w*x));
-//        Vector3f right = new Vector3f(1.0f - 2.0f * (y*y + z*z), 2.0f * (x*y - w*z), 2.0f * (x*z + w*y));
-//
-//        return new Matrix4f().initRotation(forward, up, right);
-//    }
-//
-//    public Vector3f getForward()
-//    {
-//        return new Vector3f(0, 0, 1).rotate(this);
-//    }
-//    public Vector3f getBack()
-//    {
-//        return new Vector3f(0, 0, -1).rotate(this);
-//    }
-//    public Vector3f getUp()
-//    {
-//        return new Vector3f(0, 1, 0).rotate(this);
-//    }
-//    public Vector3f getDown()
-//    {
-//        return new Vector3f(0, -1, 0).rotate(this);
-//    }
-//    public Vector3f getRight()
-//    {
-//        return new Vector3f(1, 0, 0).rotate(this);
-//    }
-//    public Vector3f getLeft()
-//    {
-//        return new Vector3f(-1, 0, 0).rotate(this);
-//    }
 
     public float getX() {
         return x;

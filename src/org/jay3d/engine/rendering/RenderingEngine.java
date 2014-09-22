@@ -2,6 +2,7 @@ package org.jay3d.engine.rendering;
 
 import org.jay3d.engine.core.GameObject;
 import org.jay3d.engine.core.components.BaseLight;
+import org.jay3d.engine.core.components.Camera;
 import org.jay3d.engine.core.math.Vector3f;
 import org.jay3d.engine.rendering.shaders.*;
 
@@ -20,10 +21,12 @@ public class RenderingEngine {
 
     //Fixed structure
     private ArrayList<BaseLight> lights;
+    private ArrayList<Camera> cameras;
     private BaseLight activeLight;
 
     public RenderingEngine() {
         lights = new ArrayList<>();
+        cameras = new ArrayList<>();
         glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
 
         glFrontFace(GL_CW);
@@ -35,13 +38,9 @@ public class RenderingEngine {
 
         glEnable(GL_TEXTURE_2D);
 
-        mainCamera = new Camera((float)Math.toRadians(70.0f), (float)Window.getWidth()/(float)Window.getHeight(), 0.01f, 1000f);
+        //mainCamera = new Camera((float)Math.toRadians(70.0f), (float)Window.getWidth()/(float)Window.getHeight(), 0.01f, 1000f);
 
         ambientLight = new Vector3f(0.1f, 0.1f, 0.1f);
-    }
-
-    public void input(float delta){
-        mainCamera.input(delta);
     }
 
     public void render(GameObject object){
@@ -80,6 +79,10 @@ public class RenderingEngine {
         lights.add(light);
     }
 
+    public void addCamera(Camera camera){
+        mainCamera = camera;
+    }
+
     public static String getOpenGLVersion() {
         return glGetString(GL_VERSION);
     }
@@ -114,7 +117,7 @@ public class RenderingEngine {
         glClearColor(color.getX(), color.getY(), color.getZ(), 1.0f);
     }
 
-    private static void unbindTextures(){
+    private static void unbindTextures() {
         glBindTexture(GL_TEXTURE_2D, 0);
     }
 }
