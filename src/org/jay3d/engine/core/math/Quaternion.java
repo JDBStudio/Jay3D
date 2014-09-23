@@ -7,10 +7,6 @@ package org.jay3d.engine.core.math;
 public class Quaternion {
     private float x, y, z, w;
 
-    public Quaternion(){
-        this(0, 0, 0, 1);
-    }
-
     public Quaternion(float x, float y, float z, float w){
         this.x = x;
         this.y = y;
@@ -18,7 +14,7 @@ public class Quaternion {
         this.w = w;
     }
 
-    public Quaternion initRotation(Vector3f axis, float angle){
+    public Quaternion(Vector3f axis, float angle){
         float sinHalfAngle = (float)Math.sin(angle / 2);
         float cosHalfAngle = (float)Math.cos(angle / 2);
 
@@ -26,8 +22,6 @@ public class Quaternion {
         this.y = axis.getY() * sinHalfAngle;
         this.z = axis.getZ() * sinHalfAngle;
         this.w = cosHalfAngle;
-
-        return this;
     }
 
     public float length(){
@@ -60,6 +54,25 @@ public class Quaternion {
         float z_ = w * v.getZ() + x * v.getY() - y * v.getX();
 
         return new Quaternion(x_, y_, z_, w_);
+    }
+
+    public boolean equals(Quaternion q){
+        return x == q.getX() && y == q.getY() && z == q.getZ() && w == q.getW();
+    }
+
+    public Quaternion set(float x, float y, float z, float w){
+        this.x = x;
+        this.y = y;
+        this.z = z;
+        this.w = z;
+
+        return this;
+    }
+
+    public Quaternion set(Quaternion q){
+        set(q.getX(), q.getY(), q.getZ(), q.getW());
+
+        return this;
     }
 
     public Matrix4f toRotationMatrix() {

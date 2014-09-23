@@ -38,6 +38,19 @@ public class Vector2f {
         return new Vector2f((float)(x * cos - y * sin), (float)(x * sin + y * cos));
     }
 
+    public Vector2f set(float x, float y){
+        this.x = x;
+        this.y = y;
+
+        return this;
+    }
+
+    public Vector2f set(Vector2f v){
+        set(v.getX(), v.getY());
+
+        return this;
+    }
+
     public Vector2f lerp(Vector2f dest, float lerpFactor){
         return dest.sub(this).mul(lerpFactor).add(this);
     }

@@ -36,8 +36,8 @@ public class Camera extends GameComponent {
 
     @Override
     public void input(float delta) {
-        float sensitivity = -0.5f;
-        float movAmt = (float)(10 * delta);
+        float sensitivity = -0.125f;
+        float movAmt = 10 * delta;
 
         if(Input.getKey(Input.KEY_ESCAPE)) {
             Input.setCursor(true);
@@ -64,9 +64,9 @@ public class Camera extends GameComponent {
             boolean rotY = deltaPos.getX() != 0;
             boolean rotX = deltaPos.getY() != 0;
             if(rotY)
-                getTransform().setRot(getTransform().getRot().mul(new Quaternion().initRotation(Y_AXIS, (float) Math.toRadians(deltaPos.getX() * sensitivity))).normalise());
+                getTransform().setRot(getTransform().getRot().mul(new Quaternion(Y_AXIS, (float) Math.toRadians(deltaPos.getX() * sensitivity))).normalise());
             if(rotX)
-                getTransform().setRot(getTransform().getRot().mul(new Quaternion().initRotation(getTransform().getRot().getRight(), ((float) Math.toRadians(-deltaPos.getY() * sensitivity)))).normalise());
+                getTransform().setRot(getTransform().getRot().mul(new Quaternion(getTransform().getRot().getRight(), ((float) Math.toRadians(-deltaPos.getY() * sensitivity)))).normalise());
             if(rotY || rotX)
                 Input.setMousePosition(new Vector2f(Window.getWidth()/2, Window.getHeight()/2));
         }

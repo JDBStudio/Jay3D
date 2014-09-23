@@ -103,10 +103,18 @@ public class Vector3f {
         return new Vector3f(x_, y_, z_);
     }
 
-    public void set(float x, float y, float z){
+    public Vector3f set(float x, float y, float z){
         this.x = x;
         this.y = y;
         this.z = z;
+
+        return this;
+    }
+
+    public Vector3f set(Vector3f v){
+        set(v.getX(), v.getY(), v.getZ());
+
+        return this;
     }
 
     public Vector2f getXY(){ return new Vector2f(x, y); }
