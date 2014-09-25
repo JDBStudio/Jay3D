@@ -46,7 +46,7 @@ public class TestGame extends Game {
         planeObject.getTransform().getPos().set(0, -1, 5);
 
         GameObject directionalLightObject = new GameObject();
-        DirectionalLight directionalLight = new DirectionalLight(new Vector3f(0, 0, 1), 0.4f, new Vector3f(1, 1, 1));
+        DirectionalLight directionalLight = new DirectionalLight(new Vector3f(0, 0, 1), 0.4f);
         directionalLightObject.addComponent(directionalLight);
 
         GameObject pointLightObject = new GameObject();
@@ -61,7 +61,7 @@ public class TestGame extends Game {
         spotLightObject.addComponent(spotLight);
 
         spotLightObject.getTransform().getPos().set(5, 0, 5);
-        spotLightObject.getTransform().setRot(new Quaternion(new Vector3f(0, 1, 0), (float)Math.toRadians(-90.0f)));
+        spotLightObject.getTransform().setRot(new Quaternion(new Vector3f(0, 1, 0), (float)Math.toRadians(90.0f)));
 
         getRootObject().addChild(planeObject);
         getRootObject().addChild(directionalLightObject);
@@ -81,5 +81,7 @@ public class TestGame extends Game {
         meshObject2.addChild(new GameObject().addComponent(new Camera((float)Math.toRadians(70.0f), (float)Window.getWidth()/(float)Window.getHeight(), 0.01f, 1000.0f)));
 
         getRootObject().addChild(meshObject1);
+
+        directionalLight.getTransform().setRot(new Quaternion(new Vector3f(1, 0, 0), (float)Math.toRadians(-45)));
     }
 }

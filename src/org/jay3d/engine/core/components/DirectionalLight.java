@@ -12,20 +12,14 @@ import org.jay3d.engine.rendering.shaders.ForwardDirectional;
  */
 public class DirectionalLight extends BaseLight{
     private BaseLight base;
-    private Vector3f direction;
 
-    public DirectionalLight(Vector3f colour, float intensity, Vector3f direction){
+    public DirectionalLight(Vector3f colour, float intensity){
         super(colour, intensity);
-        this.direction = direction.normalise();
         setShader(ForwardDirectional.getInstance());
     }
 
 
     public Vector3f getDirection() {
-        return direction;
-    }
-
-    public void setDirection(Vector3f direction) {
-        this.direction = direction;
+        return getTransform().getTransformedRot().getForward();
     }
 }

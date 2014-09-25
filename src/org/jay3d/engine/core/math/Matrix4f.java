@@ -28,6 +28,12 @@ public class Matrix4f {
         return this;
     }
 
+    public Vector3f transform(Vector3f v){
+        return new Vector3f(m[0][0] * v.getX() + m[0][1] * v.getY() + m[0][2] * v.getZ() + m[0][3],
+                            m[1][0] * v.getX() + m[1][1] * v.getY() + m[1][2] * v.getZ() + m[1][3],
+                            m[2][0] * v.getX() + m[2][1] * v.getY() + m[2][2] * v.getZ() + m[2][3]);
+    }
+
     public Matrix4f initRotation(float x, float y, float z)
     {
         Matrix4f rx = new Matrix4f();
