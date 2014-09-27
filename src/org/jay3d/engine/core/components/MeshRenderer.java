@@ -1,6 +1,7 @@
 package org.jay3d.engine.core.components;
 
 import org.jay3d.engine.rendering.Mesh;
+import org.jay3d.engine.rendering.RenderingEngine;
 import org.jay3d.engine.rendering.material.Material;
 import org.jay3d.engine.rendering.shaders.Shader;
 
@@ -17,9 +18,9 @@ public class MeshRenderer extends GameComponent{
         this.material = material;
     }
 
-    public void render(Shader shader){
+    public void render(Shader shader, RenderingEngine renderingEngine){
         shader.bind();
-        shader.updateUniforms(getTransform(), material);
+        shader.updateUniforms(getTransform(), material, renderingEngine);
         mesh.draw();
     }
 }

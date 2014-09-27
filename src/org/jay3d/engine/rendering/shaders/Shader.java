@@ -20,7 +20,6 @@ import static org.lwjgl.opengl.GL32.*;
 public class Shader {
     private int program;
     private HashMap<String, Integer> uniforms;
-    private RenderingEngine engine;
 
     public Shader(){
         program = glCreateProgram();
@@ -47,7 +46,7 @@ public class Shader {
         uniforms.put(uniformName, uniformLocation);
     }
 
-    public void updateUniforms(Transform transform, Material material){
+    public void updateUniforms(Transform transform, Material material, RenderingEngine renderingEngine){
 
     }
 
@@ -146,14 +145,5 @@ public class Shader {
         }
 
         return shaderSource.toString();
-    }
-
-
-    public void setRenderingEngine(RenderingEngine engine){
-        this.engine = engine;
-    }
-
-    public RenderingEngine getRenderingEngine(){
-        return engine;
     }
 }

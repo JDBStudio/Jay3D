@@ -1,5 +1,7 @@
 package org.jay3d.engine.core;
 
+import org.jay3d.engine.rendering.RenderingEngine;
+
 /**
  * Created by Juxhin
  * Do not distribute code without permission!
@@ -19,10 +21,18 @@ public abstract class Game {
         getRootObject().update(delta);
     }
 
-    public GameObject getRootObject() {
+    public void render(RenderingEngine renderingEngine){
+        renderingEngine.render(getRootObject());
+    }
+
+    private GameObject getRootObject() {
         if(root == null)
             root = new GameObject();
 
         return root;
+    }
+
+    public void addObject(GameObject object){
+        getRootObject().addChild(object);
     }
 }

@@ -2,6 +2,7 @@ package org.jay3d.engine.rendering.shaders;
 
 import org.jay3d.engine.core.math.Matrix4f;
 import org.jay3d.engine.core.math.Transform;
+import org.jay3d.engine.rendering.RenderingEngine;
 import org.jay3d.engine.rendering.material.Material;
 
 /**
@@ -30,13 +31,13 @@ public class ForwardAmbient extends Shader{
     }
 
     @Override
-    public void updateUniforms(Transform transform, Material material){
+    public void updateUniforms(Transform transform, Material material, RenderingEngine renderingEngine){
         Matrix4f worldMatrix = transform.getTransformation();
-        Matrix4f projectedMatrix = getRenderingEngine().getMainCamera().getViewProjection().mul(worldMatrix);
-        material.getTexture().bind();
+        Matrix4f projectedMatrix = renderingEngine.getMainCamera().getViewProjection().mul(worldMatrix);
+        material.getTexture("diffuseTexture").bind();
 
         setUniform("MVP", projectedMatrix);
-        setUniform("ambientIntensity", getRenderingEngine().getAmbientLight());
+        setUniform("ambientIntensity", renderingEngine.getAmbientLight());
     }
 
 }

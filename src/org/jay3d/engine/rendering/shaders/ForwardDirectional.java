@@ -4,6 +4,7 @@ import org.jay3d.engine.core.math.Matrix4f;
 import org.jay3d.engine.core.math.Transform;
 import org.jay3d.engine.core.components.BaseLight;
 import org.jay3d.engine.core.components.DirectionalLight;
+import org.jay3d.engine.rendering.RenderingEngine;
 import org.jay3d.engine.rendering.material.Material;
 
 /**
@@ -41,20 +42,20 @@ public class ForwardDirectional extends Shader{
     }
 
     @Override
-    public void updateUniforms(Transform transform, Material material){
+    public void updateUniforms(Transform transform, Material material, RenderingEngine renderingEngine){
         Matrix4f worldMatrix = transform.getTransformation();
-        Matrix4f projectedMatrix = getRenderingEngine().getMainCamera().getViewProjection().mul(worldMatrix);
-        material.getTexture().bind();
+        Matrix4f projectedMatrix = renderingEngine.getMainCamera().getViewProjection().mul(worldMatrix);
+        material.getTexture("diffuseTexture").bind();
 
         setUniform("model", worldMatrix);
         setUniform("mvp", projectedMatrix);
 
-        setUniformf("specularIntensity", material.getSpecularIntensity());
-        setUniformf("specularPower", material.getSpecularPower());
+        setUniformf("specularIntensity", material.getFloat("specularIntensity"));
+        setUniformf("specularPower", material.getFloat("specularPower"));
 
-        setUniform("eyePos", getRenderingEngine().getMainCamera().getTransform().getTranformedPos());
+        setUniform("eyePos", renderingEngine.getMainCamera().getTransform().getTranformedPos());
 
-        setUniformDirectionalLight("directionalLight", (DirectionalLight) getRenderingEngine().getActiveLight());
+        setUniformDirectionalLight("directionalLight", (DirectionalLight) renderingEngine.getActiveLight());
     }
 
     public void setUniformBaseLight(String uniformName, BaseLight baseLight){

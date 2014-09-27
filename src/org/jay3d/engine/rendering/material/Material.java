@@ -3,62 +3,60 @@ package org.jay3d.engine.rendering.material;
 import org.jay3d.engine.core.math.Vector3f;
 import org.jay3d.engine.rendering.Texture;
 
+import java.util.HashMap;
+
 /**
  * Created by Juxhin
  * Do not distribute code without permission!
  */
 public class Material {
-    private Texture texture;
-    private Vector3f colour;
-    private float specularIntensity;
-    private float specularPower;
 
-    public Material(Texture texture) {
-        this(texture, new Vector3f(1, 1, 1));
+    private HashMap<String, Texture> textureHashMap;
+    private HashMap<String, Vector3f> vector3fHashMap;
+    private HashMap<String, Float> floatHashMap;
+
+    public Material() {
+        textureHashMap = new HashMap<>();
+        vector3fHashMap = new HashMap<>();
+        floatHashMap = new HashMap<>();
     }
 
-
-    public Material(Texture texture, Vector3f colour) {
-        this(texture, colour, 2, 32);
+    public void addTexture(String name, Texture texture){
+        textureHashMap.put(name, texture);
     }
 
-    public Material(Texture texture, Vector3f colour, float specularIntensity,
-                    float specularPower) {
-        this.texture = texture;
-        this.colour = colour;
-        this.specularPower = specularPower;
-        this.specularIntensity = specularIntensity;
+    public Texture getTexture(String name){
+        Texture result = textureHashMap.get(name);
+
+        if(result != null)
+            return result;
+
+        return new Texture("test.png");
     }
 
-    public Texture getTexture() {
-        return texture;
+    public void addVector3f(String name, Vector3f vector3f){
+        vector3fHashMap.put(name, vector3f);
     }
 
-    public void setTexture(Texture texture) {
-        this.texture = texture;
+    public Vector3f getVector3f(String name){
+        Vector3f result = vector3fHashMap.get(name);
+
+        if(result != null)
+            return result;
+
+        return new Vector3f(0, 0, 0);
     }
 
-    public Vector3f getColour() {
-        return colour;
+    public void addFloat(String name, Float floatValue){
+        floatHashMap.put(name, floatValue);
     }
 
-    public void setColour(Vector3f colour) {
-        this.colour = colour;
-    }
+    public Float getFloat(String name){
+        Float result = floatHashMap.get(name);
 
-    public float getSpecularIntensity() {
-        return specularIntensity;
-    }
+        if(result != null)
+            return result;
 
-    public void setSpecularIntensity(float specularIntensity) {
-        this.specularIntensity = specularIntensity;
-    }
-
-    public float getSpecularPower() {
-        return specularPower;
-    }
-
-    public void setSpecularPower(float specularPower) {
-        this.specularPower = specularPower;
+        return 0f;
     }
 }
