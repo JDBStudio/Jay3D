@@ -11,20 +11,20 @@ public class Vertex {
     public static final int SIZE = 8;
 
     private Vector3f pos;
-    private Vector2f textCord;
+    private Vector2f textCoord;
     private Vector3f normal;
 
     public Vertex(Vector3f pos) {
         this(pos, new Vector2f(0,0));
     }
 
-    public Vertex(Vector3f pos, Vector2f textCord) {
-        this(pos, textCord, new Vector3f(0, 0, 0));
+    public Vertex(Vector3f pos, Vector2f textCoord) {
+        this(pos, textCoord, new Vector3f(0, 0, 0));
     }
 
-    public Vertex(Vector3f pos, Vector2f textCord, Vector3f normal) {
+    public Vertex(Vector3f pos, Vector2f textCoord, Vector3f normal) {
         this.pos = pos;
-        this.textCord = textCord;
+        this.textCoord = textCoord;
         this.normal = normal;
     }
 
@@ -36,12 +36,12 @@ public class Vertex {
         this.pos = pos;
     }
 
-    public Vector2f getTextCord() {
-        return textCord;
+    public Vector2f getTextCoord() {
+        return textCoord;
     }
 
-    public void setTextCord(Vector2f textCord) {
-        this.textCord = textCord;
+    public void setTextCoord(Vector2f textCoord) {
+        this.textCoord = textCoord;
     }
 
     public Vector3f getNormal() {

@@ -37,8 +37,8 @@ public class Util {
             buffer.put(vertices[i].getPos().getX());
             buffer.put(vertices[i].getPos().getY());
             buffer.put(vertices[i].getPos().getZ());
-            buffer.put(vertices[i].getTextCord().getX());
-            buffer.put(vertices[i].getTextCord().getY());
+            buffer.put(vertices[i].getTextCoord().getX());
+            buffer.put(vertices[i].getTextCoord().getY());
             buffer.put(vertices[i].getNormal().getX());
             buffer.put(vertices[i].getNormal().getY());
             buffer.put(vertices[i].getNormal().getZ());

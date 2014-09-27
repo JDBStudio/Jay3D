@@ -1,6 +1,7 @@
-package org.jay3d.engine.rendering;
+package org.jay3d.engine.rendering.mesh;
 
 import org.jay3d.engine.core.math.Vector3f;
+import org.jay3d.engine.rendering.Vertex;
 import org.jay3d.util.Util;
 
 import java.io.BufferedReader;
@@ -96,6 +97,8 @@ public class Mesh {
     private Mesh loadMesh(String fileName){
         String[] splitArray = fileName.split("\\.");
         String ext = splitArray[splitArray.length - 1];
+
+        OBJModel test = new OBJModel("./res/models/" + fileName);
 
         if(!ext.equalsIgnoreCase("obj")){
             System.err.println("ERROR: File format not supported - " + ext);

@@ -38,8 +38,6 @@ public class RenderingEngine {
 
         glEnable(GL_TEXTURE_2D);
 
-        //mainCamera = new Camera((float)Math.toRadians(70.0f), (float)Window.getWidth()/(float)Window.getHeight(), 0.01f, 1000f);
-
         ambientLight = new Vector3f(0.1f, 0.1f, 0.1f);
     }
 
@@ -97,8 +95,6 @@ public class RenderingEngine {
     }
 
     private static void clearScreen(){
-
-        //TODO: Stencil Buffer
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     }
 

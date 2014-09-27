@@ -6,6 +6,7 @@ import org.jay3d.engine.core.math.Vector2f;
 import org.jay3d.engine.core.math.Vector3f;
 import org.jay3d.engine.rendering.*;
 import org.jay3d.engine.rendering.material.Material;
+import org.jay3d.engine.rendering.mesh.Mesh;
 
 /**
  * Created by Juxhin
@@ -41,6 +42,8 @@ public class TestGame extends Game {
         material.addTexture( "diffuseTexture" , new Texture("test.png"));
         material.addFloat( "specularIntensity", 1f);
         material.addFloat( "specularPower", 8f);
+
+        Mesh tempMesh = new Mesh("monkey3.obj");
 
         MeshRenderer meshRenderer = new MeshRenderer(mesh, material);
 
