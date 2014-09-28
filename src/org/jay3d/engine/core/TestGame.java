@@ -43,6 +43,11 @@ public class TestGame extends Game {
         material.addFloat( "specularIntensity", 1f);
         material.addFloat( "specularPower", 8f);
 
+        Material material2 = new Material();
+        material2.addTexture( "diffuseTexture" , new Texture("bricks.jpg"));
+        material2.addFloat( "specularIntensity", 1f);
+        material2.addFloat( "specularPower", 8f);
+
         Mesh tempMesh = new Mesh("monkey3.obj");
 
         MeshRenderer meshRenderer = new MeshRenderer(mesh, material);
@@ -59,6 +64,7 @@ public class TestGame extends Game {
         PointLight pointLight = new PointLight(new Vector3f(0, 1, 0), 0.9f, new Vector3f(0, 0, 1));
         pointLightObject.addComponent(pointLight);
 
+
         SpotLight spotLight = new SpotLight(new Vector3f(0,1,1), 0.4f,
                 new Vector3f(0,0,0.1f), 0.7f);
 
@@ -74,8 +80,6 @@ public class TestGame extends Game {
         addObject(pointLightObject);
         addObject(spotLightObject);
 
-        //getRootObject().addChild(new GameObject().addComponent(new Camera((float)Math.toRadians(70.0f), (float)Window.getWidth()/(float)Window.getHeight(), 0.01f, 1000.0f)));
-
         GameObject meshObject1 = new GameObject().addComponent(new MeshRenderer(mesh2, material));
         GameObject meshObject2 = new GameObject().addComponent(new MeshRenderer(mesh2, material));
         GameObject meshObject3 = new GameObject().addComponent(new MeshRenderer(tempMesh, material));
@@ -90,8 +94,10 @@ public class TestGame extends Game {
         addObject(meshObject1);
         addObject(meshObject3);
 
-        meshObject3.getTransform().getPos().set(5, 3, 15);
+        meshObject3.getTransform().getPos().set(5, 1, 15);
         meshObject3.getTransform().setRot(new Quaternion(new Vector3f(0, 1, 0), (float)Math.toRadians(-30)));
+
+        addObject(new GameObject().addComponent(new MeshRenderer(new Mesh("monkey3.obj"), material2)));
 
         directionalLight.getTransform().setRot(new Quaternion(new Vector3f(1, 0, 0), (float)Math.toRadians(-45)));
     }
