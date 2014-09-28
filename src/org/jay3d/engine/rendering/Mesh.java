@@ -1,11 +1,10 @@
-package org.jay3d.engine.rendering.mesh;
+package org.jay3d.engine.rendering;
 
 import org.jay3d.engine.core.math.Vector3f;
-import org.jay3d.engine.rendering.Vertex;
+import org.jay3d.engine.rendering.mesh.IndexedModel;
+import org.jay3d.engine.rendering.mesh.OBJModel;
 import org.jay3d.util.Util;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
 import java.util.ArrayList;
 
 import static org.lwjgl.opengl.GL11.*;
@@ -89,8 +88,8 @@ public class Mesh {
             vertices[i2].setNormal(vertices[i2].getNormal().add(normal));
         }
 
-        for(int i = 0; i < vertices.length; i++){
-            vertices[i].setNormal(vertices[i].getNormal().normalise());
+        for (Vertex vertex : vertices) {
+            vertex.setNormal(vertex.getNormal().normalise());
         }
     }
 
@@ -98,58 +97,31 @@ public class Mesh {
         String[] splitArray = fileName.split("\\.");
         String ext = splitArray[splitArray.length - 1];
 
-        OBJModel test = new OBJModel("./res/models/" + fileName);
-
         if(!ext.equalsIgnoreCase("obj")){
             System.err.println("ERROR: File format not supported - " + ext);
             new Exception().printStackTrace();
             System.exit(1);
         }
 
+        OBJModel test = new OBJModel("./res/models/" + fileName);
+        IndexedModel model = test.toIndexedModel();
+        model.calcNormals();
+
         ArrayList<Vertex> vertices = new ArrayList<>();
-        ArrayList<Integer> indices = new ArrayList<>();
 
-        BufferedReader meshReader;
-
-        try{
-            meshReader = new BufferedReader(new FileReader("./res/models/" + fileName));
-            String line;
-            while((line = meshReader.readLine()) != null){
-                String[] tokens = line.split(" ");
-                tokens = Util.removeEmptyStrings(tokens);
-                if(tokens.length == 0 || tokens[0].equalsIgnoreCase("#"))
-                    continue;
-                else if(tokens[0].equalsIgnoreCase("v")){
-                    vertices.add(new Vertex(new Vector3f(Float.valueOf(tokens[1]),
-                            Float.valueOf(tokens[2]),
-                            Float.valueOf(tokens[3]))));
-                }
-                else if(tokens[0].equalsIgnoreCase("f")){
-                    indices.add(Integer.parseInt(tokens[1].split("/")[0]) - 1);
-                    indices.add(Integer.parseInt(tokens[2].split("/")[0]) - 1);
-                    indices.add(Integer.parseInt(tokens[3].split("/")[0]) - 1);
-
-                    if(tokens.length > 4){
-                        indices.add(Integer.parseInt(tokens[1].split("/")[0]) - 1);
-                        indices.add(Integer.parseInt(tokens[3].split("/")[0]) - 1);
-                        indices.add(Integer.parseInt(tokens[4].split("/")[0]) - 1);
-                    }
-                }
-            }
-            meshReader.close();
+        for(int i = 0; i < model.getPositions().size(); i++){
+            vertices.add(new Vertex(model.getPositions().get(i),
+                                    model.getTextCoordinates().get(i),
+                                    model.getNormals().get(i)));
+        }
 
             Vertex[] vertexData = new Vertex[vertices.size()];
             vertices.toArray(vertexData);
 
-            Integer[] indexData = new Integer[indices.size()];
-            indices.toArray(indexData);
+            Integer[] indexData = new Integer[model.getIndices().size()];
+            model.getIndices().toArray(indexData);
 
-            addVertices(vertexData, Util.toIntArray(indexData), true);
-
-        }catch(Exception e){
-            e.printStackTrace();
-            System.exit(-1);
-        }
+            addVertices(vertexData, Util.toIntArray(indexData), false);
 
         return null;
     }
