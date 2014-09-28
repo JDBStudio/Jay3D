@@ -16,7 +16,7 @@ Guide
  3. You will also need [Java](https://java.com/en/download/index.jsp) installed on your computer of use.
 
 
-ADDED:
+ADDED(Somewhat outdated):
 -----
  - Mesh Model loader(only supports .obj right now)
  - Basic temporary shaders(will implement proper ones later)
