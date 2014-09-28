@@ -68,9 +68,13 @@ public class OBJModel {
 
     public IndexedModel toIndexedModel(){
         IndexedModel result = new IndexedModel();
+        IndexedModel normalModel = new IndexedModel();
+
+        HashMap<OBJIndex, Integer> resultIndexMap = new HashMap<>();
+        HashMap<Integer, Integer> normalIndexMap = new HashMap<>();
+
         HashMap<Integer, Integer> indexMap = new HashMap<>();
 
-        int currentVertexIndex = 0;
         for (int i = 0; i < indices.size(); i++) {
             OBJIndex currentIndex = indices.get(i);
 
@@ -88,30 +92,42 @@ public class OBJModel {
             else
                 currentNormal = new Vector3f(0, 0, 0);
 
-            int previousVertexIndex = -1;
+            Integer modelVertexIndex = resultIndexMap.get(currentIndex);
 
-            for (int j = 0; j < i; j++) {
-                OBJIndex oldIndex = indices.get(j);
-
-                if (currentIndex.vertexIndex == oldIndex.vertexIndex
-                        && currentIndex.texCoordIndex == oldIndex.texCoordIndex
-                        && currentIndex.normalIndex == oldIndex.normalIndex) {
-                    previousVertexIndex = j;
-                    break;
-                }
-            }
-
-            if (previousVertexIndex == -1) {
-                indexMap.put(i, currentVertexIndex);
+            if(modelVertexIndex == null){
+                modelVertexIndex = result.getPositions().size();
+                resultIndexMap.put(currentIndex, result.getPositions().size());
 
                 result.getPositions().add(currentPos);
                 result.getTextCoordinates().add(currentTexCoord);
-                result.getNormals().add(currentNormal);
-                System.out.println(currentVertexIndex);
-                result.getIndices().add(currentVertexIndex);
-                currentVertexIndex++;
-            } else
-                result.getIndices().add(indexMap.get(previousVertexIndex));
+
+                if(hasNormals)
+                    result.getNormals().add(currentNormal);
+            }
+
+            Integer normalModelIntex =  normalIndexMap.get(currentIndex.vertexIndex);
+
+            if(normalModelIntex == null){
+                normalIndexMap.put(currentIndex.vertexIndex, normalModel.getPositions().size());
+
+                normalModelIntex = normalModel.getPositions().size();
+
+                normalModel.getPositions().add(currentPos);
+                normalModel.getTextCoordinates().add(currentTexCoord);
+                normalModel.getNormals().add(currentNormal);
+            }
+
+            result.getIndices().add(modelVertexIndex);
+            normalModel.getIndices().add(normalModelIntex);
+            indexMap.put(modelVertexIndex, normalModelIntex);
+        }
+
+        if(!hasNormals) {
+            normalModel.calcNormals();
+
+            for(int i = 0; i < result.getPositions().size(); i++){
+                result.getNormals().add(normalModel.getNormals().get(indexMap.get(i)));
+            }
         }
 
         return result;
