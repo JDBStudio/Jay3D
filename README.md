@@ -7,13 +7,11 @@ Jay3D
 
 Guide
 -----
- 1. In order to use this engine you must have [LWJGL](http://lwjgl.org/download.php) downloaded and libraries imported into    the project.
+ 1. You will also need [Java](https://java.com/en/download/index.jsp) installed on your computer of use.
+   
+ 2. In order to use this engine you must have [LWJGL](http://lwjgl.org/download.php) downloaded and libraries imported into    the project.
    * You need to also set the VM options to direct it to the LWJGL natives according to your OS of choice 
    using *-Djava.library.path= "Path/LWJGL/Natives/MyOS (put your actual path)*
-   
- 2. You also need [SlickUtil](http://slick.ninjacave.com/slick-util/) *(Will make it SlickUtil independant soon enough)* 
-
- 3. You will also need [Java](https://java.com/en/download/index.jsp) installed on your computer of use.
 
 
 ADDED(Somewhat outdated):
