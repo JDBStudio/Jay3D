@@ -35,6 +35,42 @@ public class Shader {
         glUseProgram(program);
     }
 
+    public void addAllUniforms(String shaderText){
+        final String UNIFORM_KEY = "uniform";
+        int uniformStartLocation = shaderText.indexOf(UNIFORM_KEY);
+
+        while(uniformStartLocation != -1){
+            int begin = uniformStartLocation + UNIFORM_KEY.length() + 1;
+            int end = shaderText.indexOf(";", begin);
+
+            String uniformLine = shaderText.substring(begin, end);
+            String uniformName = uniformLine.substring(uniformLine.indexOf(" ") + 1, uniformLine.length());
+
+            addUniform(uniformName);
+
+            uniformStartLocation = shaderText.indexOf(UNIFORM_KEY, uniformStartLocation + UNIFORM_KEY.length());
+        }
+    }
+
+    public void addAllAttirbutes(String shaderText){
+        final String ATTRIBUTE_KEY = "attribute";
+        int attributeStartLocation = shaderText.indexOf(ATTRIBUTE_KEY);
+        int attributeNumber = 0;
+
+        while(attributeStartLocation != -1){
+            int begin = attributeStartLocation + ATTRIBUTE_KEY.length() + 1;
+            int end = shaderText.indexOf(";", begin);
+
+            String attributeLine = shaderText.substring(begin, end);
+            String attributeName = attributeLine.substring(attributeLine.indexOf(" ") + 1, attributeLine.length());
+
+            setAttribLocation(attributeName, attributeNumber);
+            attributeNumber++;
+
+            attributeStartLocation = shaderText.indexOf(ATTRIBUTE_KEY, attributeStartLocation + ATTRIBUTE_KEY.length());
+        }
+    }
+
     public void addUniform(String uniformName){
         int uniformLocation = glGetUniformLocation(program, uniformName);
         if(uniformLocation == 0xFFFFFFFF){
@@ -128,7 +164,7 @@ public class Shader {
     }
 
 
-    private static String loadShader(String fileName){
+    public static String loadShader(String fileName){
         StringBuilder shaderSource = new StringBuilder();
         BufferedReader reader;
         final String INCLUDE_DIRECTIVE = "#include";
