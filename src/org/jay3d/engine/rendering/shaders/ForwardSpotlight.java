@@ -18,35 +18,9 @@ public class ForwardSpotlight extends Shader{
     public static ForwardSpotlight getInstance(){
         return INSTANCE;
     }
+
     public ForwardSpotlight(){
-        super();
-
-        addVertexShaderFromFile("Forward-spot.vs");
-        addFragmentShaderFromFile("Forward-spot.fs");
-
-        setAttribLocation("positon", 0);
-        setAttribLocation("texCoord", 1);
-        setAttribLocation("normal", 2);
-
-        compileShader();
-
-        addUniform("model");
-        addUniform("mvp");
-
-        addUniform("specularIntensity");
-        addUniform("specularPower");
-        addUniform("eyePos");
-
-        addUniform("spotLight.pointLight.base.colour");
-        addUniform("spotLight.pointLight.base.intensity");
-        addUniform("spotLight.pointLight.atten.constant");
-        addUniform("spotLight.pointLight.atten.linear");
-        addUniform("spotLight.pointLight.atten.exponent");
-        addUniform("spotLight.pointLight.position");
-        addUniform("spotLight.pointLight.range");
-
-        addUniform("spotLight.direction");
-        addUniform("spotLight.cutoff");
+        super("Forward-spot");
     }
 
     @Override

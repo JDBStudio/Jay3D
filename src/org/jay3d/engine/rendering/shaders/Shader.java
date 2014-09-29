@@ -9,6 +9,7 @@ import org.jay3d.util.Util;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import static org.lwjgl.opengl.GL20.*;
@@ -21,7 +22,7 @@ public class Shader {
     private int program;
     private HashMap<String, Integer> uniforms;
 
-    public Shader(){
+    public Shader(String fileName){
         program = glCreateProgram();
         uniforms = new HashMap<>();
 
@@ -29,126 +30,23 @@ public class Shader {
             System.err.print("SHADER ERROR: Could not find valid memory location in constructor");
             System.exit(1);
         }
-    }
 
-    public void bind(){
-        glUseProgram(program);
-    }
+        String vertexShaderText = loadShader(fileName + ".vs");
+        String fragmentShaderText = loadShader(fileName + ".fs");
 
-    public void addAllUniforms(String shaderText){
-        final String UNIFORM_KEY = "uniform";
-        int uniformStartLocation = shaderText.indexOf(UNIFORM_KEY);
+        addAllAttirbutes(vertexShaderText);
 
-        while(uniformStartLocation != -1){
-            int begin = uniformStartLocation + UNIFORM_KEY.length() + 1;
-            int end = shaderText.indexOf(";", begin);
+        addVertexShader(vertexShaderText);
+        addFragmentShader(fragmentShaderText);
 
-            String uniformLine = shaderText.substring(begin, end);
-            String uniformName = uniformLine.substring(uniformLine.indexOf(" ") + 1, uniformLine.length());
+        compileShader();
 
-            addUniform(uniformName);
-
-            uniformStartLocation = shaderText.indexOf(UNIFORM_KEY, uniformStartLocation + UNIFORM_KEY.length());
-        }
-    }
-
-    public void addAllAttirbutes(String shaderText){
-        final String ATTRIBUTE_KEY = "attribute";
-        int attributeStartLocation = shaderText.indexOf(ATTRIBUTE_KEY);
-        int attributeNumber = 0;
-
-        while(attributeStartLocation != -1){
-            int begin = attributeStartLocation + ATTRIBUTE_KEY.length() + 1;
-            int end = shaderText.indexOf(";", begin);
-
-            String attributeLine = shaderText.substring(begin, end);
-            String attributeName = attributeLine.substring(attributeLine.indexOf(" ") + 1, attributeLine.length());
-
-            setAttribLocation(attributeName, attributeNumber);
-            attributeNumber++;
-
-            attributeStartLocation = shaderText.indexOf(ATTRIBUTE_KEY, attributeStartLocation + ATTRIBUTE_KEY.length());
-        }
-    }
-
-    public void addUniform(String uniformName){
-        int uniformLocation = glGetUniformLocation(program, uniformName);
-        if(uniformLocation == 0xFFFFFFFF){
-            System.err.println("ERROR: Could not find uniform: " + uniformName);
-            new Exception().printStackTrace();
-            System.exit(4);
-        }
-
-        uniforms.put(uniformName, uniformLocation);
-    }
-
-    public void updateUniforms(Transform transform, Material material, RenderingEngine renderingEngine){
-
-    }
-
-    public void addVertexShader(String text){
-        addProgram(text, GL_VERTEX_SHADER);
-    }
-
-    public void addGeometryShader(String text){
-        addProgram(text, GL_GEOMETRY_SHADER);
-    }
-
-    public void addFragmentShader(String text){
-        addProgram(text, GL_FRAGMENT_SHADER);
-    }
-
-    public void addVertexShaderFromFile(String text){
-        addProgram(loadShader(text), GL_VERTEX_SHADER);
-    }
-
-    public void addGeometryShaderFromFile(String text){
-        addProgram(loadShader(text), GL_GEOMETRY_SHADER);
-    }
-
-    public void addFragmentShaderFromFile(String text){
-        addProgram(loadShader(text), GL_FRAGMENT_SHADER);
-    }
-
-    public void setAttribLocation(String attribute, int location){
-        glBindAttribLocation(program, location, attribute);
-    }
-
-    public void compileShader(){
-        glLinkProgram(program);
-        if(glGetProgram(program, GL_LINK_STATUS) == 0){
-            System.err.print(glGetShaderInfoLog(program, 1024));
-            System.exit(3);
-        }
-        glValidateProgram(program);
-
-        if(glGetProgrami(program, GL_VALIDATE_STATUS) == 0){
-            System.err.print(glGetProgramInfoLog(program, 1024));
-            System.exit(3);
-        }
-    }
-
-    private void addProgram(String text, int type){
-        int shader = glCreateShader(type);
-
-        if(shader == 0){
-            System.err.print("SHADER ERROR: Could not find valid memory location when adding shader");
-            System.exit(2);
-        }
-
-        glShaderSource(shader, text);
-        glCompileShader(shader);
-
-        if(glGetShader(shader, GL_COMPILE_STATUS) == 0){
-            System.err.print(glGetShaderInfoLog(shader, 1024));
-            System.exit(2);
-        }
-
-        glAttachShader(program, shader);
+        addAllUniforms(vertexShaderText);
+        addAllUniforms(fragmentShaderText);
     }
 
     public void setUniformi(String uniformName, int value){
-        glUniform1i(uniforms.get(uniformName) ,value);
+        glUniform1i(uniforms.get(uniformName), value);
     }
 
     public void setUniformf(String uniformName, float value){
@@ -163,8 +61,15 @@ public class Shader {
         glUniformMatrix4(uniforms.get(uniformName), true, Util.createFlippedBuffer(value));
     }
 
+    public void updateUniforms(Transform transform, Material material, RenderingEngine renderingEngine){
 
-    public static String loadShader(String fileName){
+    }
+
+    public void bind(){
+        glUseProgram(program);
+    }
+
+    private static String loadShader(String fileName){
         StringBuilder shaderSource = new StringBuilder();
         BufferedReader reader;
         final String INCLUDE_DIRECTIVE = "#include";
@@ -193,4 +98,182 @@ public class Shader {
 
         return shaderSource.toString();
     }
+
+    private void addAllUniforms(String shaderText){
+        HashMap<String, ArrayList<GLSLStruct>> structs = findUniformStructs(shaderText);
+
+        final String UNIFORM_KEY = "uniform";
+        int uniformStartLocation = shaderText.indexOf(UNIFORM_KEY);
+
+        while(uniformStartLocation != -1){
+            if(!(uniformStartLocation != 0
+                    && (Character.isWhitespace(shaderText.charAt(uniformStartLocation - 1)) || shaderText.charAt(uniformStartLocation - 1) == ';'))
+                    && Character.isWhitespace(shaderText.charAt(uniformStartLocation + UNIFORM_KEY.length())))
+                continue;
+
+            int begin = uniformStartLocation + UNIFORM_KEY.length() + 1;
+            int end = shaderText.indexOf(";", begin);
+
+            String uniformLine = shaderText.substring(begin, end);
+
+            int whiteSpacePos = uniformLine.indexOf(' ');
+            String uniformName = uniformLine.substring(uniformLine.indexOf(' ') + 1, uniformLine.length());
+            String uniformType = uniformLine.substring(0, whiteSpacePos);
+
+            addUniformWithStructCheck(uniformName, uniformType, structs);
+
+            uniformStartLocation = shaderText.indexOf(UNIFORM_KEY, uniformStartLocation + UNIFORM_KEY.length());
+        }
+    }
+
+    private void addAllAttirbutes(String shaderText){
+        final String ATTRIBUTE_KEY = "attribute";
+        int attributeStartLocation = shaderText.indexOf(ATTRIBUTE_KEY);
+        int attributeNumber = 0;
+
+        while(attributeStartLocation != -1){
+            if(!(attributeStartLocation != 0
+                    && (Character.isWhitespace(shaderText.charAt(attributeStartLocation - 1)) || shaderText.charAt(attributeStartLocation - 1) == ';'))
+                    && Character.isWhitespace(shaderText.charAt(attributeStartLocation + ATTRIBUTE_KEY.length())))
+                continue;
+            int begin = attributeStartLocation + ATTRIBUTE_KEY.length() + 1;
+            int end = shaderText.indexOf(";", begin);
+
+            String attributeLine = shaderText.substring(begin, end).trim();
+            String attributeName = attributeLine.substring(attributeLine.indexOf(' ') + 1, attributeLine.length()).trim();
+
+            setAttribLocation(attributeName, attributeNumber);
+            attributeNumber++;
+
+            attributeStartLocation = shaderText.indexOf(ATTRIBUTE_KEY, attributeStartLocation + ATTRIBUTE_KEY.length());
+        }
+    }
+
+    private void addUniform(String uniformName){
+        int uniformLocation = glGetUniformLocation(program, uniformName);
+        if(uniformLocation == 0xFFFFFFFF){
+            System.err.println("ERROR: Could not find uniform: " + uniformName);
+            new Exception().printStackTrace();
+            System.exit(4);
+        }
+
+        uniforms.put(uniformName, uniformLocation);
+    }
+
+    private HashMap<String, ArrayList<GLSLStruct>> findUniformStructs(String shaderText) {
+        HashMap<String, ArrayList<GLSLStruct>> result = new HashMap<>();
+        final String STRUCT_KEYWORD = "struct";
+        int structStartLocation = shaderText.indexOf(STRUCT_KEYWORD);
+
+        while(structStartLocation != -1) {
+
+            int nameBegin = structStartLocation + STRUCT_KEYWORD.length() + 1;
+            int braceBegin = shaderText.indexOf("{", nameBegin);
+            int braceEnd = shaderText.indexOf("}", braceBegin);
+
+            String structName = shaderText.substring(nameBegin, braceBegin).trim();
+            ArrayList<GLSLStruct> glslStructs = new ArrayList<>();
+
+            int componentSemicolonPos = shaderText.indexOf(";", braceBegin);
+            while(componentSemicolonPos != -1 && componentSemicolonPos < braceEnd) {
+                int componentNameStart = componentSemicolonPos;
+
+                while(!Character.isWhitespace(shaderText.charAt(componentNameStart - 1)))
+                    componentNameStart--;
+
+                int componentTypeEnd = componentNameStart - 1;
+
+                int componentTypeStart = componentTypeEnd;
+
+                while(!Character.isWhitespace(shaderText.charAt(componentTypeStart - 1)))
+                    componentTypeStart--;
+
+                String componentName = shaderText.substring(componentNameStart, componentSemicolonPos);
+                String componentType = shaderText.substring(componentTypeStart, componentTypeEnd);
+
+                GLSLStruct glslStruct = new GLSLStruct();
+                glslStruct.name = componentName;
+                glslStruct.type = componentType;
+                glslStructs.add(glslStruct);
+
+                componentSemicolonPos = shaderText.indexOf(";", componentSemicolonPos + 1);
+            }
+            result.put(structName, glslStructs);
+            
+            structStartLocation = shaderText.indexOf(STRUCT_KEYWORD, structStartLocation + STRUCT_KEYWORD.length());
+        }
+        return result;
+    }
+
+    private void addUniformWithStructCheck(String uniformName, String uniformType, HashMap<String, ArrayList<GLSLStruct>> structs){
+
+        boolean addThis = true;
+        ArrayList<GLSLStruct> structComponents = structs.get(uniformType);
+
+        if(structComponents != null){
+            addThis = false;
+
+            for(GLSLStruct struct : structComponents){
+                addUniformWithStructCheck(uniformName + "." + struct.name, struct.type, structs);
+            }
+        }
+
+        if(addThis)
+            addUniform(uniformName);
+    }
+
+    private void addProgram(String text, int type){
+        int shader = glCreateShader(type);
+
+        if(shader == 0){
+            System.err.print("SHADER ERROR: Could not find valid memory location when adding shader");
+            System.exit(2);
+        }
+
+        glShaderSource(shader, text);
+        glCompileShader(shader);
+
+        if(glGetShader(shader, GL_COMPILE_STATUS) == 0){
+            System.err.print(glGetShaderInfoLog(shader, 1024));
+            System.exit(2);
+        }
+
+        glAttachShader(program, shader);
+    }
+
+    private void addVertexShader(String text){
+        addProgram(text, GL_VERTEX_SHADER);
+    }
+
+    private void addGeometryShader(String text){
+        addProgram(text, GL_GEOMETRY_SHADER);
+    }
+
+    public void addFragmentShader(String text){
+        addProgram(text, GL_FRAGMENT_SHADER);
+    }
+
+    private void setAttribLocation(String attribute, int location){
+        glBindAttribLocation(program, location, attribute);
+    }
+
+    private void compileShader(){
+        glLinkProgram(program);
+        if(glGetProgram(program, GL_LINK_STATUS) == 0){
+            System.err.print(glGetShaderInfoLog(program, 1024));
+            System.exit(3);
+        }
+        glValidateProgram(program);
+
+        if(glGetProgrami(program, GL_VALIDATE_STATUS) == 0){
+            System.err.print(glGetProgramInfoLog(program, 1024));
+            System.exit(3);
+        }
+    }
+
+    private class GLSLStruct{
+        public String name;
+        public String type;
+    }
+
 }
