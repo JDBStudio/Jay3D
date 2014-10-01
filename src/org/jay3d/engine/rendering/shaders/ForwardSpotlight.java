@@ -27,7 +27,7 @@ public class ForwardSpotlight extends Shader{
     public void updateUniforms(Transform transform, Material material, RenderingEngine renderingEngine){
         Matrix4f worldMatrix = transform.getTransformation();
         Matrix4f projectedMatrix = renderingEngine.getMainCamera().getViewProjection().mul(worldMatrix);
-        material.getTexture("diffuseTexture").bind();
+        material.getTexture("diffuse").bind();
 
         setUniform("model", worldMatrix);
         setUniform("mvp", projectedMatrix);

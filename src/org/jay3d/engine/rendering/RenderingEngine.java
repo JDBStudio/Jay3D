@@ -4,9 +4,11 @@ import org.jay3d.engine.core.GameObject;
 import org.jay3d.engine.core.components.BaseLight;
 import org.jay3d.engine.core.components.Camera;
 import org.jay3d.engine.core.math.Vector3f;
+import org.jay3d.engine.rendering.resources.MappedValues;
 import org.jay3d.engine.rendering.shaders.*;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import static org.lwjgl.opengl.GL11.*;
 import static org.lwjgl.opengl.GL32.GL_DEPTH_CLAMP;
@@ -15,7 +17,7 @@ import static org.lwjgl.opengl.GL32.GL_DEPTH_CLAMP;
  * Created by Juxhin
  * Do not distribute code without permission!
  */
-public class RenderingEngine {
+public class RenderingEngine extends MappedValues {
     private Camera mainCamera;
     private Vector3f ambientLight;
 
@@ -24,9 +26,18 @@ public class RenderingEngine {
     private ArrayList<Camera> cameras;
     private BaseLight activeLight;
 
+    private HashMap<String, Integer> samplerMap;
+
     public RenderingEngine() {
+        super();
         lights = new ArrayList<>();
         cameras = new ArrayList<>();
+        samplerMap = new HashMap<>();
+
+        samplerMap.put("diffuse", 0);
+
+        addVector3f("ambient", new Vector3f(0.1f, 0.1f, 0.1f));
+
         glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
 
         glFrontFace(GL_CW);
@@ -37,12 +48,10 @@ public class RenderingEngine {
         glEnable(GL_DEPTH_CLAMP);
 
         glEnable(GL_TEXTURE_2D);
-
-        ambientLight = new Vector3f(0.1f, 0.1f, 0.1f);
     }
 
     public void render(GameObject object){
-        clearScreen();
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
         lights.clear();
         object.addToRenderingEngine(this);
@@ -66,8 +75,8 @@ public class RenderingEngine {
         glDisable(GL_BLEND);
     }
 
-    public Vector3f getAmbientLight() {
-        return ambientLight;
+    public int getSamplerSlot(String samplerName){
+        return samplerMap.get(samplerName);
     }
 
     public void addLight(BaseLight light){
@@ -92,25 +101,5 @@ public class RenderingEngine {
 
     public BaseLight getActiveLight(){
         return activeLight;
-    }
-
-    private static void clearScreen(){
-        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-    }
-
-    private static void setTextures(boolean enabled){
-        if(enabled)
-            glEnable(GL_TEXTURE_2D);
-        else
-            glDisable(GL_TEXTURE_2D);
-
-    }
-
-    private static void setClearColor(Vector3f color){
-        glClearColor(color.getX(), color.getY(), color.getZ(), 1.0f);
-    }
-
-    private static void unbindTextures() {
-        glBindTexture(GL_TEXTURE_2D, 0);
     }
 }
