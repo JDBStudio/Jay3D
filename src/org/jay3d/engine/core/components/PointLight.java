@@ -1,7 +1,7 @@
 package org.jay3d.engine.core.components;
 
 import org.jay3d.engine.core.math.Vector3f;
-import org.jay3d.engine.rendering.shaders.ForwardPoint;
+import org.jay3d.engine.rendering.Shader;
 
 /**
  * Created by Juxhin
@@ -23,7 +23,7 @@ public class PointLight extends BaseLight {
         float c = attenuation.getX() - COLOUR_DEPTH * getIntensity() * getColour().max();
 
         this.range = (float)(-b + Math.sqrt(b * b - 4 * a * c))/(2 * a);//Quadratic equation
-        setShader(ForwardPoint.getInstance());
+        setShader(new Shader("Forward-point"));
     }
 
     public float getRange() {

@@ -1,5 +1,6 @@
 package org.jay3d.engine.rendering.resources;
 
+import static org.lwjgl.opengl.GL11.glGenTextures;
 import static org.lwjgl.opengl.GL15.glDeleteBuffers;
 
 /**
@@ -10,8 +11,8 @@ public class TextureResource {
     private int id;
     private int referenceCount;
 
-    public TextureResource(int id){
-        this.id = id;
+    public TextureResource(){
+        this.id = glGenTextures();
         this.referenceCount = 1;
     }
 

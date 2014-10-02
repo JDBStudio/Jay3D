@@ -3,7 +3,7 @@ package org.jay3d.engine.core.components;
 import org.jay3d.engine.core.GameObject;
 import org.jay3d.engine.rendering.RenderingEngine;
 import org.jay3d.engine.core.math.Transform;
-import org.jay3d.engine.rendering.shaders.Shader;
+import org.jay3d.engine.rendering.Shader;
 
 /**
  * Created by Juxhin

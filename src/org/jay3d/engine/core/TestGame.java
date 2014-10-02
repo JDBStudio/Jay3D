@@ -5,7 +5,7 @@ import org.jay3d.engine.core.math.Quaternion;
 import org.jay3d.engine.core.math.Vector2f;
 import org.jay3d.engine.core.math.Vector3f;
 import org.jay3d.engine.rendering.*;
-import org.jay3d.engine.rendering.material.Material;
+import org.jay3d.engine.rendering.Material;
 import org.jay3d.engine.rendering.Mesh;
 
 /**

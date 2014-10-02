@@ -1,7 +1,7 @@
 package org.jay3d.engine.core.components;
 
 import org.jay3d.engine.core.math.Vector3f;
-import org.jay3d.engine.rendering.shaders.ForwardSpotlight;
+import org.jay3d.engine.rendering.Shader;
 
 /**
  * Created by Juxhin
@@ -18,7 +18,7 @@ public class SpotLight extends PointLight{
         super(colour, intensity, attenuation);
         this.cutoff = cutoff;
 
-        setShader(ForwardSpotlight.getInstance());
+        setShader(new Shader("Forward-spot"));
     }
 
     public PointLight getPointLight() {

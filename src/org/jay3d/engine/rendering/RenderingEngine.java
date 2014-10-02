@@ -5,9 +5,7 @@ import org.jay3d.engine.core.components.BaseLight;
 import org.jay3d.engine.core.components.Camera;
 import org.jay3d.engine.core.math.Transform;
 import org.jay3d.engine.core.math.Vector3f;
-import org.jay3d.engine.rendering.material.Material;
 import org.jay3d.engine.rendering.resources.MappedValues;
-import org.jay3d.engine.rendering.shaders.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -20,25 +18,25 @@ import static org.lwjgl.opengl.GL32.GL_DEPTH_CLAMP;
  * Do not distribute code without permission!
  */
 public class RenderingEngine extends MappedValues {
-    private Camera mainCamera;
-    private Vector3f ambientLight;
-
-    //Fixed structure
+    private HashMap<String, Integer> samplerMap;
     private ArrayList<BaseLight> lights;
     private ArrayList<Camera> cameras;
-    private BaseLight activeLight;
 
-    private HashMap<String, Integer> samplerMap;
+    private Camera mainCamera;
+    private BaseLight activeLight;
+    private Shader forwardAmbient;
 
     public RenderingEngine() {
         super();
         lights = new ArrayList<>();
         cameras = new ArrayList<>();
         samplerMap = new HashMap<>();
-
         samplerMap.put("diffuse", 0);
 
         addVector3f("ambient", new Vector3f(0.1f, 0.1f, 0.1f));
+
+
+        forwardAmbient = new Shader("Forward-ambient");
 
         glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
 
@@ -66,7 +64,6 @@ public class RenderingEngine extends MappedValues {
         lights.clear();
         object.addToRenderingEngine(this);
 
-        Shader forwardAmbient = ForwardAmbient.getInstance();
         object.render(forwardAmbient, this);
 
         glEnable(GL_BLEND);

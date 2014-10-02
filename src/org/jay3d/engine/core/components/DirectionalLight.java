@@ -1,7 +1,7 @@
 package org.jay3d.engine.core.components;
 
 import org.jay3d.engine.core.math.Vector3f;
-import org.jay3d.engine.rendering.shaders.ForwardDirectional;
+import org.jay3d.engine.rendering.Shader;
 
 /**
  * Created by Juxhin
@@ -15,7 +15,7 @@ public class DirectionalLight extends BaseLight{
 
     public DirectionalLight(Vector3f colour, float intensity){
         super(colour, intensity);
-        setShader(ForwardDirectional.getInstance());
+        setShader(new Shader("Forward-directional"));
     }
 
 

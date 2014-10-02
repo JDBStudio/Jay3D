@@ -1,4 +1,4 @@
-package org.jay3d.engine.rendering.material;
+package org.jay3d.engine.rendering;
 
 import org.jay3d.engine.core.math.Vector3f;
 import org.jay3d.engine.rendering.Texture;
