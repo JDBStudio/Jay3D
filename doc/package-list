@@ -1,0 +1,8 @@
+org.jay3d.engine.core
+org.jay3d.engine.core.components
+org.jay3d.engine.core.math
+org.jay3d.engine.rendering
+org.jay3d.engine.rendering.mesh
+org.jay3d.engine.rendering.resources
+org.jay3d.game
+org.jay3d.util

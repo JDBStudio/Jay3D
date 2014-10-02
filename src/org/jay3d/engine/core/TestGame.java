@@ -58,11 +58,11 @@ public class TestGame extends Game {
         planeObject.getTransform().getPos().set(0, -1, 5);
 
         GameObject directionalLightObject = new GameObject();
-        DirectionalLight directionalLight = new DirectionalLight(new Vector3f(0, 0, 1), 0.4f);
+        DirectionalLight directionalLight = new DirectionalLight(new Vector3f(1, 1, 1), 0.4f);
         directionalLightObject.addComponent(directionalLight);
 
         GameObject pointLightObject = new GameObject();
-        PointLight pointLight = new PointLight(new Vector3f(1, 1, 1), 0.6f, new Attenuation(0, 0, 1));
+        PointLight pointLight = new PointLight(new Vector3f(0.5f, 0.5f, 0.5f), 0.6f, new Attenuation(0, 0, 1));
         pointLightObject.addComponent(pointLight);
 
 
@@ -85,6 +85,10 @@ public class TestGame extends Game {
         GameObject meshObject2 = new GameObject().addComponent(new MeshRenderer(mesh2, material));
         GameObject meshObject3 = new GameObject().addComponent(new LookAtComponent())
                 .addComponent(new MeshRenderer(tempMesh, material));
+        GameObject meshObject4 = new GameObject().addComponent(new LookAtComponent())
+                .addComponent(new MeshRenderer(tempMesh, material));
+        GameObject meshObject5 = new GameObject().addComponent(new LookAtComponent())
+                .addComponent(new MeshRenderer(tempMesh, material));
 
         meshObject1.getTransform().getPos().set(0, 2, 0);
         meshObject1.getTransform().setRot(new Quaternion(new Vector3f(0, 1, 0), 0.4f));
@@ -95,9 +99,17 @@ public class TestGame extends Game {
 
         addObject(meshObject1);
         addObject(meshObject3);
+        addObject(meshObject4);
+        addObject(meshObject5);
 
         meshObject3.getTransform().getPos().set(5, 1, 15);
         meshObject3.getTransform().setRot(new Quaternion(new Vector3f(0, 1, 0), (float)Math.toRadians(-30)));
+
+        meshObject4.getTransform().getPos().set(9, 1, 15);
+        meshObject4.getTransform().setRot(new Quaternion(new Vector3f(0, 1, 0), (float)Math.toRadians(-30)));
+
+        meshObject5.getTransform().getPos().set(13, 1, 15);
+        meshObject5.getTransform().setRot(new Quaternion(new Vector3f(0, 1, 0), (float)Math.toRadians(-30)));
 
         addObject(new GameObject().addComponent(new MeshRenderer(new Mesh("monkey3.obj"), material2)));
 

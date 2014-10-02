@@ -7,8 +7,11 @@ import org.jay3d.engine.core.math.Transform;
 import org.jay3d.engine.rendering.Shader;
 
 /**
- * Created by Juxhin
- * Do not distribute code without permission!
+ * GameComponent is the super class for any component to be rendered within the scene graph. There is no particular
+ * reason to use this class unless overriding it's method for your own custom use. All methods within the class are
+ * self-explanatory and are documented throughout the other classes that inherit GameComponent.
+ *
+ * @author Juxhin Dyrmishi Brigjaj
  */
 public abstract class GameComponent {
     private GameObject parent;

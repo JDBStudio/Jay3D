@@ -4,11 +4,7 @@ import org.jay3d.engine.core.math.Vector3f;
 import org.jay3d.engine.rendering.Shader;
 
 /**
- * Created by Juxhin
- * Do not distribute code without permission!
- *
- * This is mainly a wrapper class for my phongFragment
- * shader class.
+ * @author Juxhin Dyrmishi Brigjaj
  */
 public class DirectionalLight extends BaseLight{
     private BaseLight base;
