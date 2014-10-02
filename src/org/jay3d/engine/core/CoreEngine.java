@@ -22,6 +22,7 @@ public class CoreEngine {
         this.width = width;
         this.height = height;
         this.frameTime = 1.0/framerate;
+        game.setEngine(this);
     }
 
     public void createWindow(String title){
@@ -43,10 +44,10 @@ public class CoreEngine {
         isRunning = false;
     }
 
-    private void run(){
+    private void run() {
         isRunning = true;
 
-                int frames = 0;
+        int frames = 0;
         long frameCounter = 0;
 
         game.init();
@@ -54,7 +55,7 @@ public class CoreEngine {
         double lastTime = Time.getTime();
         double unprocessedTime = 0;
 
-        while(isRunning){
+        while (isRunning) {
             boolean render = false;
 
             double startTime = Time.getTime();
@@ -64,31 +65,31 @@ public class CoreEngine {
             unprocessedTime += passedTime;
             frameCounter += passedTime;
 
-            while(unprocessedTime > frameTime){
+            while (unprocessedTime > frameTime) {
                 render = true;
 
                 unprocessedTime -= frameTime;
 
-                if(Window.isCloseRequested())
+                if (Window.isCloseRequested())
                     stop();
 
-                game.input((float)frameTime);
+                game.input((float) frameTime);
                 Input.update();
 
-                game.update((float)frameTime);
+                game.update((float) frameTime);
             }
 
-            if(frameCounter >= 1.0){
+            if (frameCounter >= 1.0) {
                 System.out.println("FPS: " + frames);
                 frames = 0;
                 frameCounter = 0;
             }
 
-            if(render){
+            if (render) {
                 game.render(engine);
                 Window.render();
                 frames++;
-            }else {
+            } else {
                 try {
                     Thread.sleep(1);
                 } catch (InterruptedException e) {
@@ -97,6 +98,10 @@ public class CoreEngine {
             }
         }
         cleanup();
+    }
+
+    public RenderingEngine getRenderingEngine() {
+        return engine;
     }
 
     private void cleanup(){

@@ -1,5 +1,6 @@
 package org.jay3d.engine.core.components;
 
+import org.jay3d.engine.core.math.Attenuation;
 import org.jay3d.engine.core.math.Vector3f;
 import org.jay3d.engine.rendering.Shader;
 
@@ -13,7 +14,7 @@ public class SpotLight extends PointLight{
 
     public SpotLight(Vector3f colour,
                      float intensity,
-                     Vector3f attenuation,
+                     Attenuation attenuation,
                      float cutoff) {
         super(colour, intensity, attenuation);
         this.cutoff = cutoff;

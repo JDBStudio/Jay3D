@@ -1,6 +1,7 @@
 package org.jay3d.engine.core;
 
 import org.jay3d.engine.core.components.*;
+import org.jay3d.engine.core.math.Attenuation;
 import org.jay3d.engine.core.math.Quaternion;
 import org.jay3d.engine.core.math.Vector2f;
 import org.jay3d.engine.core.math.Vector3f;
@@ -61,12 +62,12 @@ public class TestGame extends Game {
         directionalLightObject.addComponent(directionalLight);
 
         GameObject pointLightObject = new GameObject();
-        PointLight pointLight = new PointLight(new Vector3f(1, 1, 1), 0.6f, new Vector3f(0, 0, 1));
+        PointLight pointLight = new PointLight(new Vector3f(1, 1, 1), 0.6f, new Attenuation(0, 0, 1));
         pointLightObject.addComponent(pointLight);
 
 
         SpotLight spotLight = new SpotLight(new Vector3f(0,1,1), 0.4f,
-                new Vector3f(0,0,0.1f), 0.7f);
+                new Attenuation(0,0,0.1f), 0.7f);
 
 
         GameObject spotLightObject = new GameObject();
@@ -82,14 +83,15 @@ public class TestGame extends Game {
 
         GameObject meshObject1 = new GameObject().addComponent(new MeshRenderer(mesh2, material));
         GameObject meshObject2 = new GameObject().addComponent(new MeshRenderer(mesh2, material));
-        GameObject meshObject3 = new GameObject().addComponent(new MeshRenderer(tempMesh, material));
+        GameObject meshObject3 = new GameObject().addComponent(new LookAtComponent())
+                .addComponent(new MeshRenderer(tempMesh, material));
 
         meshObject1.getTransform().getPos().set(0, 2, 0);
         meshObject1.getTransform().setRot(new Quaternion(new Vector3f(0, 1, 0), 0.4f));
         meshObject2.getTransform().getPos().set(0, 0, 5);
 
         meshObject1.addChild(meshObject2);
-        meshObject2.addChild(new GameObject().addComponent(new Camera((float)Math.toRadians(70.0f), (float)Window.getWidth()/(float)Window.getHeight(), 0.01f, 1000.0f)));
+        meshObject2.addChild(new GameObject().addComponent(new FreeLook(0.125f)).addComponent(new FreeMove(10f)).addComponent(new Camera((float) Math.toRadians(70.0f), (float) Window.getWidth() / (float) Window.getHeight(), 0.01f, 1000.0f)));
 
         addObject(meshObject1);
         addObject(meshObject3);

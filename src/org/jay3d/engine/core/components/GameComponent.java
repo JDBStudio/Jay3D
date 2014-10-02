@@ -1,5 +1,6 @@
 package org.jay3d.engine.core.components;
 
+import org.jay3d.engine.core.CoreEngine;
 import org.jay3d.engine.core.GameObject;
 import org.jay3d.engine.rendering.RenderingEngine;
 import org.jay3d.engine.core.math.Transform;
@@ -18,7 +19,9 @@ public abstract class GameComponent {
 
     public void render(Shader shader, RenderingEngine renderingEngine) {}
 
-    public void addToRenderingEngine(RenderingEngine renderingEngine) {}
+    public void addToEngine(CoreEngine engine) {
+
+    }
 
     public void setParent(GameObject parent) {
         this.parent = parent;

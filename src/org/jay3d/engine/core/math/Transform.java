@@ -79,6 +79,14 @@ public class Transform {
         return parentRotation.mul(rot);
     }
 
+    public void lookAt(Vector3f point, Vector3f up) {
+        rot = getLookAtDirection(point, up);
+    }
+
+    public Quaternion getLookAtDirection(Vector3f point, Vector3f up) {
+        return new Quaternion(new Matrix4f().initRotation(point.sub(pos).normalise(), up));
+    }
+
     public Vector3f getTranformedPos(){
         return getParentMatrix().transform(pos);
     }

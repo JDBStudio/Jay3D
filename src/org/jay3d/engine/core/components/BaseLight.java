@@ -1,5 +1,6 @@
 package org.jay3d.engine.core.components;
 
+import org.jay3d.engine.core.CoreEngine;
 import org.jay3d.engine.rendering.RenderingEngine;
 import org.jay3d.engine.core.math.Vector3f;
 import org.jay3d.engine.rendering.Shader;
@@ -22,8 +23,8 @@ public class BaseLight extends GameComponent {
     }
 
     @Override
-    public void addToRenderingEngine(RenderingEngine engine){
-        engine.addLight(this);
+    public void addToEngine(CoreEngine engine) {
+        engine.getRenderingEngine().addLight(this);
     }
 
     public float getIntensity() {
