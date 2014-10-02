@@ -61,7 +61,7 @@ public class TestGame extends Game {
         directionalLightObject.addComponent(directionalLight);
 
         GameObject pointLightObject = new GameObject();
-        PointLight pointLight = new PointLight(new Vector3f(0, 1, 0), 0.9f, new Vector3f(0, 0, 1));
+        PointLight pointLight = new PointLight(new Vector3f(1, 1, 1), 0.6f, new Vector3f(0, 0, 1));
         pointLightObject.addComponent(pointLight);
 
 

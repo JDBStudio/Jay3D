@@ -92,6 +92,6 @@ vec4 calcSpotLight(SpotLight spotLight, vec3 normal, vec3 worldPos) {
 	return colour;
 }
 
-vec4 calcDirectionaLight(DirectionalLight directionalLight, vec3 normal, vec3 worldPos) {
+vec4 calcDirectionalLight(DirectionalLight directionalLight, vec3 normal, vec3 worldPos) {
 	return calcLight(directionalLight.base, -directionalLight.direction, normal, worldPos);
 }

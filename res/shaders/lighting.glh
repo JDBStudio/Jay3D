@@ -1,4 +1,4 @@
-uniform vec3 eyePos;
+uniform vec3 C_eyePos;
 uniform float specularIntensity;
 uniform float specularPower;
 
@@ -42,7 +42,7 @@ vec4 calcLight(BaseLight base, vec3 direction, vec3 normal, vec3 worldPos) {
 	if(diffuseFactor > 0){
 		diffuseColour = vec4(base.colour, 1.0) * base.intensity * diffuseFactor;
 		
-		vec3 directionToEye = normalize(eyePos - worldPos);
+		vec3 directionToEye = normalize(C_eyePos - worldPos);
 		//vec3 reflectDirection = normalize(reflect(direction, normal));
 		vec3 halfDirection = normalize(directionToEye - direction);
 		
@@ -92,6 +92,6 @@ vec4 calcSpotLight(SpotLight spotLight, vec3 normal, vec3 worldPos) {
 	return colour;
 }
 
-vec4 calcDirectionaLight(DirectionalLight directionalLight, vec3 normal, vec3 worldPos) {
+vec4 calcDirectionalLight(DirectionalLight directionalLight, vec3 normal, vec3 worldPos) {
 	return calcLight(directionalLight.base, -directionalLight.direction, normal, worldPos);
 }

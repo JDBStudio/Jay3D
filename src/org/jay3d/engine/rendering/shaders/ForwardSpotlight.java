@@ -25,37 +25,6 @@ public class ForwardSpotlight extends Shader{
 
     @Override
     public void updateUniforms(Transform transform, Material material, RenderingEngine renderingEngine){
-        Matrix4f worldMatrix = transform.getTransformation();
-        Matrix4f projectedMatrix = renderingEngine.getMainCamera().getViewProjection().mul(worldMatrix);
-        material.getTexture("diffuse").bind();
-
-        setUniform("model", worldMatrix);
-        setUniform("mvp", projectedMatrix);
-
-        setUniformf("specularIntensity", material.getFloat("specularIntensity"));
-        setUniformf("specularPower", material.getFloat("specularPower"));
-
-        setUniform("eyePos", renderingEngine.getMainCamera().getTransform().getTranformedPos());
-        setUniformSpotLight("spotLight", (SpotLight) renderingEngine.getActiveLight());
+        super.updateUniforms(transform, material, renderingEngine);
     }
-
-    public void setUniformBaseLight(String uniformName, BaseLight baseLight){
-        setUniform(uniformName + ".colour", baseLight.getColour());
-        setUniformf(uniformName + ".intensity", baseLight.getIntensity());
-    }
-
-    public void setUniformPointLight(String uniformName, PointLight pointLight) {
-        setUniformBaseLight(uniformName + ".base", pointLight);
-        setUniformf(uniformName + ".atten.constant", pointLight.getConstant());
-        setUniformf(uniformName + ".atten.linear", pointLight.getLinear());
-        setUniformf(uniformName + ".atten.exponent", pointLight.getExponent());
-        setUniform(uniformName + ".position", pointLight.getTransform().getPos());
-        setUniformf(uniformName + ".range", pointLight.getRange());
-    }
-    public void setUniformSpotLight(String uniformName, SpotLight spotLight) {
-        setUniformPointLight(uniformName + ".pointLight", spotLight);
-        setUniform(uniformName + ".direction", spotLight.getDirection());
-        setUniformf(uniformName + ".cutoff", spotLight.getCutoff());
-    }
-
 }

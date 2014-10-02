@@ -3,7 +3,9 @@ package org.jay3d.engine.rendering;
 import org.jay3d.engine.core.GameObject;
 import org.jay3d.engine.core.components.BaseLight;
 import org.jay3d.engine.core.components.Camera;
+import org.jay3d.engine.core.math.Transform;
 import org.jay3d.engine.core.math.Vector3f;
+import org.jay3d.engine.rendering.material.Material;
 import org.jay3d.engine.rendering.resources.MappedValues;
 import org.jay3d.engine.rendering.shaders.*;
 
@@ -48,6 +50,14 @@ public class RenderingEngine extends MappedValues {
         glEnable(GL_DEPTH_CLAMP);
 
         glEnable(GL_TEXTURE_2D);
+    }
+
+    public void updateUniformStruct(Transform transform,
+                                    Material material,
+                                    Shader shader,
+                                    String uniformName,
+                                    String uniformType) {
+        throw new IllegalArgumentException(uniformType + " is not a support type in Material");
     }
 
     public void render(GameObject object){
