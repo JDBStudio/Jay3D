@@ -15,7 +15,7 @@ public class BaseLight extends GameComponent {
     /**
      * As there isn't a convenience class of yet, Vector3f is used in order
      * to determine the colour of the light. Whilst Vector3f has parameters
-     * Vector3f(float x, float y, float z), the values are represented for the.
+     * <code>Vector3f(float x, float y, float z)</code>, the values are represented for the.
      * <p>
      *     BaseLight's colour like so:
      *      Colour(RBG)
@@ -25,11 +25,11 @@ public class BaseLight extends GameComponent {
      * </p>
      * <p>
      *     Example:
-     *              BaseLight(new Vector3f(1, 1, 1), 1.0f)
+     *              <code>BaseLight(new Vector3f(1, 1, 1), 1.0f)</code>
      *      Returns a BaseLight that is white with an intensity of 1.0f
      * </p>
      * <p>
-     *              BaseLight(new Vector3f(1, 0, 0), 0.5f)
+     *              <code>BaseLight(new Vector3f(1, 0, 0), 0.5f)</code>
      *      Returns a BaseLight that is red with an intensity of 0.5f
      * </p>
      * @param colour
@@ -85,7 +85,7 @@ public class BaseLight extends GameComponent {
     /**
      * As there isn't a convenience class of yet, Vector3f is used in order
      * to determine the colour of the light. Whilst Vector3f has parameters
-     * Vector3f(float x, float y, float z), the values are represented for the
+     * <code>Vector3f(float x, float y, float z)</code>, the values are represented for the
      * <p>
      *     BaseLight's colour like so:
      *      Colour(RBG)
@@ -95,11 +95,11 @@ public class BaseLight extends GameComponent {
      * </p>
      * <p>
      *     Example:
-     *              BaseLight(new Vector3f(1, 1, 1), 1.0f)
+     *              <code>BaseLight(new Vector3f(1, 1, 1), 1.0f)</code>
      *      Returns a BaseLight that is white with an intensity of 1.0f
      * </p>
      * <p>
-     *              BaseLight(new Vector3f(1, 0, 0), 0.5f)
+     *              <code>BaseLight(new Vector3f(1, 0, 0), 0.5f)</code>
      *      Returns a BaseLight that is red with an intensity of 0.5f
      * </p>
      * @param colour

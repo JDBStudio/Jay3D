@@ -5,10 +5,10 @@ import org.jay3d.engine.core.math.Vector3f;
 import org.jay3d.engine.rendering.Shader;
 
 /**
- * PointLight is a child class of BaseLight, which uses attenuation on top of colour and intensity. As there isn't a
- * convenience class for colour as of yet, Vector3f is being used instead for the meantime.
+ * PointLight is a child class of <code>BaseLight</code>, which uses attenuation on top of colour and intensity. As there isn't a
+ * convenience class for colour as of yet, <code>Vector3f</code> is being used instead for the meantime.
  *
- * Vector3f(float x, float y, float z)
+ * <code>Vector3f(float x, float y, float z)</code>
  * <p>
  *     BaseLight's colour like so:
  *      Colour(RBG)
@@ -18,7 +18,7 @@ import org.jay3d.engine.rendering.Shader;
  * </p>
  * <p>
  *     Example:
- *              PointLight(new Vector3f(1, 1, 1), 1.0f, new Attenuation(0, 0, 1)
+ *              <code>PointLight(new Vector3f(1, 1, 1), 1.0f, new Attenuation(0, 0, 1)</code>
  *      Returns a PointLight that is white with an intensity of 1.0f and Attenuation with constant and linear values
  *      0 but exponential value of 1.
  * </p>

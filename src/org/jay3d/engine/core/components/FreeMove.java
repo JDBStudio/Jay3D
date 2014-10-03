@@ -7,19 +7,19 @@ import org.jay3d.engine.core.math.Vector3f;
  * 'Temporary' class that directly handles the keyboard input movement for any object via the user.
  *     The default keys are as follows:
  *     <p>
- *         Forward: KEY_W
+ *         Forward: <code>KEY_W</code>
  *     </p>
  *
  *     <p>
- *         Backwards: KEY_S
+ *         Backwards: <code>KEY_S</code>
  *     </p>
  *
  *     <p>
- *         Left: KEY_A
+ *         Left: <code>KEY_A</code>
  *     </p>
  *
  *     <p>
- *         Right: KEY_D
+ *         Right: <code>KEY_D</code>
  *     </p>
  *
  * @author Juxhin Dyrmishi Brigjaj
@@ -88,11 +88,11 @@ public class FreeMove extends GameComponent {
      * @param dir
      *      Direction you want to move in, this is handled using Vector3f like so:
      *      <p>
-     *          Vector3f(float x, float y, float z)
+     *          <code>Vector3f(float x, float y, float z)</code>
      *      </p>
      *
      *      <p>
-     *          Therefore: Vector3f(0, 0, 1) will move the object towards the Z-axis(depth)
+     *          Therefore: <code>Vector3f(0, 0, 1)</code> will move the object towards the Z-axis(depth)
      *      </p>
      * @param amt
      *      The amount of distance desired to cover in the specified distance

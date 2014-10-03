@@ -5,10 +5,10 @@ import org.jay3d.engine.core.math.Vector3f;
 import org.jay3d.engine.rendering.Shader;
 
 /**
- * SpotLight is a child class of PointLight, which uses cutoff on top of colour, attenuation and intensity. As there
- * isn't a convenience class for colour as of yet, Vector3f is being used instead for the meantime.
+ * SpotLight is a child class of <code>PointLight</code>, which uses cutoff on top of colour, attenuation and intensity. As there
+ * isn't a convenience class for colour as of yet, <code>Vector3f</code> is being used instead for the meantime.
  *
- * Vector3f(float x, float y, float z)
+ * <code>Vector3f(float x, float y, float z)</code>
  * <p>
  *     BaseLight's colour like so:
  *      Colour(RBG)
@@ -18,7 +18,7 @@ import org.jay3d.engine.rendering.Shader;
  * </p>
  * <p>
  *     Example:
- *              new SpotLight(new Vector3f(0,1,1), 0.4f, new Attenuation(0,0,0.1f), 0.7f)
+ *              <code>new SpotLight(new Vector3f(0,1,1), 0.4f, new Attenuation(0,0,0.1f), 0.7f)</code>
  *      Returns a SpotLight With RGB(0, 1, 1) intensity of 0.4f and Attenuation with constant and linear values
  *      0 but exponential value of 0.1f and cutoff value of 0.7f.
  * </p>
@@ -40,8 +40,8 @@ public class SpotLight extends PointLight{
      * @param attenuation
      *      The SpotLight's attenuation Example: new Attenuation(0, 0, 1)
      *      <p>
-     *          Attenuation is composed of a constant, a linear and an exponent, like so: Attenuation(float constant,
-     *          float linear, floar exponent)
+     *          Attenuation is composed of a constant, a linear and an exponent, like so: <code>Attenuation(float constant,
+     *          float linear, floar exponent)</code>
      *      </p>
      * @param cutoff
      *      The SpotLight's cutoff point

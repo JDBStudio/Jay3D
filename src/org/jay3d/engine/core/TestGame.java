@@ -55,6 +55,7 @@ public class TestGame extends Game {
 
         GameObject planeObject = new GameObject();
         planeObject.addComponent(meshRenderer);
+        planeObject.getTransform().setScale(new Vector3f(0.5f, 0.5f, 0.5f));
         planeObject.getTransform().getPos().set(0, -1, 5);
 
         GameObject directionalLightObject = new GameObject();

@@ -27,7 +27,7 @@ public class FreeLook extends GameComponent{
      * Constructs and initialises the mouse movement with custom sensitivity.
      *
      * <p>
-     *     The default key to unlock mouse from screen(after already clicking on screen) is the KEY_ESCAPE(0x01) under
+     *     The default key to unlock mouse from screen(after already clicking on screen) is the <code>KEY_ESCAPE(0x01)</code>under
      *     Input class.
      * </p>
      *
@@ -43,7 +43,7 @@ public class FreeLook extends GameComponent{
      * Constructs and initialises the mouse movement with custom sensitivity and custom escape key.
      *
      * <p>
-     *     The default key to unlock mouse from screen(after already clicking on screen) is the KEY_ESCAPE(0x01) under
+     *     The default key to unlock mouse from screen(after already clicking on screen) is the <code>KEY_ESCAPE(0x01)</code> under
      *     Input class. Therefore it is recommended you use any int value other than 0x01.
      * </p>
      *
