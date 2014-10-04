@@ -30,7 +30,7 @@
       <file leaf-file-name="MeshRenderer.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/org/jay3d/engine/core/components/MeshRenderer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="435">
+            <state vertical-scroll-proportion="0.0" vertical-offset="330" max-vertical-offset="480">
               <caret line="22" column="0" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
               <folding />
             </state>
@@ -40,11 +40,9 @@
       <file leaf-file-name="FreeLook.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/org/jay3d/engine/core/components/FreeLook.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="502" max-vertical-offset="1425">
+            <state vertical-scroll-proportion="0.0" vertical-offset="675" max-vertical-offset="1455">
               <caret line="45" column="120" selection-start-line="45" selection-start-column="120" selection-end-line="45" selection-end-column="120" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -52,7 +50,7 @@
       <file leaf-file-name="PointLight.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/org/jay3d/engine/core/components/PointLight.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="465" max-vertical-offset="1365">
+            <state vertical-scroll-proportion="0.0" vertical-offset="510" max-vertical-offset="1545">
               <caret line="34" column="83" selection-start-line="34" selection-start-column="83" selection-end-line="34" selection-end-column="83" />
               <folding />
             </state>
@@ -62,7 +60,7 @@
       <file leaf-file-name="FreeMove.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/org/jay3d/engine/core/components/FreeMove.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="637" max-vertical-offset="1560">
+            <state vertical-scroll-proportion="0.0" vertical-offset="1410" max-vertical-offset="1635">
               <caret line="94" column="52" selection-start-line="94" selection-start-column="52" selection-end-line="94" selection-end-column="52" />
               <folding />
             </state>
@@ -72,7 +70,7 @@
       <file leaf-file-name="SpotLight.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/org/jay3d/engine/core/components/SpotLight.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="180" max-vertical-offset="1080">
+            <state vertical-scroll-proportion="0.0" vertical-offset="645" max-vertical-offset="1260">
               <caret line="43" column="47" selection-start-line="43" selection-start-column="47" selection-end-line="43" selection-end-column="47" />
               <folding />
             </state>
@@ -82,7 +80,7 @@
       <file leaf-file-name="GameComponent.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/org/jay3d/engine/core/components/GameComponent.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="495">
+            <state vertical-scroll-proportion="0.0" vertical-offset="165" max-vertical-offset="615">
               <caret line="11" column="95" selection-start-line="11" selection-start-column="95" selection-end-line="11" selection-end-column="95" />
               <folding />
             </state>
@@ -92,11 +90,9 @@
       <file leaf-file-name="LookAtComponent.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/org/jay3d/engine/core/components/LookAtComponent.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="555">
+            <state vertical-scroll-proportion="0.0" vertical-offset="30" max-vertical-offset="555">
               <caret line="2" column="7" selection-start-line="2" selection-start-column="7" selection-end-line="2" selection-end-column="7" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -104,45 +100,68 @@
       <file leaf-file-name="Attenuation.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/org/jay3d/engine/core/math/Attenuation.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="452" max-vertical-offset="1200">
-              <caret line="25" column="11" selection-start-line="25" selection-start-column="11" selection-end-line="25" selection-end-column="11" />
-              <folding>
-                <element signature="e#2012#2013#0" expanded="true" />
-                <element signature="e#2041#2042#0" expanded="true" />
-                <element signature="e#2217#2218#0" expanded="true" />
-                <element signature="e#2246#2247#0" expanded="true" />
-                <element signature="e#2581#2582#0" expanded="true" />
-                <element signature="e#2610#2611#0" expanded="true" />
-              </folding>
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1110">
+              <caret line="64" column="0" selection-start-line="64" selection-start-column="0" selection-end-line="64" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Matrix4f.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="Matrix4f.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/org/jay3d/engine/core/math/Matrix4f.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="1.1793103" vertical-offset="810" max-vertical-offset="4920">
-              <caret line="111" column="51" selection-start-line="111" selection-start-column="51" selection-end-line="111" selection-end-column="51" />
-              <folding>
-                <element signature="e#510#511#0" expanded="true" />
-                <element signature="e#545#546#0" expanded="true" />
-                <element signature="e#11232#11233#0" expanded="true" />
-                <element signature="e#11262#11263#0" expanded="true" />
-                <element signature="e#11551#11552#0" expanded="true" />
-                <element signature="e#11587#11588#0" expanded="true" />
-                <element signature="e#12125#12126#0" expanded="true" />
-                <element signature="e#12151#12152#0" expanded="true" />
-              </folding>
+            <state vertical-scroll-proportion="0.0" vertical-offset="765" max-vertical-offset="4800">
+              <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name=".gitignore" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/.gitignore">
+      <file leaf-file-name="Quaternion.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/org/jay3d/engine/core/math/Quaternion.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="915">
-              <caret line="36" column="9" selection-start-line="36" selection-start-column="9" selection-end-line="36" selection-end-column="9" />
-              <folding />
+            <state vertical-scroll-proportion="-1.0551724" vertical-offset="1215" max-vertical-offset="6825">
+              <caret line="30" column="49" selection-start-line="30" selection-start-column="49" selection-end-line="30" selection-end-column="49" />
+              <folding>
+                <element signature="e#6436#6437#0" expanded="true" />
+                <element signature="e#6516#6517#0" expanded="true" />
+                <element signature="e#6683#6684#0" expanded="true" />
+                <element signature="e#6752#6753#0" expanded="true" />
+                <element signature="e#7450#7451#0" expanded="true" />
+                <element signature="e#7502#7503#0" expanded="true" />
+                <element signature="e#9014#9015#0" expanded="true" />
+                <element signature="e#9079#9080#0" expanded="true" />
+                <element signature="e#9418#9419#0" expanded="true" />
+                <element signature="e#9505#9506#0" expanded="true" />
+                <element signature="e#11350#11351#0" expanded="true" />
+                <element signature="e#11407#11408#0" expanded="true" />
+                <element signature="e#11656#11657#0" expanded="true" />
+                <element signature="e#11714#11715#0" expanded="true" />
+                <element signature="e#11940#11941#0" expanded="true" />
+                <element signature="e#11997#11998#0" expanded="true" />
+                <element signature="e#12238#12239#0" expanded="true" />
+                <element signature="e#12296#12297#0" expanded="true" />
+                <element signature="e#12531#12532#0" expanded="true" />
+                <element signature="e#12588#12589#0" expanded="true" />
+                <element signature="e#12829#12830#0" expanded="true" />
+                <element signature="e#12887#12888#0" expanded="true" />
+                <element signature="e#12997#12998#0" expanded="true" />
+                <element signature="e#13021#13022#0" expanded="true" />
+                <element signature="e#13133#13134#0" expanded="true" />
+                <element signature="e#13159#13160#0" expanded="true" />
+                <element signature="e#13269#13270#0" expanded="true" />
+                <element signature="e#13293#13294#0" expanded="true" />
+                <element signature="e#13405#13406#0" expanded="true" />
+                <element signature="e#13431#13432#0" expanded="true" />
+                <element signature="e#13541#13542#0" expanded="true" />
+                <element signature="e#13565#13566#0" expanded="true" />
+                <element signature="e#13677#13678#0" expanded="true" />
+                <element signature="e#13703#13704#0" expanded="true" />
+                <element signature="e#13813#13814#0" expanded="true" />
+                <element signature="e#13837#13838#0" expanded="true" />
+                <element signature="e#13949#13950#0" expanded="true" />
+                <element signature="e#13975#13976#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -195,7 +214,6 @@
         <option value="$PROJECT_DIR$/src/org/jay3d/engine/core/CoreEngine.java" />
         <option value="$PROJECT_DIR$/src/org/jay3d/engine/rendering/RenderingEngine.java" />
         <option value="$PROJECT_DIR$/src/org/jay3d/engine/core/Game.java" />
-        <option value="$PROJECT_DIR$/src/org/jay3d/engine/core/math/Quaternion.java" />
         <option value="$PROJECT_DIR$/src/org/jay3d/engine/core/math/Transform.java" />
         <option value="$PROJECT_DIR$/src/org/jay3d/engine/core/GameObject.java" />
         <option value="$PROJECT_DIR$/src/org/jay3d/engine/core/components/Camera.java" />
@@ -211,6 +229,7 @@
         <option value="$PROJECT_DIR$/src/org/jay3d/engine/core/components/SpotLight.java" />
         <option value="$PROJECT_DIR$/src/org/jay3d/engine/core/math/Attenuation.java" />
         <option value="$PROJECT_DIR$/src/org/jay3d/engine/core/math/Matrix4f.java" />
+        <option value="$PROJECT_DIR$/src/org/jay3d/engine/core/math/Quaternion.java" />
       </list>
     </option>
   </component>
@@ -773,11 +792,12 @@
       <workItem from="1412287505371" duration="705000" />
       <workItem from="1412354964706" duration="83000" />
       <workItem from="1412360988767" duration="5330000" />
+      <workItem from="1412423096663" duration="5415000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="217418000" />
+    <option name="totallyTimeSpent" value="222833000" />
   </component>
   <component name="TodoView" selected-index="0">
     <todo-panel id="selected-file">
@@ -999,13 +1019,13 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/README.md">
+      <provider editor-type-id="MarkdownPreviewEditor">
+        <state />
+      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-13.333333" vertical-offset="0" max-vertical-offset="480">
           <caret line="24" column="31" selection-start-line="24" selection-start-column="31" selection-end-line="24" selection-end-column="31" />
         </state>
-      </provider>
-      <provider editor-type-id="MarkdownPreviewEditor">
-        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/org/jay3d/engine/rendering/Vertex.java">
@@ -1099,13 +1119,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/org/jay3d/engine/core/math/Quaternion.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="59" max-vertical-offset="3525">
-          <caret line="30" column="41" selection-start-line="30" selection-start-column="41" selection-end-line="30" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/org/jay3d/engine/core/math/Transform.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="600" max-vertical-offset="1755">
@@ -1132,21 +1145,19 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/.gitattributes">
+      <provider editor-type-id="com.intellij.persistence.database.editor.CsvTableFileEditorProvider">
+        <state />
+      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="420">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
-      </provider>
-      <provider editor-type-id="com.intellij.persistence.database.editor.CsvTableFileEditorProvider">
-        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/org/jay3d/engine/rendering/RenderingEngine.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="481" max-vertical-offset="1350">
           <caret line="61" column="59" selection-start-line="61" selection-start-column="59" selection-end-line="61" selection-end-column="59" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1154,7 +1165,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="695" max-vertical-offset="5550">
           <caret line="72" column="0" selection-start-line="72" selection-start-column="0" selection-end-line="72" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1162,7 +1172,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1770">
           <caret line="100" column="31" selection-start-line="100" selection-start-column="31" selection-end-line="100" selection-end-column="31" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1170,7 +1179,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="832" max-vertical-offset="1755">
           <caret line="101" column="62" selection-start-line="101" selection-start-column="62" selection-end-line="101" selection-end-column="62" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1186,11 +1194,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="405">
           <caret line="2" column="7" selection-start-line="2" selection-start-column="7" selection-end-line="2" selection-end-column="7" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#445#446#0" expanded="true" />
-            <element signature="e#515#516#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1206,9 +1209,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="502" max-vertical-offset="1425">
           <caret line="45" column="120" selection-start-line="45" selection-start-column="120" selection-end-line="45" selection-end-column="120" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1232,9 +1233,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="555">
           <caret line="2" column="7" selection-start-line="2" selection-start-column="7" selection-end-line="2" selection-end-column="7" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1264,32 +1263,63 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/org/jay3d/engine/core/math/Attenuation.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="452" max-vertical-offset="1200">
-          <caret line="25" column="11" selection-start-line="25" selection-start-column="11" selection-end-line="25" selection-end-column="11" />
-          <folding>
-            <element signature="e#2012#2013#0" expanded="true" />
-            <element signature="e#2041#2042#0" expanded="true" />
-            <element signature="e#2217#2218#0" expanded="true" />
-            <element signature="e#2246#2247#0" expanded="true" />
-            <element signature="e#2581#2582#0" expanded="true" />
-            <element signature="e#2610#2611#0" expanded="true" />
-          </folding>
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1110">
+          <caret line="64" column="0" selection-start-line="64" selection-start-column="0" selection-end-line="64" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/org/jay3d/engine/core/math/Matrix4f.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.1793103" vertical-offset="810" max-vertical-offset="4920">
-          <caret line="111" column="51" selection-start-line="111" selection-start-column="51" selection-end-line="111" selection-end-column="51" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="765" max-vertical-offset="4800">
+          <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/org/jay3d/engine/core/math/Quaternion.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-1.0551724" vertical-offset="1215" max-vertical-offset="6825">
+          <caret line="30" column="49" selection-start-line="30" selection-start-column="49" selection-end-line="30" selection-end-column="49" />
           <folding>
-            <element signature="e#510#511#0" expanded="true" />
-            <element signature="e#545#546#0" expanded="true" />
-            <element signature="e#11232#11233#0" expanded="true" />
-            <element signature="e#11262#11263#0" expanded="true" />
-            <element signature="e#11551#11552#0" expanded="true" />
-            <element signature="e#11587#11588#0" expanded="true" />
-            <element signature="e#12125#12126#0" expanded="true" />
-            <element signature="e#12151#12152#0" expanded="true" />
+            <element signature="e#6436#6437#0" expanded="true" />
+            <element signature="e#6516#6517#0" expanded="true" />
+            <element signature="e#6683#6684#0" expanded="true" />
+            <element signature="e#6752#6753#0" expanded="true" />
+            <element signature="e#7450#7451#0" expanded="true" />
+            <element signature="e#7502#7503#0" expanded="true" />
+            <element signature="e#9014#9015#0" expanded="true" />
+            <element signature="e#9079#9080#0" expanded="true" />
+            <element signature="e#9418#9419#0" expanded="true" />
+            <element signature="e#9505#9506#0" expanded="true" />
+            <element signature="e#11350#11351#0" expanded="true" />
+            <element signature="e#11407#11408#0" expanded="true" />
+            <element signature="e#11656#11657#0" expanded="true" />
+            <element signature="e#11714#11715#0" expanded="true" />
+            <element signature="e#11940#11941#0" expanded="true" />
+            <element signature="e#11997#11998#0" expanded="true" />
+            <element signature="e#12238#12239#0" expanded="true" />
+            <element signature="e#12296#12297#0" expanded="true" />
+            <element signature="e#12531#12532#0" expanded="true" />
+            <element signature="e#12588#12589#0" expanded="true" />
+            <element signature="e#12829#12830#0" expanded="true" />
+            <element signature="e#12887#12888#0" expanded="true" />
+            <element signature="e#12997#12998#0" expanded="true" />
+            <element signature="e#13021#13022#0" expanded="true" />
+            <element signature="e#13133#13134#0" expanded="true" />
+            <element signature="e#13159#13160#0" expanded="true" />
+            <element signature="e#13269#13270#0" expanded="true" />
+            <element signature="e#13293#13294#0" expanded="true" />
+            <element signature="e#13405#13406#0" expanded="true" />
+            <element signature="e#13431#13432#0" expanded="true" />
+            <element signature="e#13541#13542#0" expanded="true" />
+            <element signature="e#13565#13566#0" expanded="true" />
+            <element signature="e#13677#13678#0" expanded="true" />
+            <element signature="e#13703#13704#0" expanded="true" />
+            <element signature="e#13813#13814#0" expanded="true" />
+            <element signature="e#13837#13838#0" expanded="true" />
+            <element signature="e#13949#13950#0" expanded="true" />
+            <element signature="e#13975#13976#0" expanded="true" />
           </folding>
         </state>
       </provider>
