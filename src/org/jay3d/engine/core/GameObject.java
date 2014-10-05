@@ -8,8 +8,11 @@ import org.jay3d.engine.rendering.Shader;
 import java.util.ArrayList;
 
 /**
- * Created by Juxhin
- * Do not distribute code without permission!
+ * GameObject class uses multiple classes including <code>Transform, Shader, GameComponent</code>. It is then added to
+ * a game class that is linked to both a Rendering Engine and Core Engine to render the objects and make sure everything
+ * is placed in a proper parent-child hierarchy.
+ *
+ * @author Juxhin Dyrmishi Brigjaj
  */
 public class GameObject {
     private ArrayList<GameObject> children;
@@ -17,6 +20,9 @@ public class GameObject {
     private Transform transform;
     private CoreEngine engine;
 
+    /**
+     * Constructs and initialises a GameObject with a list of children, components and a transform.
+     */
     public GameObject(){
         this.children = new ArrayList<>();
         this.components = new ArrayList<>();
@@ -24,12 +30,26 @@ public class GameObject {
         engine = null;
     }
 
+    /**
+     * @param child
+     *      Child <code>GameObject</code> to add to this current GameObject.
+     */
     public void addChild(GameObject child){
         children.add(child);
         child.setEngine(engine);
         child.getTransform().setParent(transform);
     }
 
+    /**
+     * @param component
+     *      The type of component to add to this particular GameObject.
+     *      <p>
+     *          For example, you could add a <code>LookAtComponent</code> to the GameObject to follow a particular points
+     *          using <code>nlerp</code> or <code>slerp</code>.
+     *      </p>
+     * @return
+     *      Current <code>GameObject</code> with new Child object added to it's children list.
+     */
     public GameObject addComponent(GameComponent component){
         components.add(component);
         component.setParent(this);
@@ -43,6 +63,13 @@ public class GameObject {
             child.inputAll(delta);
     }
 
+    /**
+     * Used in order to get the ArrayList of child objects attached to this GameObject. This will only return a list
+     * of it's children and not parents.
+     *
+     * @return
+     *      ArrayList of child objects.
+     */
     public ArrayList<GameObject> getAllAttached() {
         ArrayList<GameObject> result = new ArrayList<>();
 
@@ -84,6 +111,11 @@ public class GameObject {
 
     }
 
+    /**
+     * If you wish to use a specific <code>CoreEngine</code> for this specific <code>GameObject</code> you may do so.
+     * The method automatically adds all child components and objects to the same Engine that it's parent is now set to.
+     * @param engine
+     */
     public void setEngine(CoreEngine engine){
         if(this.engine != engine) {
             this.engine = engine;

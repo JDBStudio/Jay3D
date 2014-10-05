@@ -1,8 +1,10 @@
 package org.jay3d.engine.core.math;
 
 /**
- * Created by Juxhin
- * Do not distribute code without permission!
+ * Transformation class represents translation, rotation and scale
+ * inside one object.
+ *
+ * @author Juxhin Dyrmishi Brigjaj
  */
 public class Transform {
     private Transform parent;
@@ -16,6 +18,18 @@ public class Transform {
     private Quaternion oldRot;
     private Vector3f oldScale;
 
+    /**
+     * Constructs and initialises a <code>Transform</code> with default position, rotation and scale.
+     * <p>
+     *     Default position: <code>Vector3f( 0, 0, 0 )</code>(Origin).
+     * </p>
+     * <p>
+     *     Default rotation: <code>Quaternion( 0, 0, 0, 1 )</code>(No rotation).
+     * </p>
+     * <p>
+     *     Default scale: <code>Vector3f( 1, 1, 1 )</code>(Default scale).
+     * </p>
+     */
     public Transform() {
         pos = new Vector3f(0, 0, 0);
         rot = new Quaternion(0, 0, 0, 1);
@@ -24,6 +38,10 @@ public class Transform {
         parentMatrix = new Matrix4f().initIdentity();
     }
 
+    /**
+     * If the <code>Transform</code> does not exist it will be set to default values. Otherwise
+     * if it does already exist, it will be updated to the current position, rotation and scale.
+     */
     public void update(){
         if(oldPos != null) {
             oldPos.set(pos);
@@ -37,11 +55,24 @@ public class Transform {
         }
     }
 
+    /**
+     * Applies object rotation using angle and axis.
+     *
+     * @param axis
+     *      The axis to rotate on.
+     * @param angle
+     *      The angle to rotate the object by.
+     */
     public void rotate(Vector3f axis, float angle){
         rot = new Quaternion(axis, angle).mul(rot).normalise();
-
     }
 
+    /**
+     * Whether or not the current <code>Transform</code> is equal to the previous transform.
+     *
+     * @return
+     *      Whether <code>Transform</code> has changed or not.
+     */
     public boolean hasChanged(){
         return parent != null
                 && parent.hasChanged()
@@ -51,6 +82,12 @@ public class Transform {
 
     }
 
+    /**
+     * Gets a whole Matrix containing all the <code>Transform</code> information, including position, rotation and scale.
+     *
+     * @return
+     *      Parent matrix with updated transformation values.
+     */
     public Matrix4f getTransformation(){
         Matrix4f translationMatrix = new Matrix4f().initTranslation(
                 pos.getX(), pos.getY(), pos.getZ());
@@ -63,6 +100,10 @@ public class Transform {
         return getParentMatrix().mul(translationMatrix.mul(rotationMatrix.mul(scaleMatrix)));
     }
 
+    /**
+     * @return
+     *      The <code>Transform</code> parent matrix.
+     */
     private Matrix4f getParentMatrix(){
         if(parent != null && parent.hasChanged())
             parentMatrix = parent.getTransformation();
@@ -70,11 +111,15 @@ public class Transform {
         return parentMatrix;
     }
 
+
+    /**
+     * @return
+     *      Returns parent rotation multiplied by current rotation value.
+     */
     public Quaternion getTransformedRot(){
         Quaternion parentRotation = new Quaternion(0, 0, 0, 1);
-        if(parent != null){
+        if(parent != null)
             parentRotation = parent.getTransformedRot();
-        }
 
         return parentRotation.mul(rot);
     }
@@ -87,6 +132,10 @@ public class Transform {
         return new Quaternion(new Matrix4f().initRotation(point.sub(pos).normalise(), up));
     }
 
+    /**
+     * @return
+     *      Parent Matrix position
+     */
     public Vector3f getTranformedPos(){
         return getParentMatrix().transform(pos);
     }
