@@ -20,6 +20,8 @@ public class LookAtComponent extends GameComponent {
             Quaternion newRot = getTransform().getLookAtDirection(m_renderingEngine.getMainCamera().getTransform().getTranformedPos(),
                     new Vector3f(0, 1, 0));
             getTransform().setRot(getTransform().getRot().normalLinearInterpolation(newRot, delta * 5.0f, true));
+
+            //Below performs Spherical Interpolation
             //getTransform().setRot(GetTransform().getRot().spheticalInterpolation(newRot, delta * 5.0f, true));
         }
     }

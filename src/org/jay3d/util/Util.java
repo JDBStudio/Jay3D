@@ -10,23 +10,22 @@ import java.nio.IntBuffer;
 import java.util.ArrayList;
 
 /**
- * Created by Juxhin
- * Do not distribute code without permission!
+ * @author Juxhin Dyrmishi Brigjaj
  */
 public class Util {
 
-    public static FloatBuffer createFloatBuffer(int size){
+    public static FloatBuffer createFloatBuffer(int size) {
         return BufferUtils.createFloatBuffer(size);
     }
 
-    public static IntBuffer createIntBuffer(int size){
+    public static IntBuffer createIntBuffer(int size) {
         return BufferUtils.createIntBuffer(size);
     }
     public static ByteBuffer createByteBuffer(int size){
         return BufferUtils.createByteBuffer(size);
     }
 
-    public static IntBuffer createFlippedBuffer(int... values){
+    public static IntBuffer createFlippedBuffer(int... values) {
         IntBuffer buffer = createIntBuffer(values.length);
 
         buffer.put(values);
@@ -35,17 +34,17 @@ public class Util {
         return buffer;
     }
 
-    public static FloatBuffer createFlippedBuffer(Vertex[] vertices){
+    public static FloatBuffer createFlippedBuffer(Vertex[] vertices) {
         FloatBuffer buffer = createFloatBuffer(vertices.length * Vertex.SIZE);
-        for(int i = 0; i < vertices.length; i++){
-            buffer.put(vertices[i].getPos().getX());
-            buffer.put(vertices[i].getPos().getY());
-            buffer.put(vertices[i].getPos().getZ());
-            buffer.put(vertices[i].getTextCoord().getX());
-            buffer.put(vertices[i].getTextCoord().getY());
-            buffer.put(vertices[i].getNormal().getX());
-            buffer.put(vertices[i].getNormal().getY());
-            buffer.put(vertices[i].getNormal().getZ());
+        for (Vertex vertice : vertices) {
+            buffer.put(vertice.getPos().getX());
+            buffer.put(vertice.getPos().getY());
+            buffer.put(vertice.getPos().getZ());
+            buffer.put(vertice.getTextCoord().getX());
+            buffer.put(vertice.getTextCoord().getY());
+            buffer.put(vertice.getNormal().getX());
+            buffer.put(vertice.getNormal().getY());
+            buffer.put(vertice.getNormal().getZ());
         }
         buffer.flip();
 
@@ -67,9 +66,9 @@ public class Util {
 
     public static String[] removeEmptyStrings(String[] tokens){
         ArrayList<String> result = new ArrayList<>();
-        for(int i = 0; i < tokens.length; i++) {
-            if (!tokens[i].equalsIgnoreCase("")) {
-                result.add(tokens[i]);
+        for (String token : tokens) {
+            if (!token.equalsIgnoreCase("")) {
+                result.add(token);
             }
         }
         String[] res = new String[result.size()];
@@ -80,7 +79,7 @@ public class Util {
     public static int[] toIntArray(Integer[] integerArray){
         int[] result = new int[integerArray.length];
         for(int i = 0; i < integerArray.length; i++)
-            result[i] = integerArray[i].intValue();
+            result[i] = integerArray[i];
 
             return result;
     }

@@ -7,8 +7,7 @@ import static org.lwjgl.opengl.GL15.glDeleteBuffers;
 import static org.lwjgl.opengl.GL20.glCreateProgram;
 
 /**
- * Created by Juxhin on 02/10/14.
- * Do not distribute without permission
+ * @author Juxhin Dyrmishi Brigjaj
  */
 public class ShaderResource {
     private int program;

@@ -89,12 +89,6 @@ public class Quaternion {
         w /= length;
     }
 
-    /**
-     * @param dest
-     * @param lerpFactor
-     * @param shortest
-     * @return
-     */
     public Quaternion normalLinearInterpolation(Quaternion dest, float lerpFactor, boolean shortest) {
         Quaternion correctedDest = dest;
 

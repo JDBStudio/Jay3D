@@ -114,7 +114,6 @@ public class GameObject {
     /**
      * If you wish to use a specific <code>CoreEngine</code> for this specific <code>GameObject</code> you may do so.
      * The method automatically adds all child components and objects to the same Engine that it's parent is now set to.
-     * @param engine
      */
     public void setEngine(CoreEngine engine){
         if(this.engine != engine) {

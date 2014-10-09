@@ -7,13 +7,13 @@ import org.jay3d.util.Time;
 /**
  * The CoreEngine class is the essence of Jay3D engine. Whilst it's not fully finished, this class is to be used to:
  * <p>
- *     1) Setup the configurations for the windows and game.
+ *     - Setup the configurations for the windows and game.
  * </p>
  * <p>
- *     2) Initialise your game.
+ *     - Initialise your game.
  * </p>
  * <p>
- *     3) Cleanup the environment when needed.
+ *     - Cleanup the environment when needed.
  * </p>
  *
  * @author Juxhin Dyrmishi Brigjaj

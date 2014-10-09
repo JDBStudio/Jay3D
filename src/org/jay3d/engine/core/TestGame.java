@@ -10,8 +10,9 @@ import org.jay3d.engine.rendering.Material;
 import org.jay3d.engine.rendering.Mesh;
 
 /**
- * Created by Juxhin
- * Do not distribute code without permission!
+ * Please do note that this is just a temporary class to display some parts of the rendering engine.
+ *
+ * @author Juxhin Dyrmishi Brigjaj
  */
 public class TestGame extends Game {
 
@@ -49,13 +50,19 @@ public class TestGame extends Game {
         material2.addFloat( "specularIntensity", 1f);
         material2.addFloat( "specularPower", 8f);
 
+        Material material3 = new Material();
+        material3.addTexture( "diffuse" , new Texture("bricks3.jpg"));
+        material3.addFloat( "specularIntensity", 1f);
+        material3.addFloat( "specularPower", 8f);
+
         Mesh tempMesh = new Mesh("monkey3.obj");
 
         MeshRenderer meshRenderer = new MeshRenderer(mesh, material);
+        MeshRenderer meshRenderer1 = new MeshRenderer(mesh, material3);
 
         GameObject planeObject = new GameObject();
-        planeObject.addComponent(meshRenderer);
-        planeObject.getTransform().setScale(new Vector3f(0.5f, 0.5f, 0.5f));
+        planeObject.addComponent(meshRenderer1);
+        planeObject.getTransform().setScale(new Vector3f(0.75f, 0.75f, 0.75f));
         planeObject.getTransform().getPos().set(0, -1, 5);
 
         GameObject directionalLightObject = new GameObject();
@@ -82,8 +89,8 @@ public class TestGame extends Game {
         addObject(pointLightObject);
         addObject(spotLightObject);
 
-        GameObject meshObject1 = new GameObject().addComponent(new MeshRenderer(mesh2, material));
-        GameObject meshObject2 = new GameObject().addComponent(new MeshRenderer(mesh2, material));
+        GameObject meshObject1 = new GameObject();
+        GameObject meshObject2 = new GameObject();
         GameObject meshObject3 = new GameObject().addComponent(new LookAtComponent())
                 .addComponent(new MeshRenderer(tempMesh, material));
         GameObject meshObject4 = new GameObject().addComponent(new LookAtComponent())

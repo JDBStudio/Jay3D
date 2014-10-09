@@ -4,8 +4,7 @@ import static org.lwjgl.opengl.GL11.glGenTextures;
 import static org.lwjgl.opengl.GL15.glDeleteBuffers;
 
 /**
- * Created by Juxhin on 29/09/14.
- * Do not distribute without permission
+ * @author Juxhin Dyrmishi Brigjaj
  */
 public class TextureResource {
     private int id;

@@ -6,8 +6,7 @@ import org.jay3d.engine.rendering.Material;
 import org.jay3d.engine.rendering.Shader;
 
 /**
- * Created by Juxhin
- * Do not distribute code without permission!
+ * @author Juxhin Dyrmishi Brigjaj
  */
 public class MeshRenderer extends GameComponent{
     private Mesh mesh;

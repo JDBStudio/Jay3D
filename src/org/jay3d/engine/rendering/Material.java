@@ -1,14 +1,11 @@
 package org.jay3d.engine.rendering;
 
-import org.jay3d.engine.core.math.Vector3f;
-import org.jay3d.engine.rendering.Texture;
 import org.jay3d.engine.rendering.resources.MappedValues;
 
 import java.util.HashMap;
 
 /**
- * Created by Juxhin
- * Do not distribute code without permission!
+ * @author Juxhin Dyrmishi Brigjaj
  */
 public class Material extends MappedValues{
 

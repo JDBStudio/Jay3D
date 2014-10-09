@@ -4,8 +4,7 @@ import org.jay3d.engine.core.CoreEngine;
 import org.jay3d.engine.core.TestGame;
 
 /**
- * Created by Juxhin
- * Do not distribute code without permission!
+ * @author Juxhin Dyrmishi Brigjaj
  */
 public class Main {
     public static void main(String[] args) {

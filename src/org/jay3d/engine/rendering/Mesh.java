@@ -14,8 +14,7 @@ import static org.lwjgl.opengl.GL15.*;
 import static org.lwjgl.opengl.GL20.*;
 
 /**
- * Created by Juxhin
- * Do not distribute code without permission!
+ * @author Juxhin Dyrmishi Brigjaj
  */
 public class Mesh {
     private static HashMap<String, MeshResource> loadedModels = new HashMap<>();

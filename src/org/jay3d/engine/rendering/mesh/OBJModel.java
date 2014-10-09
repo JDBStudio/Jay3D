@@ -10,8 +10,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
- * Created by Juxhin on 27/09/14.
- * Do not distribute without permission
+ * @author Juxhin Dyrmishi Brigjaj
  */
 public class OBJModel {
     private ArrayList<Vector3f> positions;
@@ -37,9 +36,7 @@ public class OBJModel {
             while((line = meshReader.readLine()) != null){
                 String[] tokens = line.split(" ");
                 tokens = Util.removeEmptyStrings(tokens);
-                if(tokens.length == 0 || tokens[0].equalsIgnoreCase("#"))
-                    continue;
-                else if(tokens[0].equalsIgnoreCase("v")){
+                if(tokens[0].equalsIgnoreCase("v")){
                     positions.add(new Vector3f(Float.valueOf(tokens[1]),
                             Float.valueOf(tokens[2]),
                             Float.valueOf(tokens[3])));
@@ -75,39 +72,40 @@ public class OBJModel {
 
         HashMap<Integer, Integer> indexMap = new HashMap<>();
 
-        for (int i = 0; i < indices.size(); i++) {
-            OBJIndex currentIndex = indices.get(i);
-
+        for (OBJIndex currentIndex : indices) {
             Vector3f currentPos = positions.get(currentIndex.vertexIndex);
             Vector2f currentTexCoord;
             Vector3f currentNormal;
 
-            if (hasTexCoords)
+            if (hasTexCoords) {
                 currentTexCoord = texCoords.get(currentIndex.texCoordIndex);
-            else
+            } else {
                 currentTexCoord = new Vector2f(0, 0);
+            }
 
-            if (hasNormals)
+            if (hasNormals) {
                 currentNormal = normals.get(currentIndex.normalIndex);
-            else
+            } else {
                 currentNormal = new Vector3f(0, 0, 0);
+            }
 
             Integer modelVertexIndex = resultIndexMap.get(currentIndex);
 
-            if(modelVertexIndex == null){
+            if (modelVertexIndex == null) {
                 modelVertexIndex = result.getPositions().size();
                 resultIndexMap.put(currentIndex, result.getPositions().size());
 
                 result.getPositions().add(currentPos);
                 result.getTextCoordinates().add(currentTexCoord);
 
-                if(hasNormals)
+                if (hasNormals) {
                     result.getNormals().add(currentNormal);
+                }
             }
 
-            Integer normalModelIntex =  normalIndexMap.get(currentIndex.vertexIndex);
+            Integer normalModelIntex = normalIndexMap.get(currentIndex.vertexIndex);
 
-            if(normalModelIntex == null){
+            if (normalModelIntex == null) {
                 normalIndexMap.put(currentIndex.vertexIndex, normalModel.getPositions().size());
 
                 normalModelIntex = normalModel.getPositions().size();

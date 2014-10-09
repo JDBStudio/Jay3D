@@ -6,8 +6,7 @@ import org.jay3d.engine.core.math.Vector3f;
 import java.util.ArrayList;
 
 /**
- * Created by Juxhin on 27/09/14.
- * Do not distribute without permission
+ * @author Juxhin Dyrmishi Brigjaj
  */
 public class IndexedModel {
     private ArrayList<Vector3f> positions;

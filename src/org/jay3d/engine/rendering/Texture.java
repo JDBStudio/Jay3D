@@ -13,8 +13,7 @@ import java.util.HashMap;
 import static org.lwjgl.opengl.GL11.*;
 import static org.lwjgl.opengl.GL13.*;
 /**
- * Created by Juxhin
- * Do not distribute code without permission!
+ * @author Juxhin Dyrmishi Brigjaj
  */
 public class Texture {
     private static HashMap<String, TextureResource> loadedTextures = new HashMap<>();
@@ -59,9 +58,6 @@ public class Texture {
 
 
     private static TextureResource loadTexture(String fileName){
-        String[] splitArray = fileName.split("\\.");
-        String ext = splitArray[splitArray.length - 1];
-
         try{
             BufferedImage image = ImageIO.read(new File("./res/textures/" + fileName));
             int[] pixels = image.getRGB(0, 0, image.getWidth(), image.getHeight(), null, 0, image.getWidth());

@@ -18,17 +18,14 @@ import java.util.HashMap;
 import static org.lwjgl.opengl.GL20.*;
 import static org.lwjgl.opengl.GL32.*;
 /**
- * Created by Juxhin
- * Do not distribute code without permission!
+ * @author Juxhin Dyrmishi Brigjaj
  */
 public class Shader {
     private static HashMap<String, ShaderResource> loadedShaders = new HashMap<>();
 
     private ShaderResource resource;
-    private String fileName;
 
     public Shader(String fileName){
-        this.fileName = fileName;
         ShaderResource oldResource = loadedShaders.get(fileName);
 
         if(oldResource != null){
@@ -110,7 +107,7 @@ public class Shader {
                         setUniformPointLight(uniformName, (PointLight) renderingEngine.getActiveLight());
                         break;
                     default:
-                        renderingEngine.updateUniformStruct(transform, material, this, uniformName, uniformType);
+                        renderingEngine.updateUniformStruct(uniformType);
                 }
             }else if(uniformName.startsWith("C_")){
                     if(uniformName.equals("C_eyePos"))

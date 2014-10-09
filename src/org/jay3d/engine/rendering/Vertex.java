@@ -4,8 +4,7 @@ import org.jay3d.engine.core.math.Vector2f;
 import org.jay3d.engine.core.math.Vector3f;
 
 /**
- * Created by Juxhin
- * Do not distribute code without permission!
+ * @author Juxhin Dyrmishi Brigjaj
  */
 public class Vertex {
     public static final int SIZE = 8;

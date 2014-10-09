@@ -1,8 +1,7 @@
 package org.jay3d.engine.rendering.mesh;
 
 /**
- * Created by Juxhin on 27/09/14.
- * Do not distribute without permission
+ * @author Juxhin Dyrmishi Brigjaj
  */
 public class OBJIndex {
     public int vertexIndex;
@@ -10,6 +9,7 @@ public class OBJIndex {
     public int normalIndex;
 
 
+    @SuppressWarnings("EqualsWhichDoesntCheckParameterClass")
     @Override
     public boolean equals(Object obj) {
         OBJIndex index = (OBJIndex)obj;

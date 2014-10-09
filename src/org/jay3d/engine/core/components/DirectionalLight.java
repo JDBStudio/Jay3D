@@ -7,8 +7,6 @@ import org.jay3d.engine.rendering.Shader;
  * @author Juxhin Dyrmishi Brigjaj
  */
 public class DirectionalLight extends BaseLight{
-    private BaseLight base;
-
     public DirectionalLight(Vector3f colour, float intensity){
         super(colour, intensity);
         setShader(new Shader("Forward-directional"));

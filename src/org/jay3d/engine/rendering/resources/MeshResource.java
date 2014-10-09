@@ -3,8 +3,7 @@ package org.jay3d.engine.rendering.resources;
 import static org.lwjgl.opengl.GL15.*;
 
 /**
- * Created by Juxhin on 28/09/14.
- * Do not distribute without permission
+ * @author Juxhin Dyrmishi Brigjaj
  */
 public class MeshResource {
     private int vbo;

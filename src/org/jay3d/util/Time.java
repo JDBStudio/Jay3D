@@ -1,8 +1,7 @@
 package org.jay3d.util;
 
 /**
- * Created by Juxhin
- * Do not distribute code without permission!
+ * @author Juxhin Dyrmishi Brigjaj
  */
 public class Time {
     private static final long SECOND = 1000000000L;

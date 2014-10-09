@@ -5,8 +5,7 @@ import org.jay3d.engine.core.math.Vector3f;
 import java.util.HashMap;
 
 /**
- * Created by Juxhin on 01/10/14.
- * Do not distribute without permission
+ * @author Juxhin Dyrmishi Brigjaj
  */
 public abstract class MappedValues {
     private HashMap<String, Vector3f> vector3fHashMap;

@@ -9,8 +9,7 @@ import org.lwjgl.opengl.DisplayMode;
 import org.lwjgl.util.vector.Vector2f;
 
 /**
- * Created by Juxhin
- * Do not distribute code without permission!
+ * @author Juxhin Dyrmishi Brigjaj
  */
 public class Window {
     public static void createWindow(int width, int height, String title){
