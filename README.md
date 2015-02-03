@@ -20,10 +20,11 @@ Guide
 
 ADDED:
 -----
+ - A functional forward rendering pipeline
  - Mesh Model loader(only supports .obj right now)
  - Basic temporary shaders(will implement proper ones later)
  - Full VBO/IBO Mesh rendering implemented
- - Bunch of other crap that I forgot to document, feel free to check the commits
+ - Bunch of other stuff that I forgot to document, feel free to check the commits
  - Added free camera movement
  - Added textures and texture loader
  - Added lighting(Exclude mapping, haven't done that yet)
